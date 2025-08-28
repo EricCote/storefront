@@ -1,4 +1,7 @@
 import edjsHTML from "editorjs-html";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { revalidatePath } from "next/cache";
 import { notFound } from "next/navigation";
 import { type ResolvingMetadata, type Metadata } from "next";
@@ -13,6 +16,23 @@ import { formatMoney, formatMoneyRange } from "@/lib/utils";
 import { CheckoutAddLineDocument, ProductDetailsDocument, ProductListDocument } from "@/gql/graphql";
 import * as Checkout from "@/lib/checkout";
 import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
+
+interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {}
+interface CalloutProps {
+	children?: React.ReactNode;
+}
+
+const components: Partial<Record<string, React.ComponentType<any>>> = {
+	h1: (props: HeadingProps) => <h1 className="mb-4 mt-8 text-5xl font-extrabold text-teal-600" {...props} />,
+	//p: (props) => <p className="mb-4 text-lg leading-relaxed text-gray-700" {...props} />,
+	// A custom 'Callout' component that you can use with Markdown syntax
+	// by simply writing <Callout>This is a callout!</Callout> in the string.
+	Callout: ({ children }: CalloutProps) => (
+		<div className="my-4 rounded border-l-4 border-yellow-500 bg-yellow-100 p-4">
+			<p className="font-medium text-yellow-800">{children}</p>
+		</div>
+	),
+};
 
 export async function generateMetadata(
 	props: {
@@ -90,8 +110,11 @@ export default async function Page(props: {
 		notFound();
 	}
 
+	const id = product.id;
 	const firstImage = product.thumbnail;
 	const description = product?.description ? parser.parse(JSON.parse(product?.description)) : null;
+	const mdxFr = product.mdxFr;
+	const mdxEn = product.mdxEn;
 
 	const variants = product.variants;
 	const selectedVariantID = searchParams.variant;
@@ -219,6 +242,16 @@ export default async function Page(props: {
 					</div>
 				</div>
 			</form>
+			{/* render MDX French fragment at the end of the form */}
+			{mdxFr && (
+				<div className="prose mx-auto  mt-8  text-neutral-500">
+					{/* mdxFr is expected to be HTML/HTML-like. Sanitize before injecting. */}
+					<h2 className="text-2xl font-bold  text-neutral-600">Description</h2>
+					<ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={components}>
+						{mdxFr}
+					</ReactMarkdown>
+				</div>
+			)}
 		</section>
 	);
 }

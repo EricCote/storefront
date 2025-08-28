@@ -37,3 +37,10 @@ interface JSON {
 interface Set<T> {
 	has(value: unknown): value is T;
 }
+
+
+declare module "*.mdx" {
+  import * as React from "react";
+  const MDXComponent: React.FC<any>;
+  export default MDXComponent;
+}

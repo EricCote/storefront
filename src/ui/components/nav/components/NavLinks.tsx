@@ -6,12 +6,12 @@ import { MenuGetBySlugDocument } from "@/gql/graphql";
 export const NavLinks = async ({ channel }: { channel: string }) => {
 	const navLinks = await executeGraphQL(MenuGetBySlugDocument, {
 		variables: { slug: "navbar", channel },
-		revalidate: 60 * 60 * 24,
+		revalidate: 60 * 60 * 24 // Revalidate every 24 hours,
 	});
 
 	return (
 		<>
-			<NavLink href="/products">All</NavLink>
+			<NavLink href="/products">Tous</NavLink>
 			{navLinks.menu?.items?.map((item) => {
 				if (item.category) {
 					return (

@@ -3,9 +3,9 @@ import { executeGraphQL } from "@/lib/graphql";
 import { ProductList } from "@/ui/components/ProductList";
 
 export const metadata = {
-	title: "ACME Storefront, powered by Saleor & Next.js",
+	title: "SD Variations - Boutique",
 	description:
-		"Storefront Next.js Example for building performant e-commerce experiences with Saleor - the composable, headless commerce platform for global brands.",
+		"Fournisseur de matériel érotique et de jouets intimes de haute qualité, spécialisé dans la vente en ligne de produits pour adultes. Découvrez notre sélection de jouets érotiques, lingerie sexy, et accessoires intimes pour pimenter votre vie amoureuse.",
 };
 
 export default async function Page(props: { params: Promise<{ channel: string }> }) {

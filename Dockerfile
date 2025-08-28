@@ -1,4 +1,4 @@
-FROM node:20-alpine AS base
+FROM node:alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -68,3 +68,28 @@ USER nextjs
 
 
 CMD ["node", "server.js"]
+
+
+# Rebuild the source code only when needed
+FROM base AS dev
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# Next.js collects completely anonymous telemetry data about general usage.
+# Learn more here: https://nextjs.org/telemetry
+# Uncomment the following line in case you want to disable telemetry during the build.
+# ENV NEXT_TELEMETRY_DISABLED 1
+
+ENV NEXT_OUTPUT=standalone
+ARG NEXT_PUBLIC_SALEOR_API_URL
+ENV NEXT_PUBLIC_SALEOR_API_URL=${NEXT_PUBLIC_SALEOR_API_URL}
+ARG NEXT_PUBLIC_STOREFRONT_URL
+ENV NEXT_PUBLIC_STOREFRONT_URL=${NEXT_PUBLIC_STOREFRONT_URL}
+
+# Get PNPM version from package.json
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+
+CMD ["pnpm", "dev"]
