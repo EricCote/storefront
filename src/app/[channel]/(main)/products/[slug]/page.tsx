@@ -110,11 +110,11 @@ export default async function Page(props: {
 		notFound();
 	}
 
-	const id = product.id;
+	//const id = product.id;
 	const firstImage = product.thumbnail;
 	const description = product?.description ? parser.parse(JSON.parse(product?.description)) : null;
 	const mdxFr = product.mdxFr;
-	const mdxEn = product.mdxEn;
+	//const mdxEn = product.mdxEn;
 
 	const variants = product.variants;
 	const selectedVariantID = searchParams.variant;

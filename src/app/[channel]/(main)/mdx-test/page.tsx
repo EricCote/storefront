@@ -7,7 +7,7 @@ import { MDXProvider } from "@mdx-js/react";
 import Hello from "@/content/hello.mdx";
 
 const components = {
-	h1: (props) => <h1 style={{ color: "crimson" }} {...props} />,
+	h1: (props: React.ComponentProps<"h1">) => <h1 style={{ color: "crimson" }} {...props} />,
 };
 
 export default function Page() {
