@@ -141,7 +141,7 @@ export const getAddressValidationRulesVariables = (
 	autoSave
 		? {
 				checkRequiredFields: false,
-		  }
+			}
 		: {};
 
 export const addressFieldsOrder: AddressField[] = [
@@ -178,7 +178,7 @@ export const getRequiredAddressFields = (requiredFields: AddressField[] = []): A
 export const getFilteredAddressFields = (addressFields: ApiAddressField[]): AddressField[] => {
 	const filteredAddressFields = addressFields.filter(
 		(addressField: ApiAddressField) => addressField !== "name",
-	) as AddressField[];
+	);
 
 	return uniq([...filteredAddressFields, "firstName", "lastName", "phone"]);
 };
