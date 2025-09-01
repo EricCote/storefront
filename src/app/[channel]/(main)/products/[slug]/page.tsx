@@ -10,12 +10,15 @@ import { invariant } from "ts-invariant";
 import { type WithContext, type Product } from "schema-dts";
 import { AddButton } from "./AddButton";
 import { VariantSelector } from "@/ui/components/VariantSelector";
-import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
+//import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
 import { executeGraphQL } from "@/lib/graphql";
 import { formatMoney, formatMoneyRange } from "@/lib/utils";
 import { CheckoutAddLineDocument, ProductDetailsDocument, ProductListDocument } from "@/gql/graphql";
 import * as Checkout from "@/lib/checkout";
 import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
+// Import Swiper React components
+// Client-only product gallery (Swiper is used inside the client component)
+import { ProductGallery } from "@/ui/components/ProductGallery";
 
 interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {}
 interface CalloutProps {
@@ -67,11 +70,11 @@ export async function generateMetadata(
 				? process.env.NEXT_PUBLIC_STOREFRONT_URL + `/products/${encodeURIComponent(params.slug)}`
 				: undefined,
 		},
-		openGraph: product.thumbnail
+		openGraph: product.media
 			? {
 					images: [
 						{
-							url: product.thumbnail.url,
+							url: product.media[0].url,
 							alt: product.name,
 						},
 					],
@@ -111,7 +114,8 @@ export default async function Page(props: {
 	}
 
 	//const id = product.id;
-	const firstImage = product.thumbnail;
+	//const firstImage = product.thumbnail;
+	const images = product.media;
 	const description = product?.description ? parser.parse(JSON.parse(product?.description)) : null;
 	const mdxFr = product.mdxFr;
 	//const mdxEn = product.mdxEn;
@@ -161,7 +165,7 @@ export default async function Page(props: {
 	const productJsonLd: WithContext<Product> = {
 		"@context": "https://schema.org",
 		"@type": "Product",
-		image: product.thumbnail?.url,
+		image: (product.media && product.media[0].url) ?? "",
 		...(selectedVariant
 			? {
 					name: `${product.name} - ${selectedVariant.name}`,
@@ -201,14 +205,15 @@ export default async function Page(props: {
 			/>
 			<form className="grid gap-2 sm:grid-cols-2 lg:grid-cols-8" action={addItem}>
 				<div className="md:col-span-1 lg:col-span-5">
-					{firstImage && (
-						<ProductImageWrapper
-							priority={true}
-							alt={firstImage.alt ?? ""}
-							width={1024}
-							height={1024}
-							src={firstImage.url}
-						/>
+					{images && (
+						// <ProductImageWrapper
+						// 	priority={true}
+						// 	alt={firstImage.alt ?? ""}
+						// 	width={1024}
+						// 	height={1024}
+						// 	src={firstImage.url}
+						// />
+						<ProductGallery images={images} />
 					)}
 				</div>
 				<div className="flex flex-col pt-6 sm:col-span-1 sm:px-6 sm:pt-0 lg:col-span-3 lg:pt-16">

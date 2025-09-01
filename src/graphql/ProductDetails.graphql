@@ -8,9 +8,9 @@ query ProductDetails($slug: String!, $channel: String!) {
 		seoDescription
 		mdxFr: metafield(key: "mdxFr")
 		mdxEn: metafield(key: "mdxEn")
-		thumbnail(size: 1024, format: WEBP) {
-			url
+		media {
 			alt
+			url(format: WEBP, size: 1024)
 		}
 		category {
 			id
