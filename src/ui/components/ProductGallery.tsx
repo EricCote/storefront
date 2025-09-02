@@ -23,7 +23,7 @@ export function ProductGallery({ images }: { images: ImageItem[] }) {
 						border: thin solid #999999;
 						border-radius: 8px
 					} 
-					 .swiper-slide-thumb-active img {
+					.swiper-slide-thumb-active img {
 						border-radius: 8px
 					} 
 					 
@@ -35,17 +35,19 @@ export function ProductGallery({ images }: { images: ImageItem[] }) {
 				slidesPerView={1}
 				thumbs={{ swiper: swiperInstance }}
 				modules={[FreeMode, Navigation, Thumbs, Zoom]}
+				//				zoom={{ limitToOriginalSize: true, panOnMouseMove: true }}
 			>
 				{images.map((img, i) => (
 					<SwiperSlide key={i}>
+						{/* <div className='swiper-zoom-container'> */}
 						<Image
 							priority={true}
 							src={img.url}
 							width={1024}
 							height={1024}
 							alt={img.alt ?? `Product image ${i + 1}`}
-							style={{ objectFit: 'contain' }}
 						/>
+						{/* </div> */}
 					</SwiperSlide>
 				))}
 			</Swiper>
@@ -56,16 +58,11 @@ export function ProductGallery({ images }: { images: ImageItem[] }) {
 				spaceBetween={5}
 				slidesPerView={7}
 				freeMode={true}
+				navigation
 			>
 				{images.map((img, i) => (
 					<SwiperSlide key={i}>
-						<Image
-							src={img.url}
-							alt={img.alt ?? `Product image ${i + 1}`}
-							width={100}
-							height={100}
-							style={{ objectFit: 'contain' }}
-						/>
+						<Image src={img.url} alt={img.alt ?? `Product image ${i + 1}`} width={100} height={100} />
 					</SwiperSlide>
 				))}
 			</Swiper>
