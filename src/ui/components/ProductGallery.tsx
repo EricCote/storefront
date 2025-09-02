@@ -22,51 +22,50 @@ export function ProductGallery({ images }: { images: ImageItem[] }) {
 				{` .swiper-slide-thumb-active {
 						border: thin solid #999999;
 						border-radius: 8px
-					} `}
+					} 
+					 .swiper-slide-thumb-active img {
+						border-radius: 8px
+					} 
+					 
+					 `}
 			</style>
 			<Swiper
 				navigation
-				spaceBetween={4}
+				spaceBetween={5}
 				slidesPerView={1}
 				thumbs={{ swiper: swiperInstance }}
-				modules={[FreeMode, Zoom, Navigation, Thumbs]}
-				style={{ width: '100%', height: 560 }}
+				modules={[FreeMode, Navigation, Thumbs, Zoom]}
 			>
 				{images.map((img, i) => (
 					<SwiperSlide key={i}>
-						<div style={{ position: 'relative', width: '100%', height: 560 }}>
-							<Image
-								src={img.url}
-								alt={img.alt ?? `Product image ${i + 1}`}
-								fill
-								sizes='(max-width: 1024px) 100vw, 800px'
-								style={{ objectFit: 'contain' }}
-							/>
-						</div>
+						<Image
+							priority={true}
+							src={img.url}
+							width={1024}
+							height={1024}
+							alt={img.alt ?? `Product image ${i + 1}`}
+							style={{ objectFit: 'contain' }}
+						/>
 					</SwiperSlide>
 				))}
 			</Swiper>
 			<Swiper
 				modules={[FreeMode, Navigation, Thumbs]}
 				watchSlidesProgress
-				navigation
 				onSwiper={setSwiperInstance}
 				spaceBetween={5}
 				slidesPerView={7}
 				freeMode={true}
-				className='mySwiper'
 			>
 				{images.map((img, i) => (
 					<SwiperSlide key={i}>
-						<div style={{ position: 'relative', width: '100%', height: 110 }}>
-							<Image
-								src={img.url}
-								alt={img.alt ?? `Product image ${i + 1}`}
-								fill
-								sizes='(max-width: 102px) 100vw, 80px'
-								style={{ objectFit: 'contain' }}
-							/>
-						</div>
+						<Image
+							src={img.url}
+							alt={img.alt ?? `Product image ${i + 1}`}
+							width={100}
+							height={100}
+							style={{ objectFit: 'contain' }}
+						/>
 					</SwiperSlide>
 				))}
 			</Swiper>
