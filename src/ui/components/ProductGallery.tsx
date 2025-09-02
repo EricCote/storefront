@@ -1,15 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, FreeMode, Thumbs, Zoom } from "swiper/modules";
-import type { Swiper as SwiperType } from "swiper"; // Import the core Swiper type
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import "swiper/css/zoom";
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, FreeMode, Thumbs, Zoom } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper'; // Import the core Swiper type
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+import 'swiper/css/zoom';
 
 type ImageItem = { url: string; alt?: string };
 
@@ -19,23 +18,29 @@ export function ProductGallery({ images }: { images: ImageItem[] }) {
 
 	return (
 		<div>
+			<style>
+				{` .swiper-slide-thumb-active {
+						border: thin solid #999999;
+						border-radius: 8px
+					} `}
+			</style>
 			<Swiper
 				navigation
 				spaceBetween={4}
 				slidesPerView={1}
 				thumbs={{ swiper: swiperInstance }}
 				modules={[FreeMode, Zoom, Navigation, Thumbs]}
-				style={{ width: "100%", height: 560 }}
+				style={{ width: '100%', height: 560 }}
 			>
 				{images.map((img, i) => (
 					<SwiperSlide key={i}>
-						<div style={{ position: "relative", width: "100%", height: 560 }}>
+						<div style={{ position: 'relative', width: '100%', height: 560 }}>
 							<Image
 								src={img.url}
 								alt={img.alt ?? `Product image ${i + 1}`}
 								fill
-								sizes="(max-width: 1024px) 100vw, 800px"
-								style={{ objectFit: "contain" }}
+								sizes='(max-width: 1024px) 100vw, 800px'
+								style={{ objectFit: 'contain' }}
 							/>
 						</div>
 					</SwiperSlide>
@@ -44,21 +49,22 @@ export function ProductGallery({ images }: { images: ImageItem[] }) {
 			<Swiper
 				modules={[FreeMode, Navigation, Thumbs]}
 				watchSlidesProgress
+				navigation
 				onSwiper={setSwiperInstance}
 				spaceBetween={5}
 				slidesPerView={7}
 				freeMode={true}
-				className="mySwiper"
+				className='mySwiper'
 			>
 				{images.map((img, i) => (
 					<SwiperSlide key={i}>
-						<div style={{ position: "relative", width: "100%", height: 110 }}>
+						<div style={{ position: 'relative', width: '100%', height: 110 }}>
 							<Image
 								src={img.url}
 								alt={img.alt ?? `Product image ${i + 1}`}
 								fill
-								sizes="(max-width: 102px) 100vw, 80px"
-								style={{ objectFit: "contain" }}
+								sizes='(max-width: 102px) 100vw, 80px'
+								style={{ objectFit: 'contain' }}
 							/>
 						</div>
 					</SwiperSlide>
