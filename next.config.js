@@ -1,14 +1,15 @@
 /** @type {import('next').NextConfig} */
-import withMDX from "@next/mdx";
-import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import withMDX from '@next/mdx';
+import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const config = {
 	images: {
+		contentDispositionType: 'inline',
 		remotePatterns: [
 			{
-				hostname: "*",
+				hostname: '*',
 			},
 		],
 	},
@@ -17,10 +18,10 @@ const config = {
 	},
 	// used in the Dockerfile
 	output:
-		process.env.NEXT_OUTPUT === "standalone"
-			? "standalone"
-			: process.env.NEXT_OUTPUT === "export"
-				? "export"
+		process.env.NEXT_OUTPUT === 'standalone'
+			? 'standalone'
+			: process.env.NEXT_OUTPUT === 'export'
+				? 'export'
 				: undefined,
 };
 
@@ -29,7 +30,7 @@ const mdx = withMDX({
 	options: {
 		remarkPlugins: [remarkGfm],
 		rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
-		providerImportSource: "@mdx-js/react",
+		providerImportSource: '@mdx-js/react',
 	},
 });
 
