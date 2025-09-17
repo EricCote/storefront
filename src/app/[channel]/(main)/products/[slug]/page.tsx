@@ -180,7 +180,6 @@ export default async function Page(props: {
 				}
 			: {
 					name: product.name,
-
 					description: product.seoDescription || product.name,
 					offers: {
 						'@type': 'AggregateOffer',
@@ -233,6 +232,12 @@ export default async function Page(props: {
 							/>
 						)}
 						<AvailabilityMessage isAvailable={isAvailable} />
+						{product.attributes.map((attr, idx) => (
+							<div className='mt-8' key={attr.attribute.name}>
+								<strong>{attr.attribute.name}:</strong> {attr.values[idx].plainText}
+							</div>
+						))}
+
 						<div className='mt-8'>
 							<AddButton disabled={!selectedVariantID || !selectedVariant?.quantityAvailable} />
 						</div>

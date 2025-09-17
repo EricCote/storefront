@@ -16,6 +16,20 @@ query ProductDetails($slug: String!, $channel: String!) {
 			id
 			name
 		}
+		attributes {
+			attribute {
+				id
+				name
+				slug
+				translation(languageCode: EN) {
+					name
+				}
+			}
+			values {
+				plainText
+				inputType
+			}
+		}
 		variants {
 			...VariantDetails
 		}
