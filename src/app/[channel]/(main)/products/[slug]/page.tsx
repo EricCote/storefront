@@ -123,6 +123,10 @@ export default async function Page(props: {
 	const selectedVariantID = searchParams.variant;
 	const selectedVariant = variants?.find(({ id }) => id === selectedVariantID);
 
+	// Determine which ima	ges to show in the gallery
+	const galleryImages =
+		selectedVariant?.media && selectedVariant.media.length > 0 ? selectedVariant.media : images;
+
 	async function addItem() {
 		'use server';
 
@@ -203,7 +207,7 @@ export default async function Page(props: {
 			/>
 			<form className='grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-8' action={addItem}>
 				<div className='md:col-span-1 lg:col-span-5'>
-					{images && (
+					{galleryImages && (
 						// <ProductImageWrapper
 						// 	priority={true}
 						// 	alt={firstImage.alt ?? ""}
@@ -211,13 +215,13 @@ export default async function Page(props: {
 						// 	height={1024}
 						// 	src={firstImage.url}
 						// />
-						<ProductGallery images={images} />
+						<ProductGallery images={galleryImages} />
 					)}
 				</div>
 				<div className='flex flex-col pt-6 sm:col-span-1 sm:px-6 sm:pt-0 lg:col-span-3 lg:pt-16'>
 					<div>
 						<h1 className='mb-4 flex-auto text-3xl font-medium tracking-tight text-neutral-900'>
-							{product?.name}
+							{selectedVariant?.media?.length} -- {product?.name}
 						</h1>
 						<p className='mb-8 text-sm ' data-testid='ProductElement_Price'>
 							{price}
