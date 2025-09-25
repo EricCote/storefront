@@ -20,7 +20,7 @@ importers:
         specifier: ^1.7.19
         version: 1.7.19(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@saleor/auth-sdk':
-        specifier: 1.0.3
+        specifier: ^1.0.3
         version: 1.0.3(next@15.2.4(@babel/core@7.24.9)(@playwright/test@1.50.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(urql@4.0.6(graphql@16.8.1)(react@19.1.0))
       '@stripe/react-stripe-js':
         specifier: ^2.9.0

@@ -19,7 +19,7 @@
 		"@adyen/adyen-web": "^5.71.5",
 		"@adyen/api-library": "^15.1.0",
 		"@headlessui/react": "^1.7.19",
-		"@saleor/auth-sdk": "^1.0.2",
+		"@saleor/auth-sdk": "^1.0.3",
 		"@stripe/react-stripe-js": "^2.9.0",
 		"@stripe/stripe-js": "^2.4.0",
 		"@tailwindcss/container-queries": "^0.1.1",
