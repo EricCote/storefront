@@ -116,8 +116,8 @@ export default async function Page(props: {
 	//const firstImage = product.thumbnail;
 	const images = product.media;
 	const description = product?.description ? parser.parse(JSON.parse(product?.description)) : null;
-	const mdxFr = product.mdxFr;
-	//const mdxEn = product.mdxEn;
+	//const mdxFr = product.mdxFr;
+	const mdxEn = product.mdxEn;
 
 	const variants = product.variants;
 	const selectedVariantID = searchParams.variant;
@@ -252,12 +252,12 @@ export default async function Page(props: {
 				</div>
 			</form>
 			{/* render MDX French fragment at the end of the form */}
-			{mdxFr && (
+			{mdxEn && (
 				<div className='prose mx-auto  mt-8  text-neutral-500'>
 					{/* mdxFr is expected to be HTML/HTML-like. Sanitize before injecting. */}
 					<h2 className='text-2xl font-bold  text-neutral-600'>Description</h2>
 					<ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={components}>
-						{mdxFr}
+						{mdxEn}
 					</ReactMarkdown>
 				</div>
 			)}

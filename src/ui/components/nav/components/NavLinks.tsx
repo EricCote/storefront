@@ -1,17 +1,17 @@
-import Link from "next/link";
-import { NavLink } from "./NavLink";
-import { executeGraphQL } from "@/lib/graphql";
-import { MenuGetBySlugDocument } from "@/gql/graphql";
+import Link from 'next/link';
+import { NavLink } from './NavLink';
+import { executeGraphQL } from '@/lib/graphql';
+import { MenuGetBySlugDocument } from '@/gql/graphql';
 
 export const NavLinks = async ({ channel }: { channel: string }) => {
 	const navLinks = await executeGraphQL(MenuGetBySlugDocument, {
-		variables: { slug: "navbar", channel },
-		revalidate: 60 * 60 * 24 // Revalidate every 24 hours,
+		variables: { slug: 'navbar', channel },
+		revalidate: 60 * 60 * 24, // Revalidate every 24 hours,
 	});
 
 	return (
 		<>
-			<NavLink href="/products">Tous</NavLink>
+			<NavLink href='/products'>All</NavLink>
 			{navLinks.menu?.items?.map((item) => {
 				if (item.category) {
 					return (
