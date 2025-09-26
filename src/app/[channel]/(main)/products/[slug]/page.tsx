@@ -123,7 +123,7 @@ export default async function Page(props: {
 	const selectedVariantID = searchParams.variant;
 	const selectedVariant = variants?.find(({ id }) => id === selectedVariantID);
 
-	// Determine which ima	ges to show in the gallery
+	// Determine which images to show in the gallery
 	const galleryImages =
 		selectedVariant?.media && selectedVariant.media.length > 0 ? selectedVariant.media : images;
 
@@ -221,7 +221,7 @@ export default async function Page(props: {
 				<div className='flex flex-col pt-6 sm:col-span-1 sm:px-6 sm:pt-0 lg:col-span-3 lg:pt-16'>
 					<div>
 						<h1 className='mb-4 flex-auto text-3xl font-medium tracking-tight text-neutral-900'>
-							{selectedVariant?.media?.length} -- {product?.name}
+							{product?.name}
 						</h1>
 						<p className='mb-8 text-sm ' data-testid='ProductElement_Price'>
 							{price}
