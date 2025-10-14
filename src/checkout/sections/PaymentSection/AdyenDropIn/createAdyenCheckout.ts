@@ -2,13 +2,13 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import AdyenCheckout from "@adyen/adyen-web";
-import { type CardElementData } from "@adyen/adyen-web/dist/types/components/Card/types";
-import type DropinElement from "@adyen/adyen-web/dist/types/components/Dropin";
-import { PaymentResponse as AdyenApiPaymentResponse } from "@adyen/api-library/lib/src/typings/checkout/paymentResponse";
-import { type CreateCheckoutSessionResponse } from "@adyen/api-library/lib/src/typings/checkout/createCheckoutSessionResponse";
-import { type AdyenPaymentResponse } from "./types";
-import { replaceUrl } from "@/checkout/lib/utils/url";
+import AdyenCheckout from '@adyen/adyen-web';
+import { type CardElementData } from '@adyen/adyen-web/dist/types/components/Card/types';
+import type DropinElement from '@adyen/adyen-web/dist/types/components/Dropin';
+import { PaymentResponse as AdyenApiPaymentResponse } from '@adyen/api-library/lib/src/typings/checkout/paymentResponse';
+import { type CreateCheckoutSessionResponse } from '@adyen/api-library/lib/src/typings/checkout/createCheckoutSessionResponse';
+import { type AdyenPaymentResponse } from './types';
+import { replaceUrl } from '@/checkout/lib/utils/url';
 
 export type AdyenDropInCreateSessionResponse = {
 	session: CreateCheckoutSessionResponse;
@@ -50,8 +50,8 @@ export function createAdyenCheckoutInstance(
 	},
 ) {
 	return AdyenCheckout({
-		locale: "en-US",
-		environment: "test",
+		locale: 'en-US',
+		environment: 'test',
 		clientKey: adyenSessionResponse.clientKey,
 		session: {
 			id: adyenSessionResponse.session.id,
@@ -74,8 +74,8 @@ export function createAdyenCheckoutInstance(
 				billingAddressRequired: false,
 			},
 			applepay: {
-				buttonType: "plain",
-				buttonColor: "black",
+				buttonType: 'plain',
+				buttonColor: 'black',
 				onPaymentMethodSelected: (resolve: ApplePayCallback, reject: ApplePayCallback, event) => {
 					resolve(event.paymentMethod);
 				},
@@ -98,6 +98,7 @@ export function handlePaymentResult(
 	result: PostAdyenDropInPaymentsResponse | PostAdyenDropInPaymentsDetailsResponse,
 	component: DropinElement,
 ) {
+	/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
 	switch (result.payment.resultCode) {
 		// @todo https://docs.adyen.com/online-payments/payment-result-codes
 		case AdyenApiPaymentResponse.ResultCodeEnum.AuthenticationFinished:
@@ -111,7 +112,7 @@ export function handlePaymentResult(
 		case AdyenApiPaymentResponse.ResultCodeEnum.RedirectShopper:
 		case AdyenApiPaymentResponse.ResultCodeEnum.Refused: {
 			console.error(result);
-			component.setStatus("error", {
+			component.setStatus('error', {
 				message: `${result.payment.resultCode}: ${result.payment.refusalReason as string}`,
 			});
 			return;
@@ -119,7 +120,7 @@ export function handlePaymentResult(
 
 		case AdyenApiPaymentResponse.ResultCodeEnum.Authorised:
 		case AdyenApiPaymentResponse.ResultCodeEnum.Success: {
-			component.setStatus("success");
+			component.setStatus('success');
 			const domain = new URL(saleorApiUrl).hostname;
 			const newUrl = replaceUrl({
 				query: {
@@ -136,4 +137,5 @@ export function handlePaymentResult(
 			return;
 		}
 	}
+	/* eslint-enable @typescript-eslint/no-unsafe-enum-comparison */
 }

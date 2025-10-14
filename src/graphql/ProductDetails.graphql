@@ -21,7 +21,7 @@ query ProductDetails($slug: String!, $channel: String!) {
 				id
 				name
 				slug
-				translation(languageCode: EN) {
+				translation(languageCode: FR) {
 					name
 				}
 			}

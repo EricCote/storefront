@@ -1,5 +1,5 @@
-import { type SelectHTMLAttributes, type ChangeEvent, type ReactNode, useState } from "react";
-import { useField } from "@/checkout/hooks/useForm/useField";
+import { type SelectHTMLAttributes, type ChangeEvent, type ReactNode, useState } from 'react';
+import { useField } from '@/checkout/hooks/useForm/useField';
 
 export interface Option<TData extends string = string> {
 	label: ReactNode;
@@ -41,29 +41,32 @@ export const Select = <TName extends string, TData extends string>({
 	};
 
 	return (
-		<div className="space-y-0.5">
-			<label className="flex flex-col">
-				<span className="text-xs text-neutral-700">{label}</span>
+		<div className='space-y-0.5'>
+			<label className='flex flex-col'>
+				<span className='text-xs text-neutral-700'>{label}</span>
 				<select
 					{...fieldProps}
 					{...rest}
 					onBlur={handleBlur}
 					onChange={handleChange}
-					className="mt-1 block w-full rounded-md border-neutral-300 shadow-sm focus:border-neutral-300 focus:ring focus:ring-neutral-200 focus:ring-opacity-50"
+					className='mt-1 block w-full rounded-md border-neutral-300 shadow-sm focus:border-neutral-300 focus:ring focus:ring-neutral-200 focus:ring-opacity-50'
 				>
 					{showPlaceholder && (
-						<option disabled value="">
+						<option disabled value=''>
 							{placeholder}
 						</option>
 					)}
+
+					{/* eslint-disable @typescript-eslint/no-base-to-string */}
 					{options.map(({ label, value, disabled = false }) => (
-						<option value={value} disabled={disabled} key={label?.toString() + "_" + value}>
+						<option value={value} disabled={disabled} key={label?.toString() + '_' + value}>
 							{label}
 						</option>
 					))}
+					{/* eslint-enable @typescript-eslint/no-base-to-string */}
 				</select>
 			</label>
-			{error && <p className="text-sm text-red-500">{error}</p>}
+			{error && <p className='text-sm text-red-500'>{error}</p>}
 		</div>
 	);
 };

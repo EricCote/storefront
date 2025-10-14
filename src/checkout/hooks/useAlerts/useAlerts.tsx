@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { toast } from "react-toastify";
-import { camelCase } from "lodash-es";
-import { useCallback } from "react";
+import { toast } from 'react-toastify';
+import { camelCase } from 'lodash-es';
+import { useCallback } from 'react';
 import {
 	type Alert,
 	type AlertType,
 	type AlertErrorData,
 	type CheckoutScope,
 	type CustomError,
-} from "./types";
-import { type ErrorCode } from "@/checkout/lib/globalTypes";
-import { type ApiErrors } from "@/checkout/hooks/useGetParsedErrors/types";
-import { useGetParsedErrors } from "@/checkout/hooks/useGetParsedErrors";
-import { apiErrorMessages } from "@/checkout/sections/PaymentSection/errorMessages";
+} from './types';
+import { type ErrorCode } from '@/checkout/lib/globalTypes';
+import { type ApiErrors } from '@/checkout/hooks/useGetParsedErrors/types';
+import { useGetParsedErrors } from '@/checkout/hooks/useGetParsedErrors';
+import { apiErrorMessages } from '@/checkout/sections/PaymentSection/errorMessages';
 
 function useAlerts(scope: CheckoutScope): {
 	showErrors: (errors: ApiErrors<any>) => void;
@@ -44,7 +44,7 @@ function useAlerts(globalScope?: any): any {
 			const fullMessage = apiErrorMessages[messageKey];
 
 			return fullMessage;
-		} catch (e) {
+		} catch {
 			console.warn(`Missing translation: ${messageKey}`);
 			return apiErrorMessages.somethingWentWrong;
 		}
@@ -64,13 +64,13 @@ function useAlerts(globalScope?: any): any {
 	);
 
 	const showAlert = useCallback(
-		({ message, type = "error", ...rest }: Pick<Alert, "message"> & { type?: AlertType; id?: string }) =>
+		({ message, type = 'error', ...rest }: Pick<Alert, 'message'> & { type?: AlertType; id?: string }) =>
 			toast(<p>{message}</p>, { type, ...rest }),
 		[],
 	);
 
 	const showDefaultAlert = useCallback(
-		(alertErrorData: AlertErrorData, { type }: { type: AlertType } = { type: "error" }) => {
+		(alertErrorData: AlertErrorData, { type }: { type: AlertType } = { type: 'error' }) => {
 			const parsedAlert = getParsedAlert(alertErrorData, type);
 			showAlert(parsedAlert);
 		},
@@ -85,7 +85,7 @@ function useAlerts(globalScope?: any): any {
 
 	const showCustomErrors = useCallback(
 		(errors: CustomError[], scope: CheckoutScope = globalScope) => {
-			const parsedErrors = errors.map((error) => ({ field: "", message: "", code: "", ...error }));
+			const parsedErrors = errors.map((error) => ({ field: '', message: '', code: '', ...error }));
 
 			parsedErrors.forEach(({ field, message, code }) => {
 				if (message) {
@@ -102,7 +102,7 @@ function useAlerts(globalScope?: any): any {
 
 	const showSuccess = useCallback(
 		(message: string) => {
-			showAlert({ message, type: "success" });
+			showAlert({ message, type: 'success' });
 		},
 		[showAlert],
 	);

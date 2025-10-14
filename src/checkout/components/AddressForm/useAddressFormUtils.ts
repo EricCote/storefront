@@ -1,45 +1,45 @@
-import camelCase from "lodash-es/camelCase";
-import { useCallback, useMemo } from "react";
+import camelCase from 'lodash-es/camelCase';
+import { useCallback, useMemo } from 'react';
 import {
 	type CountryCode,
 	useAddressValidationRulesQuery,
 	type ValidationRulesFragment,
-} from "@/checkout/graphql";
-import { type OptionalAddress, type AddressField } from "@/checkout/components/AddressForm/types";
-import { defaultCountry } from "@/checkout/lib/consts/countries";
-import { getOrderedAddressFields, getRequiredAddressFields } from "@/checkout/components/AddressForm/utils";
+} from '@/checkout/graphql';
+import { type OptionalAddress, type AddressField } from '@/checkout/components/AddressForm/types';
+import { defaultCountry } from '@/checkout/lib/consts/countries';
+import { getOrderedAddressFields, getRequiredAddressFields } from '@/checkout/components/AddressForm/utils';
 
-export type AddressFieldLabel = Exclude<AddressField, "countryCode"> | "country";
+export type AddressFieldLabel = Exclude<AddressField, 'countryCode'> | 'country';
 export const addressFieldMessages: Record<AddressFieldLabel, string> = {
-	city: "City",
-	firstName: "First name",
-	countryArea: "Country area",
-	lastName: "Last name",
-	country: "Country",
-	cityArea: "City area",
-	postalCode: "Postal code",
-	companyName: "Company",
-	streetAddress1: "Street address",
-	streetAddress2: "Street address (continue)",
-	phone: "Phone number",
+	city: 'City',
+	firstName: 'First name',
+	countryArea: 'Country area',
+	lastName: 'Last name',
+	country: 'Country',
+	cityArea: 'City area',
+	postalCode: 'Postal code',
+	companyName: 'Company',
+	streetAddress1: 'Street address',
+	streetAddress2: 'Street address (continue)',
+	phone: 'Phone number',
 };
 
 export type LocalizedAddressFieldLabel =
-	| "province"
-	| "district"
-	| "state"
-	| "zip"
-	| "postal"
-	| "postTown"
-	| "prefecture";
+	| 'province'
+	| 'district'
+	| 'state'
+	| 'zip'
+	| 'postal'
+	| 'postTown'
+	| 'prefecture';
 export const localizedAddressFieldMessages: Record<LocalizedAddressFieldLabel, string> = {
-	province: "Province",
-	district: "District",
-	state: "State",
-	zip: "Zip code",
-	postal: "Postal code",
-	postTown: "Post town",
-	prefecture: "Prefecture",
+	province: 'Province',
+	district: 'District',
+	state: 'State',
+	zip: 'Zip code',
+	postal: 'Postal code',
+	postTown: 'Post town',
+	prefecture: 'Prefecture',
 };
 
 export const useAddressFormUtils = (countryCode: CountryCode = defaultCountry) => {
@@ -93,7 +93,7 @@ export const useAddressFormUtils = (countryCode: CountryCode = defaultCountry) =
 			const translatedLabel =
 				localizedAddressFieldMessages[camelCase(localizedField) as LocalizedAddressFieldLabel];
 			return translatedLabel;
-		} catch (e) {
+		} catch {
 			console.warn(`Missing translation: ${localizedField}`);
 			return addressFieldMessages[camelCase(field) as AddressFieldLabel];
 		}

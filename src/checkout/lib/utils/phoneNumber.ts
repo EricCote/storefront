@@ -2,16 +2,16 @@ import {
 	parsePhoneNumberWithError,
 	type CountryCode as PhoneNumberLibCountryCode,
 	type PhoneNumber,
-} from "libphonenumber-js/max";
-import { useCallback } from "react";
-import { type CountryCode } from "@/checkout/graphql";
-import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
+} from 'libphonenumber-js/max';
+import { useCallback } from 'react';
+import { type CountryCode } from '@/checkout/graphql';
+import { useErrorMessages } from '@/checkout/hooks/useErrorMessages';
 
 const getPhoneNumberInstance = (phone: string, countryCode: CountryCode | undefined): PhoneNumber | null => {
 	try {
 		const phoneNumber = parsePhoneNumberWithError(phone, countryCode as PhoneNumberLibCountryCode);
 		return phoneNumber;
-	} catch (error) {
+	} catch {
 		return null;
 	}
 };
@@ -24,7 +24,7 @@ export const usePhoneNumberValidator = (countryCode: CountryCode) => {
 
 	const isValid = useCallback(
 		(phone: string) => {
-			if (phone === "") {
+			if (phone === '') {
 				return undefined;
 			}
 

@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { type CombinedError } from "urql";
-import { compact } from "lodash-es";
-import { type FormDataBase } from "@/checkout/hooks/useForm";
-import { type ApiErrors } from "@/checkout/hooks/useGetParsedErrors";
+import { type CombinedError } from 'urql';
+import { compact } from 'lodash-es';
+import { type FormDataBase } from '@/checkout/hooks/useForm';
+import { type ApiErrors } from '@/checkout/hooks/useGetParsedErrors';
 import {
 	type MutationBaseFn,
 	type MutationData,
 	type MutationResultData,
 	type MutationSuccessData,
-} from "@/checkout/hooks/useSubmit/types";
-import { type MightNotExist } from "@/checkout/lib/globalTypes";
+} from '@/checkout/hooks/useSubmit/types';
+import { type MightNotExist } from '@/checkout/lib/globalTypes';
 
 type SuccessDataReturn<TMutationFn extends MutationBaseFn> =
 	| {
@@ -32,7 +32,7 @@ export const extractMutationData = <TMutationFn extends MutationBaseFn>(
 
 		try {
 			const mutationNameKey = Object.keys(data as Record<string, any>).filter(
-				(key) => !["__typename"].includes(key),
+				(key) => !['__typename'].includes(key),
 			)?.[0];
 
 			if (mutationNameKey) {
@@ -42,7 +42,7 @@ export const extractMutationData = <TMutationFn extends MutationBaseFn>(
 					return { success: true, data: mutationReturnData };
 				}
 			}
-		} catch (e) {
+		} catch {
 			return failedResponse;
 		}
 	}

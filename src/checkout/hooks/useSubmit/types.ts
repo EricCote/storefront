@@ -1,13 +1,13 @@
-import { type OperationResult } from "urql";
-import { type LanguageCodeEnum } from "@/checkout/graphql";
-import { type FormDataBase } from "@/checkout/hooks/useForm";
-import { type ExtractedMutationErrors } from "@/checkout/hooks/useSubmit/utils";
+import { type OperationResult } from 'urql';
+import { type LanguageCodeEnum } from '@/checkout/graphql';
+import { type FormDataBase } from '@/checkout/hooks/useForm';
+import { type ExtractedMutationErrors } from '@/checkout/hooks/useSubmit/utils';
 
 export type MutationVars<MutationFn> = MutationFn extends (vars: infer Vars) => any ? Vars : never;
 export type MutationData<MutationFn> = MutationFn extends (vars: any) => Promise<infer Data> ? Data : never;
 
-const commonVars = ["languageCode", "channel", "checkoutId"] as const;
-export type CommonVar = (typeof commonVars)[number];
+const _commonVars = ['languageCode', 'channel', 'checkoutId'] as const;
+export type CommonVar = (typeof _commonVars)[number];
 
 export type CommonVars = Record<CommonVar, string> & { languageCode: LanguageCodeEnum };
 
@@ -15,7 +15,7 @@ export type SubmitReturnWithErrors<TData extends FormDataBase, TErrorCodes exten
 	ExtractedMutationErrors<TData, TErrorCodes>
 >;
 
-export type MutationBaseFn = (vars: any) => Promise<Pick<OperationResult<any, any>, "data" | "error">>;
+export type MutationBaseFn = (vars: any) => Promise<Pick<OperationResult<any, any>, 'data' | 'error'>>;
 
 export type ParserProps<TData> = TData & CommonVars;
 
@@ -30,16 +30,12 @@ export type SimpleSubmitFn<
 	? () => SubmitReturnWithErrors<TData, TErrorCodes>
 	: (formData: TData) => SubmitReturnWithErrors<TData, TErrorCodes>;
 
-type ResultOf<TMutationFn extends MutationBaseFn> = MutationData<TMutationFn> extends OperationResult<
-	infer TData,
-	any
->
-	? TData
-	: never;
+type ResultOf<TMutationFn extends MutationBaseFn> =
+	MutationData<TMutationFn> extends OperationResult<infer TData, any> ? TData : never;
 
 export type OperationName<TMutationFn extends MutationBaseFn> = Exclude<
 	keyof ResultOf<TMutationFn>,
-	"__typename"
+	'__typename'
 >;
 
 export type MutationReturn<TMutationFn extends MutationBaseFn> = TMutationFn extends (

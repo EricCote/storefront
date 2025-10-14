@@ -1,23 +1,25 @@
-import { getServerAuthClient } from "@/app/config";
+import { getServerAuthClient } from '@/app/config';
 
 export async function LoginForm() {
 	return (
-		<div className="mx-auto mt-16 w-full max-w-lg">
+		<div className='mx-auto mt-16 w-full max-w-lg'>
 			<form
-				className="rounded border p-8 shadow-md"
+				className='rounded border p-8 shadow-md'
 				action={async (formData) => {
-					"use server";
+					'use server';
 
-					const email = formData.get("email")?.toString();
-					const password = formData.get("password")?.toString();
+					/* eslint-disable @typescript-eslint/no-base-to-string */
+					const email = formData.get('email')?.toString();
+					const password = formData.get('password')?.toString();
+					/* eslint-enable @typescript-eslint/no-base-to-string */
 
 					if (!email || !password) {
-						throw new Error("Email and password are required");
+						throw new Error('Email and password are required');
 					}
 
 					const { data } = await (
 						await getServerAuthClient()
-					).signIn({ email, password }, { cache: "no-store" });
+					).signIn({ email, password }, { cache: 'no-store' });
 
 					if (data.tokenCreate.errors.length > 0) {
 						// setErrors(data.tokenCreate.errors.map((error) => error.message));
@@ -25,34 +27,34 @@ export async function LoginForm() {
 					}
 				}}
 			>
-				<div className="mb-2">
-					<label className="sr-only" htmlFor="email">
+				<div className='mb-2'>
+					<label className='sr-only' htmlFor='email'>
 						Email
 					</label>
 					<input
-						type="email"
-						name="email"
-						placeholder="Email"
-						className="w-full rounded border bg-neutral-50 px-4 py-2"
+						type='email'
+						name='email'
+						placeholder='Email'
+						className='w-full rounded border bg-neutral-50 px-4 py-2'
 					/>
 				</div>
-				<div className="mb-4">
-					<label className="sr-only" htmlFor="password">
+				<div className='mb-4'>
+					<label className='sr-only' htmlFor='password'>
 						Password
 					</label>
 					<input
-						type="password"
-						name="password"
-						placeholder="Password"
-						autoCapitalize="off"
-						autoComplete="off"
-						className="w-full rounded border bg-neutral-50 px-4 py-2"
+						type='password'
+						name='password'
+						placeholder='Password'
+						autoCapitalize='off'
+						autoComplete='off'
+						className='w-full rounded border bg-neutral-50 px-4 py-2'
 					/>
 				</div>
 
 				<button
-					className="rounded bg-neutral-800 px-4 py-2 text-neutral-200 hover:bg-neutral-700"
-					type="submit"
+					className='rounded bg-neutral-800 px-4 py-2 text-neutral-200 hover:bg-neutral-700'
+					type='submit'
 				>
 					Log In
 				</button>
