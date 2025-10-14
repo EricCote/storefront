@@ -24,13 +24,21 @@
 
 		"import/no-unresolved": "off",
 
-		// allow {} even though it's unsafe but comes handy
-		"@typescript-eslint/ban-types": [
+		// // allow {} even though it's unsafe but comes handy
+		// "@typescript-eslint/ban-types": [
+		// 	"error",
+		// 	{
+		// 		"types": {
+		// 			"{}": false
+		// 		}
+		// 	}
+		// ],
+
+		"@typescript-eslint/no-empty-object-type": [
 			"error",
 			{
-				"types": {
-					"{}": false
-				}
+				"allowObjectTypes": "always",
+				"allowInterfaces": "always"
 			}
 		],
 
