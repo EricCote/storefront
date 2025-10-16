@@ -39,11 +39,11 @@ export default async function Page(props: { params: Promise<{ channel: string }>
 				<ul
 					data-testid='CartProductList'
 					role='list'
-					className='divide-y divide-neutral-200 border-b border-t border-neutral-200'
+					className='divide-y divide-neutral-200 border-t border-b border-neutral-200'
 				>
 					{checkout.lines.map((item) => (
 						<li key={item.id} className='flex py-4'>
-							<div className='aspect-square h-24 w-24 shrink-0 overflow-hidden rounded-md border bg-neutral-50 sm:h-32 sm:w-32'>
+							<div className='aspect-square h-24 w-24 shrink-0 overflow-hidden rounded-md border border-gray-200 bg-neutral-50 sm:h-32 sm:w-32'>
 								{item.variant?.product?.thumbnail?.url && (
 									<Image
 										src={item.variant.product.thumbnail.url}
@@ -84,7 +84,7 @@ export default async function Page(props: { params: Promise<{ channel: string }>
 				</ul>
 
 				<div className='mt-12'>
-					<div className='rounded border bg-neutral-50 px-4 py-2'>
+					<div className='rounded border border-gray-200 bg-neutral-50 px-4 py-2'>
 						<div className='flex items-center justify-between gap-2 py-2'>
 							<div>
 								<p className='font-semibold text-neutral-900'>Your Total</p>

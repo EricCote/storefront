@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { type UserDetailsFragment } from "@/gql/graphql";
+import Image from 'next/image';
+import { type UserDetailsFragment } from '@/gql/graphql';
 
 type Props = {
 	user: UserDetailsFragment;
@@ -14,20 +14,20 @@ export const UserAvatar = ({ user }: Props) => {
 	if (user.avatar) {
 		return (
 			<Image
-				className="h-8 w-8 rounded-full border"
-				aria-hidden="true"
+				className='h-8 w-8 rounded-full border border-gray-200'
+				aria-hidden='true'
 				src={user.avatar.url}
 				width={24}
 				height={24}
-				alt=""
+				alt=''
 			/>
 		);
 	}
 
 	return (
 		<span
-			className="flex h-8 w-8 items-center justify-center rounded-full border bg-white text-center text-xs font-bold uppercase"
-			aria-hidden="true"
+			className='flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 bg-white text-center text-xs font-bold uppercase'
+			aria-hidden='true'
 		>
 			{label}
 		</span>

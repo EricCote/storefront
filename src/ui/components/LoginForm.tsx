@@ -4,7 +4,7 @@ export async function LoginForm() {
 	return (
 		<div className='mx-auto mt-16 w-full max-w-lg'>
 			<form
-				className='rounded border p-8 shadow-md'
+				className='rounded border border-gray-200 p-8 shadow-md'
 				action={async (formData) => {
 					'use server';
 
@@ -35,7 +35,7 @@ export async function LoginForm() {
 						type='email'
 						name='email'
 						placeholder='Email'
-						className='w-full rounded border bg-neutral-50 px-4 py-2'
+						className='w-full rounded border border-gray-200 bg-neutral-50 px-4 py-2'
 					/>
 				</div>
 				<div className='mb-4'>
@@ -48,7 +48,7 @@ export async function LoginForm() {
 						placeholder='Password'
 						autoCapitalize='off'
 						autoComplete='off'
-						className='w-full rounded border bg-neutral-50 px-4 py-2'
+						className='w-full rounded border border-gray-200 bg-neutral-50 px-4 py-2'
 					/>
 				</div>
 

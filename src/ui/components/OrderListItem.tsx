@@ -11,7 +11,7 @@ type Props = {
 export const OrderListItem = ({ order }: Props) => {
 	return (
 		<li className='bg-white'>
-			<div className='flex flex-col gap-2 border bg-neutral-200/20 px-6 py-4 md:grid md:grid-cols-4 md:gap-8'>
+			<div className='flex flex-col gap-2 border border-gray-200 bg-neutral-200/20 px-6 py-4 md:grid md:grid-cols-4 md:gap-8'>
 				<dl className='flex flex-col divide-y divide-neutral-200 text-sm md:col-span-3 md:grid md:grid-cols-3 md:gap-6 md:divide-none lg:col-span-2'>
 					<div className='flex flex-row items-center justify-between py-4 md:flex-col md:items-start md:gap-y-1'>
 						<dt className='font-medium text-neutral-900'>Order number</dt>
@@ -43,7 +43,7 @@ export const OrderListItem = ({ order }: Props) => {
 
 			{order.lines.length > 0 && (
 				<>
-					<div className='md:border-x md:px-6'>
+					<div className='md:border-x md:border-gray-200 md:px-6'>
 						<table className='w-full text-sm text-neutral-500'>
 							<thead className='sr-only'>
 								<tr>
@@ -65,7 +65,7 @@ export const OrderListItem = ({ order }: Props) => {
 											<td className='py-6 pr-6 md:w-[60%] lg:w-[70%]'>
 												<div className='flex flex-row items-center'>
 													{product.thumbnail && (
-														<div className='mr-3 aspect-square h-16 w-16 shrink-0 overflow-hidden rounded-md border bg-neutral-50 md:mr-6 md:h-24 md:w-24'>
+														<div className='mr-3 aspect-square h-16 w-16 shrink-0 overflow-hidden rounded-md border border-gray-200 bg-neutral-50 md:mr-6 md:h-24 md:w-24'>
 															<Image
 																src={product.thumbnail.url}
 																alt={product.thumbnail.alt ?? ''}
@@ -124,7 +124,7 @@ export const OrderListItem = ({ order }: Props) => {
 							</tbody>
 						</table>
 					</div>
-					<dl className='flex justify-between border-y py-6 text-sm font-medium text-neutral-900 md:border md:px-6'>
+					<dl className='flex justify-between border-y border-gray-200 py-6 text-sm font-medium text-neutral-900 md:border md:px-6'>
 						<dt>Total amount including delivery</dt>
 						<dd>{formatMoney(order.total.gross.amount, order.total.gross.currency)}</dd>
 					</dl>
