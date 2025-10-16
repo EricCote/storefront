@@ -7,6 +7,7 @@
     	`@stripe/react-stripe-js`: stripe payments
     	`@stripe/stripe-js`: stripe payments
     	`@tailwindcss/container-queries`: applies styles based on container size like @md:, @lg:, and @xl:  (Obsolete with tailwind v4)
+
     	"clsx": className helper used with tailwind
     	"editorjs-html": "3.4.3",
     	"formik": "2.4.5",
@@ -24,6 +25,7 @@
     	"react-toastify": "^11.0.0",
     	"rehype-raw": "7.0.0",
     	"sharp": "0.33.2",
+
     	"ts-invariant": "0.10.3",
     	"url-join": "5.0.0",
     	"urql": "4.0.6",

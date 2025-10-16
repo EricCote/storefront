@@ -1,3 +1,5 @@
-@import "react-toastify/dist/ReactToastify.css";
-@import "@adyen/adyen-web/dist/adyen.css";
-@import "./sections/PaymentSection/AdyenDropIn/adyenDropin.css";
+@import 'tailwindcss';
+
+@import 'react-toastify/dist/ReactToastify.css';
+@import '@adyen/adyen-web/dist/adyen.css';
+@import './sections/PaymentSection/AdyenDropIn/adyenDropin.css';
