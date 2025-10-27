@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { invariant } from 'ts-invariant';
 import { RootWrapper } from './pageWrapper';
+import { Link } from '@/i18n/navigation';
 
 export const metadata = {
 	title: 'Checkout · Saleor Storefront example',
@@ -26,7 +26,7 @@ export default async function CheckoutPage(props: {
 				</div>
 				<h1 className='mt-8 text-3xl font-bold text-neutral-900'>Checkout</h1>
 
-				<section className='mb-12 mt-6 flex-1'>
+				<section className='mt-6 mb-12 flex-1'>
 					<RootWrapper saleorApiUrl={process.env.NEXT_PUBLIC_SALEOR_API_URL} />
 				</section>
 			</section>

@@ -2,20 +2,35 @@ fragment MenuItem on MenuItem {
 	id
 	name
 	level
+	fr: translation(languageCode: FR) {
+		name
+	}
 	category {
 		id
 		slug
 		name
+		fr: translation(languageCode: FR) {
+			name
+			slug
+		}
 	}
 	collection {
 		id
 		name
 		slug
+		fr: translation(languageCode: FR) {
+			name
+			slug
+		}
 	}
 	page {
 		id
 		title
 		slug
+		fr: translation(languageCode: FR) {
+			title
+			slug
+		}
 	}
 	url
 }

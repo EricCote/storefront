@@ -1,6 +1,7 @@
 "use client";
 
-import { useParams, usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 
 function useSelectedPathname() {
 	const pathname = usePathname();

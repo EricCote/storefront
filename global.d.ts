@@ -1,4 +1,4 @@
-type NonFalsy<T> = T extends false | 0 | "" | null | undefined | 0n ? never : T;
+type NonFalsy<T> = T extends false | 0 | '' | null | undefined | 0n ? never : T;
 
 interface Array<T> {
 	includes(searchElement: unknown, fromIndex?: number): searchElement is T;
@@ -36,11 +36,4 @@ interface JSON {
 
 interface Set<T> {
 	has(value: unknown): value is T;
-}
-
-
-declare module "*.mdx" {
-  import * as React from "react";
-  const MDXComponent: React.FC<any>;
-  export default MDXComponent;
 }

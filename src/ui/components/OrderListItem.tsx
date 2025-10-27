@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { LinkWithChannel } from '../atoms/LinkWithChannel';
 import { formatDate, formatMoney, getHrefForVariant } from '@/lib/utils';
 import { type OrderDetailsFragment } from '@/gql/graphql';
@@ -8,23 +9,25 @@ type Props = {
 	order: OrderDetailsFragment;
 };
 
-export const OrderListItem = ({ order }: Props) => {
+export const OrderListItem = async ({ order }: Props) => {
+	const t = await getTranslations('orders');
+	const locale = await getLocale();
 	return (
 		<li className='bg-white'>
-			<div className='flex flex-col gap-2 border border-gray-200 bg-neutral-200/20 px-6 py-4 md:grid md:grid-cols-4 md:gap-8'>
+			<div className='flex flex-col gap-2 border border-neutral-200 bg-neutral-200/20 px-6 py-4 md:grid md:grid-cols-4 md:gap-8'>
 				<dl className='flex flex-col divide-y divide-neutral-200 text-sm md:col-span-3 md:grid md:grid-cols-3 md:gap-6 md:divide-none lg:col-span-2'>
 					<div className='flex flex-row items-center justify-between py-4 md:flex-col md:items-start md:gap-y-1'>
-						<dt className='font-medium text-neutral-900'>Order number</dt>
+						<dt className='font-medium text-neutral-900'>{t('order_number')}</dt>
 						<dd className='text-neutral-600'>{order.number}</dd>
 					</div>
 					<div className='flex flex-row items-center justify-between py-4 md:flex-col md:items-start md:gap-y-1'>
-						<dt className='font-medium text-neutral-900'>Date placed</dt>
+						<dt className='font-medium text-neutral-900'>{t('date_placed')}</dt>
 						<dd className='text-neutral-600'>
 							<time dateTime={order.created}>{formatDate(new Date(order.created))}</time>
 						</dd>
 					</div>
 					<div className='flex flex-row items-center justify-between py-4 md:flex-col md:items-start md:gap-y-1'>
-						<dt className='font-medium text-neutral-900'>Payment status</dt>
+						<dt className='font-medium text-neutral-900'>{t('payment_status')}</dt>
 						<dd>
 							<PaymentStatus status={order.paymentStatus} />
 						</dd>
@@ -43,13 +46,13 @@ export const OrderListItem = ({ order }: Props) => {
 
 			{order.lines.length > 0 && (
 				<>
-					<div className='md:border-x md:border-gray-200 md:px-6'>
+					<div className='md:border-x md:border-neutral-200 md:px-6'>
 						<table className='w-full text-sm text-neutral-500'>
 							<thead className='sr-only'>
 								<tr>
-									<td>product</td>
-									<td className='max-md:hidden'>quantity and unit price</td>
-									<td>price</td>
+									<td>{t('product')}</td>
+									<td className='max-md:hidden'>{t('quantity_and_unit_price')}</td>
+									<td>{t('price')}</td>
 								</tr>
 							</thead>
 							<tbody className='md:divide-y'>
@@ -65,7 +68,7 @@ export const OrderListItem = ({ order }: Props) => {
 											<td className='py-6 pr-6 md:w-[60%] lg:w-[70%]'>
 												<div className='flex flex-row items-center'>
 													{product.thumbnail && (
-														<div className='mr-3 aspect-square h-16 w-16 shrink-0 overflow-hidden rounded-md border border-gray-200 bg-neutral-50 md:mr-6 md:h-24 md:w-24'>
+														<div className='mr-3 aspect-square h-16 w-16 shrink-0 overflow-hidden rounded-md border border-neutral-200 bg-neutral-50 md:mr-6 md:h-24 md:w-24'>
 															<Image
 																src={product.thumbnail.url}
 																alt={product.thumbnail.alt ?? ''}
@@ -86,7 +89,9 @@ export const OrderListItem = ({ order }: Props) => {
 															{product.name}
 														</LinkWithChannel>
 														{item.variant.name !== item.variant.id && Boolean(item.variant.name) && (
-															<p className='mt-1'>Variant: {item.variant.name}</p>
+															<p className='mt-1'>
+																{t('variant')} {item.variant.name}
+															</p>
 														)}
 													</div>
 												</div>
@@ -97,6 +102,7 @@ export const OrderListItem = ({ order }: Props) => {
 													formatMoney(
 														item.variant.pricing.price.gross.amount,
 														item.variant.pricing.price.gross.currency,
+														locale,
 													)}
 											</td>
 											<td className='py-6 text-end'>
@@ -105,6 +111,7 @@ export const OrderListItem = ({ order }: Props) => {
 														formatMoney(
 															item.variant.pricing.price.gross.amount * item.quantity,
 															item.variant.pricing.price.gross.currency,
+															locale,
 														)}
 													{item.quantity > 1 && (
 														<span className='text-xs md:hidden'>
@@ -113,6 +120,7 @@ export const OrderListItem = ({ order }: Props) => {
 																formatMoney(
 																	item.variant.pricing.price.gross.amount,
 																	item.variant.pricing.price.gross.currency,
+																	locale,
 																)}
 														</span>
 													)}
@@ -124,9 +132,9 @@ export const OrderListItem = ({ order }: Props) => {
 							</tbody>
 						</table>
 					</div>
-					<dl className='flex justify-between border-y border-gray-200 py-6 text-sm font-medium text-neutral-900 md:border md:px-6'>
-						<dt>Total amount including delivery</dt>
-						<dd>{formatMoney(order.total.gross.amount, order.total.gross.currency)}</dd>
+					<dl className='flex justify-between border-y border-neutral-200 py-6 text-sm font-medium text-neutral-900 md:border md:px-6'>
+						<dt>{t('total_including_delivery')}</dt>
+						<dd>{formatMoney(order.total.gross.amount, order.total.gross.currency, locale)}</dd>
 					</dl>
 				</>
 			)}

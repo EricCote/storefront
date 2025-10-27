@@ -1,0 +1,78 @@
+{
+  "navigation": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "common": {
+    "search": "Search",
+    "cart": "Cart",
+    "account": "Account",
+    "checkout": "Checkout",
+    "addToCart": "Add to Cart",
+    "price": "Price",
+    "quantity": "Quantity",
+    "total": "Total"
+  },
+  "products": {
+    "description": "Description",
+    "details": "Details",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "product_not_found": "Product not found",
+    "add_to_cart": "Add to cart",
+    "processing": "Processing...",
+    "fabric": "Fabric"
+  },
+  "test": {
+    "welcome": "Welcome to Saleor Storefront",
+    "language": "Language",
+    "channel": "Channel"
+  },
+  "metadata": {
+    "title": "Desired Deviance",
+    "description": "Retailer of sexy lingerie, and playful costumes."
+  },
+  "nav": {
+    "all": "All",
+    "copy": "Copyright © {currentYear} Desired Deviance, Inc.",
+    "power_by": "Powered by ",
+    "search": "Search for products...",
+    "nothing_found": "Nothing found"
+  },
+  "cart": {
+    "checkout": "Checkout",
+    "remove": "Remove",
+    "removing": "Removing...",
+    "line_from_cart": "Line from cart",
+    "title": "Shopping Cart",
+    "no_items": "Looks like you haven’t added any items to the cart yet.",
+    "empty_cart": "Your Shopping Cart is empty",
+    "explore_products": "Explore products",
+    "your_cart": "Your Shopping Cart",
+    "your_total": "Your Total",
+    "shipping": "Shipping will be calculated in the next step",
+    "variant": "Variant: "
+  },
+  "login": {
+    "title": "Login to your account",
+    "email": "Email",
+    "password": "Password",
+    "login": "Log in",
+    "required": "Email and password are required"
+  },
+  "orders": {
+    "no_orders": "No orders found",
+    "orders": "{user}’s Orders",
+    "order_number": "Order number",
+    "date_placed": "Date placed",
+    "payment_status": "Payment status",
+    "view_order": "View Order",
+    "product": "product",
+    "quantity_and_unit_price": "quantity and unit price",
+    "price": "price",
+    "variant": "Variant: ",
+    "total_including_delivery": "Total amount including delivery"
+  }
+}

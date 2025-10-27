@@ -1,22 +1,28 @@
 import { clsx } from 'clsx';
-import { redirect } from 'next/navigation';
 import { LinkWithChannel } from '../atoms/LinkWithChannel';
+import { redirect } from '@/i18n/navigation';
 import { type ProductListItemFragment, type VariantDetailsFragment } from '@/gql/graphql';
 import { getHrefForVariant } from '@/lib/utils';
+import { displayLang, type Translatable } from '@/i18n/translate';
 
 export function VariantSelector({
 	variants,
 	product,
 	selectedVariant,
 	channel,
+	locale,
 }: {
 	variants: readonly VariantDetailsFragment[];
 	product: ProductListItemFragment;
 	selectedVariant?: VariantDetailsFragment;
 	channel: string;
+	locale: string;
 }) {
 	if (!selectedVariant && variants.length === 1 && variants[0]?.quantityAvailable) {
-		redirect('/' + channel + getHrefForVariant({ productSlug: product.slug, variantId: variants[0].id }));
+		redirect({
+			href: '/' + channel + getHrefForVariant({ productSlug: product.slug, variantId: variants[0].id }),
+			locale,
+		});
 	}
 
 	return (
@@ -39,7 +45,7 @@ export function VariantSelector({
 									isCurrentVariant
 										? 'border-transparent bg-neutral-900 text-white hover:bg-neutral-800'
 										: 'border-neutral-200 bg-white text-neutral-900 hover:bg-neutral-100',
-									'relative flex min-w-[5ch] items-center justify-center overflow-hidden rounded border border-gray-200 p-3 text-center text-sm font-semibold text-ellipsis whitespace-nowrap focus-within:outline focus-within:outline-2 aria-disabled:cursor-not-allowed aria-disabled:bg-neutral-100 aria-disabled:text-neutral-800 aria-disabled:opacity-50',
+									'relative flex min-w-[5ch] items-center justify-center overflow-hidden rounded border border-neutral-200 p-3 text-center text-sm font-semibold text-ellipsis whitespace-nowrap focus-within:outline focus-within:outline-2 aria-disabled:cursor-not-allowed aria-disabled:bg-neutral-100 aria-disabled:text-neutral-800 aria-disabled:opacity-50',
 									isDisabled && 'pointer-events-none',
 								)}
 								role='radio'
@@ -47,7 +53,7 @@ export function VariantSelector({
 								aria-checked={isCurrentVariant}
 								aria-disabled={isDisabled}
 							>
-								{variant.name}
+								{displayLang(locale, variant as unknown as Translatable, 'name')}
 							</LinkWithChannel>
 						);
 					})}

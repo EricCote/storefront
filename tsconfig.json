@@ -36,9 +36,10 @@
 		"src/**/*.ts",
 		"src/**/*.tsx",
 		"src/**/*.d.ts",
+		"src/**/*.mdx",
 		".next/types/**/*.ts",
 		"*.ts",
 		"__tests__/**/*"
 	],
-	"exclude": ["node_modules"]
+	"exclude": ["node_modules", "src/app/old/**"]
 }

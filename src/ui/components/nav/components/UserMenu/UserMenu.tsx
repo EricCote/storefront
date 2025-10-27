@@ -1,7 +1,7 @@
 'use client';
 
 import { Fragment } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { Menu, MenuButton, MenuItems, MenuItem, Transition } from '@headlessui/react';
 import { UserInfo } from './components/UserInfo';
 import { UserAvatar } from './components/UserAvatar';

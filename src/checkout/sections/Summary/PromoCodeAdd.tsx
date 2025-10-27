@@ -1,12 +1,12 @@
-import clsx from "clsx";
-import React, { type FC } from "react";
-import { Button } from "@/checkout/components/Button";
-import { TextInput } from "@/checkout/components/TextInput";
-import { useCheckoutAddPromoCodeMutation } from "@/checkout/graphql";
-import { type Classes } from "@/checkout/lib/globalTypes";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
-import { useForm } from "@/checkout/hooks/useForm";
+import { clsx } from 'clsx';
+import React, { type FC } from 'react';
+import { Button } from '@/checkout/components/Button';
+import { TextInput } from '@/checkout/components/TextInput';
+import { useCheckoutAddPromoCodeMutation } from '@/checkout/graphql';
+import { type Classes } from '@/checkout/lib/globalTypes';
+import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
+import { FormProvider } from '@/checkout/hooks/useForm/FormProvider';
+import { useForm } from '@/checkout/hooks/useForm';
 
 interface PromoCodeFormData {
 	promoCode: string;
@@ -16,7 +16,7 @@ export const PromoCodeAdd: FC<Classes> = ({ className }) => {
 	const [, checkoutAddPromoCode] = useCheckoutAddPromoCodeMutation();
 
 	const onSubmit = useFormSubmit<PromoCodeFormData, typeof checkoutAddPromoCode>({
-		scope: "checkoutAddPromoCode",
+		scope: 'checkoutAddPromoCode',
 		onSubmit: checkoutAddPromoCode,
 		parse: ({ promoCode, languageCode, checkoutId }) => ({
 			promoCode,
@@ -28,7 +28,7 @@ export const PromoCodeAdd: FC<Classes> = ({ className }) => {
 
 	const form = useForm<PromoCodeFormData>({
 		onSubmit,
-		initialValues: { promoCode: "" },
+		initialValues: { promoCode: '' },
 	});
 	const {
 		values: { promoCode },
@@ -38,15 +38,15 @@ export const PromoCodeAdd: FC<Classes> = ({ className }) => {
 
 	return (
 		<FormProvider form={form}>
-			<div className={clsx("relative my-4", className)}>
-				<TextInput required={false} name="promoCode" label="Add gift card or discount code" />
+			<div className={clsx('relative my-4', className)}>
+				<TextInput required={false} name='promoCode' label='Add gift card or discount code' />
 				{showApplyButton && (
 					<Button
-						className="absolute bottom-2.5 right-3"
-						variant="tertiary"
-						ariaLabel="apply"
-						label="Apply"
-						type="submit"
+						className='absolute right-3 bottom-2.5'
+						variant='tertiary'
+						ariaLabel='apply'
+						label='Apply'
+						type='submit'
 					/>
 				)}
 			</div>

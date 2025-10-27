@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { redirect } from '@/i18n/navigation';
 
 export default function EmptyPage() {
-	redirect("/default-channel");
+	redirect({ href: '/default-channel', locale: 'en' });
 }

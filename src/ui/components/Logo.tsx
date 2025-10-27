@@ -1,9 +1,9 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import { LinkWithChannel } from '../atoms/LinkWithChannel';
+import { usePathname } from '@/i18n/navigation';
 
-const companyName = 'Jolar';
+const companyName = 'Desired Deviance';
 
 export const Logo = () => {
 	const pathname = usePathname();

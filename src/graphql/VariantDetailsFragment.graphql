@@ -1,6 +1,9 @@
 fragment VariantDetails on ProductVariant {
 	id
 	name
+	fr: translation(languageCode: FR) {
+		name
+	}
 	quantityAvailable
 	media {
 		alt

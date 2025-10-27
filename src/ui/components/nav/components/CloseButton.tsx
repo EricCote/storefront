@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { XIcon } from 'lucide-react';
 import { type HTMLAttributes } from 'react';
 

@@ -1,0 +1,78 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "products": "Produits",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "common": {
+    "search": "Rechercher",
+    "cart": "Panier",
+    "account": "Compte",
+    "checkout": "Passer la commande",
+    "addToCart": "Ajouter au panier",
+    "price": "Prix",
+    "quantity": "Quantité",
+    "total": "Total"
+  },
+  "products": {
+    "description": "Description",
+    "details": "Détails",
+    "inStock": "En stock",
+    "outOfStock": "Rupture de stock",
+    "product_not_found": "Produit non trouvé",
+    "add_to_cart": "Ajouter au panier",
+    "processing": "En traitement...",
+    "fabric": "Fabric"
+  },
+  "test": {
+    "welcome": "Bienvenue sur Saleor Storefront",
+    "language": "Langue",
+    "channel": "Canal"
+  },
+  "metadata": {
+    "title": "Desired Deviance",
+    "description": "Détaillant de lingerie fine et de costumes sexy."
+  },
+  "nav": {
+    "all": "Tous",
+    "copy": "Copyright © {currentYear} Desired Deviance, Inc.",
+    "power_by": "Généré par ",
+    "search": "Rechercher (en anglais)",
+    "nothing_found": "Aucun produit trouvé"
+  },
+  "cart": {
+    "checkout": "Paiement",
+    "remove": "Retirer",
+    "removing": "Retirer...",
+    "line_from_cart": "Ligne du panie",
+    "title": "Panier d'achat",
+    "no_items": "Rien n'a été ajouté au panier pour le moment.",
+    "empty_cart": "Votre panier d'achat est vide",
+    "explore_products": "Explorer les produits",
+    "your_cart": "Votre panier d'achat",
+    "your_total": "Votre total",
+    "shipping": "Les frais de livraison seront calculés à l'étape suivante",
+    "variant": "Variante : "
+  },
+  "login": {
+    "title": "Se connecter à votre compte",
+    "email": "Courriel",
+    "password": "Mot de passe",
+    "login": "Entrer",
+    "required": "Le courriel et le mot de passe sont obligatoires"
+  },
+  "orders": {
+    "no_orders": "Aucune commande trouvée",
+    "orders": "Commandes pour {user}",
+    "order_number": "Numéro de commande",
+    "date_placed": "Date de la commande",
+    "payment_status": "État du paiement",
+    "view_order": "Visionner la commande",
+    "product": "produit",
+    "quantity_and_unit_price": "quantité et prix unitaire",
+    "price": "prix",
+    "variant": "variante : ",
+    "total_including_delivery": "Montant total incluant la livraison"
+  }
+}

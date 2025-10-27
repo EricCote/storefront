@@ -43,7 +43,7 @@ export const MobileMenu = ({ children }: Props) => {
 							leaveTo='opacity-0 -translate-y-3 bg-transparent'
 						>
 							<ul
-								className='flex h-full flex-col divide-y divide-neutral-200 p-3 pt-0 whitespace-nowrap sm:p-8 sm:pt-0 [&>li]:py-3'
+								className='flex h-full flex-col divide-y divide-neutral-200 bg-neutral-100/50 p-3 pt-0 whitespace-nowrap backdrop-blur-md sm:p-8 sm:pt-0 [&>li]:py-3'
 								id='mobile-menu'
 							>
 								{children}

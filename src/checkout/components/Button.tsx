@@ -1,5 +1,5 @@
 import { type FC, type ReactNode, type ButtonHTMLAttributes } from 'react';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	label: ReactNode;
@@ -22,7 +22,7 @@ export const Button: FC<ButtonProps> = ({
 	const classes = clsx(
 		'inline-flex h-10 items-center justify-center whitespace-nowrap rounded border active:outline-none',
 		{
-			'bg-neutral-900 border-gray-200 hover:bg-neutral-800 disabled:bg-neutral-700 text-white px-4 aria-disabled:cursor-not-allowed aria-disabled:opacity-70 hover:aria-disabled:bg-neutral-700':
+			'bg-neutral-900 border-neutral-200 hover:bg-neutral-800 disabled:bg-neutral-700 text-white px-4 aria-disabled:cursor-not-allowed aria-disabled:opacity-70 hover:aria-disabled:bg-neutral-700':
 				variant === 'primary',
 			'border-neutral-600 hover:border-neutral-700 hover:bg-neutral-300 active:bg-neutral-300 disabled:border-neutral-300 aria-disabled:border-neutral-300 bg-transparent disabled:bg-transparent aria-disabled:bg-transparent px-4':
 				variant === 'secondary',

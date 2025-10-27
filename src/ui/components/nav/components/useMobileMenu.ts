@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 
 export const useMobileMenu = () => {
 	const [isOpen, setIsOpen] = useState(false);

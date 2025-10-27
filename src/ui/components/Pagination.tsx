@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { LinkWithChannel } from '../atoms/LinkWithChannel';
 
 export async function Pagination({
@@ -16,7 +16,7 @@ export async function Pagination({
 				href={pageInfo.hasNextPage ? `${pageInfo.basePathname}?${pageInfo.urlSearchParams?.toString()}` : '#'}
 				className={clsx('px-4 py-2 text-sm font-medium', {
 					'rounded bg-neutral-900 text-neutral-50 hover:bg-neutral-800': pageInfo.hasNextPage,
-					'cursor-not-allowed rounded border border-gray-200 text-neutral-400': !pageInfo.hasNextPage,
+					'cursor-not-allowed rounded border border-neutral-200 text-neutral-400': !pageInfo.hasNextPage,
 					'pointer-events-none': !pageInfo.hasNextPage,
 				})}
 				aria-disabled={!pageInfo.hasNextPage}

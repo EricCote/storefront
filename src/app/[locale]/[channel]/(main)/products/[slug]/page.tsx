@@ -8,6 +8,7 @@ import { type ResolvingMetadata, type Metadata } from 'next';
 import xss from 'xss';
 import { invariant } from 'ts-invariant';
 import { type WithContext, type Product } from 'schema-dts';
+import { getLocale } from 'next-intl/server';
 import { AddButton } from './AddButton';
 import { VariantSelector } from '@/ui/components/VariantSelector';
 //import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
@@ -19,6 +20,7 @@ import { AvailabilityMessage } from '@/ui/components/AvailabilityMessage';
 // Import Swiper React components
 // Client-only product gallery (Swiper is used inside the client component)
 import { ProductGallery } from '@/ui/components/ProductGallery';
+import { displayLang, type Translatable } from '@/i18n/translate';
 
 interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {}
 interface CalloutProps {
@@ -26,7 +28,7 @@ interface CalloutProps {
 }
 
 const components: Partial<Record<string, React.ComponentType<any>>> = {
-	h1: (props: HeadingProps) => <h1 className='mb-4 mt-8 text-5xl font-extrabold text-teal-600' {...props} />,
+	h1: (props: HeadingProps) => <h1 className='mt-8 mb-4 text-5xl font-extrabold text-teal-600' {...props} />,
 	//p: (props) => <p className="mb-4 text-lg leading-relaxed text-gray-700" {...props} />,
 	// A custom 'Callout' component that you can use with Markdown syntax
 	// by simply writing <Callout>This is a callout!</Callout> in the string.
@@ -45,6 +47,8 @@ export async function generateMetadata(
 	parent: ResolvingMetadata,
 ): Promise<Metadata> {
 	const [searchParams, params] = await Promise.all([props.searchParams, props.params]);
+	//const t = await getTranslations('products');
+	const locale = await getLocale();
 	const { product } = await executeGraphQL(ProductDetailsDocument, {
 		variables: {
 			slug: decodeURIComponent(params.slug),
@@ -57,12 +61,16 @@ export async function generateMetadata(
 		notFound();
 	}
 
-	const productName = product.seoTitle || product.name;
-	const variantName = product.variants?.find(({ id }) => id === searchParams.variant)?.name;
+	const productName =
+		displayLang(locale, product as unknown as Translatable, 'seoTitle') ||
+		displayLang(locale, product as unknown as Translatable, 'name');
+	const variantRef = product.variants?.find(({ id }) => id === searchParams.variant);
+
+	const variantName = displayLang(locale, variantRef as unknown as Translatable, 'name');
 	const productNameAndVariant = variantName ? `${productName} - ${variantName}` : productName;
 
 	return {
-		title: `${product.name} | ${product.seoTitle || (await parent).title?.absolute}`,
+		title: `${displayLang(locale, product as unknown as Translatable, 'name')} | ${displayLang(locale, product as unknown as Translatable, 'name') || (await parent).title?.absolute}`,
 		description: product.seoDescription || productNameAndVariant,
 		alternates: {
 			canonical: process.env.NEXT_PUBLIC_STOREFRONT_URL
@@ -74,7 +82,7 @@ export async function generateMetadata(
 					images: [
 						{
 							url: product.media[0].url,
-							alt: product.name,
+							alt: productName,
 						},
 					],
 				}
@@ -96,10 +104,12 @@ export async function generateStaticParams({ params }: { params: { channel: stri
 const parser = edjsHTML();
 
 export default async function Page(props: {
-	params: Promise<{ slug: string; channel: string }>;
+	params: Promise<{ slug: string; channel: string; locale: string }>;
 	searchParams: Promise<{ variant?: string }>;
 }) {
 	const [searchParams, params] = await Promise.all([props.searchParams, props.params]);
+	const locale = params.locale;
+	//const t = await getTranslations('products');
 	const { product } = await executeGraphQL(ProductDetailsDocument, {
 		variables: {
 			slug: decodeURIComponent(params.slug),
@@ -116,8 +126,9 @@ export default async function Page(props: {
 	//const firstImage = product.thumbnail;
 	const images = product.media;
 	const description = product?.description ? parser.parse(JSON.parse(product?.description)) : null;
-	//const mdxFr = product.mdxFr;
+
 	const mdxEn = product.mdxEn;
+	const mdxFr = product.mdxFr;
 
 	const variants = product.variants;
 	const selectedVariantID = searchParams.variant;
@@ -156,13 +167,26 @@ export default async function Page(props: {
 
 	const isAvailable = variants?.some((variant) => variant.quantityAvailable) ?? false;
 
+	const productName = displayLang(locale, product as unknown as Translatable, 'name');
+	const variantRef = product.variants?.find(({ id }) => id === searchParams.variant);
+
+	const variantName = displayLang(locale, variantRef as unknown as Translatable, 'name');
+	const productNameAndVariant = variantName ? `${productName} - ${variantName}` : productName;
+
 	const price = selectedVariant?.pricing?.price?.gross
-		? formatMoney(selectedVariant.pricing.price.gross.amount, selectedVariant.pricing.price.gross.currency)
+		? formatMoney(
+				selectedVariant.pricing.price.gross.amount,
+				selectedVariant.pricing.price.gross.currency,
+				locale,
+			)
 		: isAvailable
-			? formatMoneyRange({
-					start: product?.pricing?.priceRange?.start?.gross,
-					stop: product?.pricing?.priceRange?.stop?.gross,
-				})
+			? formatMoneyRange(
+					{
+						start: product?.pricing?.priceRange?.start?.gross,
+						stop: product?.pricing?.priceRange?.stop?.gross,
+					},
+					locale,
+				)
 			: '';
 
 	const productJsonLd: WithContext<Product> = {
@@ -171,8 +195,10 @@ export default async function Page(props: {
 		image: (product.media && product.media[0].url) ?? '',
 		...(selectedVariant
 			? {
-					name: `${product.name} - ${selectedVariant.name}`,
-					description: product.seoDescription || `${product.name} - ${selectedVariant.name}`,
+					name: `${productNameAndVariant}`,
+					description:
+						displayLang(locale, product as unknown as Translatable, 'seoDescription') ||
+						`${productNameAndVariant}`,
 					offers: {
 						'@type': 'Offer',
 						availability: selectedVariant.quantityAvailable
@@ -183,8 +209,9 @@ export default async function Page(props: {
 					},
 				}
 			: {
-					name: product.name,
-					description: product.seoDescription || product.name,
+					name: productName,
+					description:
+						displayLang(locale, product as unknown as Translatable, 'seoDescription') || productName,
 					offers: {
 						'@type': 'AggregateOffer',
 						availability: product.variants?.some((variant) => variant.quantityAvailable)
@@ -215,15 +242,15 @@ export default async function Page(props: {
 						// 	height={1024}
 						// 	src={firstImage.url}
 						// />
-						<ProductGallery images={galleryImages} />
+						<ProductGallery images={galleryImages} productName={productJsonLd.name as string} />
 					)}
 				</div>
 				<div className='flex flex-col pt-6 sm:col-span-1 sm:px-6 sm:pt-0 lg:col-span-3 lg:pt-16'>
 					<div>
 						<h1 className='mb-4 flex-auto text-3xl font-medium tracking-tight text-neutral-900'>
-							{product?.name}
+							{productNameAndVariant}
 						</h1>
-						<p className='mb-8 text-sm ' data-testid='ProductElement_Price'>
+						<p className='mb-8 text-sm' data-testid='ProductElement_Price'>
 							{price}
 						</p>
 
@@ -233,21 +260,36 @@ export default async function Page(props: {
 								variants={variants}
 								product={product}
 								channel={params.channel}
+								locale={locale}
 							/>
 						)}
 						<AvailabilityMessage isAvailable={isAvailable} />
 						{product.attributes.map((attr, idx) => (
 							<div className='mt-8' key={attr.attribute.name}>
-								<strong>{attr.attribute.name}:</strong> {attr.values[idx].plainText}
+								<strong>{displayLang(locale, attr.attribute as unknown as Translatable, 'name')}:</strong>{' '}
+								{attr.values[idx].plainText}
 							</div>
 						))}
 
 						<div className='mt-8'>
 							<AddButton disabled={!selectedVariantID || !selectedVariant?.quantityAvailable} />
 						</div>
-						{description && (
+						{mdxEn && (
+							<div className='mx-auto prose mt-8 text-neutral-500'>
+								{/* mdxFr is expected to be HTML/HTML-like. Sanitize before injecting. */}
+								<h2 className='text-2xl font-bold text-neutral-600'>Description</h2>
+								<ReactMarkdown
+									remarkPlugins={[remarkGfm]}
+									rehypePlugins={[rehypeRaw]}
+									components={components}
+								>
+									{locale != 'en' && mdxFr ? mdxFr : mdxEn}
+								</ReactMarkdown>
+							</div>
+						)}
+						{false && description && (
 							<div className='mt-8 space-y-6 text-sm text-neutral-500'>
-								{description.map((content) => (
+								{description?.map((content) => (
 									<div key={content} dangerouslySetInnerHTML={{ __html: xss(content) }} />
 								))}
 							</div>
@@ -256,12 +298,12 @@ export default async function Page(props: {
 				</div>
 			</form>
 			{/* render MDX French fragment at the end of the form */}
-			{mdxEn && (
-				<div className='prose mx-auto  mt-8  text-neutral-500'>
+			{false && mdxEn && (
+				<div className='mx-auto prose mt-8 text-neutral-500'>
 					{/* mdxFr is expected to be HTML/HTML-like. Sanitize before injecting. */}
-					<h2 className='text-2xl font-bold  text-neutral-600'>Description</h2>
+					<h2 className='text-2xl font-bold text-neutral-600'>Description</h2>
 					<ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={components}>
-						{mdxEn}
+						{locale != 'en' && mdxFr ? mdxFr : mdxEn}
 					</ReactMarkdown>
 				</div>
 			)}

@@ -20,8 +20,14 @@ query CheckoutFind($id: ID!) {
 						url
 						alt
 					}
+					fr: translation(languageCode: FR) {
+						name
+					}
 					category {
 						name
+						fr: translation(languageCode: FR) {
+							name
+						}
 					}
 				}
 				pricing {
@@ -34,6 +40,9 @@ query CheckoutFind($id: ID!) {
 				}
 				name
 				id
+				fr: translation(languageCode: FR) {
+					name
+				}
 			}
 		}
 		totalPrice {

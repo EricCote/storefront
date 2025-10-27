@@ -8,6 +8,13 @@ query ProductDetails($slug: String!, $channel: String!) {
 		seoDescription
 		mdxFr: metafield(key: "mdxFr")
 		mdxEn: metafield(key: "mdxEn")
+		fr: translation(languageCode: FR) {
+			description
+			name
+			seoDescription
+			seoTitle
+			slug
+		}
 		media {
 			alt
 			url(format: WEBP, size: 1024)
@@ -21,7 +28,7 @@ query ProductDetails($slug: String!, $channel: String!) {
 				id
 				name
 				slug
-				translation(languageCode: FR) {
+				fr: translation(languageCode: FR) {
 					name
 				}
 			}

@@ -1,19 +1,19 @@
-"use client";
-import Link from "next/link";
-import { useParams } from "next/navigation";
-import { type ComponentProps } from "react";
+'use client';
+import { useParams } from 'next/navigation';
+import { type ComponentProps } from 'react';
+import { Link } from '@/i18n/navigation';
 
 export const LinkWithChannel = ({
 	href,
 	...props
-}: Omit<ComponentProps<typeof Link>, "href"> & { href: string }) => {
+}: Omit<ComponentProps<typeof Link>, 'href'> & { href: string }) => {
 	const { channel } = useParams<{ channel?: string }>();
 
-	if (!href.startsWith("/")) {
+	if (!href.startsWith('/')) {
 		return <Link {...props} href={href} />;
 	}
 
-	const encodedChannel = encodeURIComponent(channel ?? "");
+	const encodedChannel = encodeURIComponent(channel ?? '');
 	const hrefWithChannel = `/${encodedChannel}${href}`;
 	return <Link {...props} href={hrefWithChannel} />;
 };
