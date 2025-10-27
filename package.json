@@ -12,7 +12,6 @@
 		"prebuild": "pnpm run generate",
 		"lint": "next lint --dir src --fix",
 		"generate": "graphql-codegen --config .graphqlrc.ts",
-		"prepare": "husky install",
 		"test": "playwright test"
 	},
 	"dependencies": {
@@ -50,6 +49,9 @@
 		"zustand": "^5.0.8"
 	},
 	"devDependencies": {
+		"@eslint/compat": "1.4.0",
+		"@eslint/eslintrc": "3.3.1",
+		"@eslint/js": "9.38.0",
 		"@graphql-codegen/cli": "^6.0.1",
 		"@graphql-codegen/client-preset": "^5.1.1",
 		"@graphql-typed-document-node/core": "^3.2.0",
@@ -74,8 +76,6 @@
 		"eslint-plugin-import": "^2.32.0",
 		"eslint-plugin-playwright": "^2.2.2",
 		"graphql-tag": "^2.12.6",
-		"husky": "^9.1.7",
-		"lint-staged": "^16.2.6",
 		"postcss": "^8.5.6",
 		"prettier": "^3.6.2",
 		"prettier-plugin-tailwindcss": "^0.7.1",

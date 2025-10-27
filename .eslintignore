@@ -5,7 +5,7 @@ node_modules/
 dist/
 build/
 
-# File patterns to exclude
-*.js
-*.jsx
-*.cjs
+# # File patterns to exclude
+# *.js
+# *.jsx
+# *.cjs
