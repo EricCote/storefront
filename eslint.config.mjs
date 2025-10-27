@@ -1,152 +1,104 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
 import nextVitals from 'eslint-config-next/core-web-vitals';
-// import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
-// import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import _import from 'eslint-plugin-import';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
+import nextTs from 'eslint-config-next/typescript';
+import prettier from 'eslint-config-prettier/flat';
+import { write, writeFileSync } from 'fs';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-	baseDirectory: __dirname,
-	recommendedConfig: js.configs.recommended,
-	allConfig: js.configs.all,
-});
-
-export default defineConfig([
+const eslintConfig = defineConfig([
+	// Next.js Core Web Vitals rules
 	...nextVitals,
-	globalIgnores([
-		'**/*.js',
-		'**/*.jsx',
-		'**/*.cjs',
-		'src/checkout/src/graphql',
-		'src/app/old/**/*',
-		'src/app/old/',
-		'**/.next/',
-		'**/node_modules/',
-		'**/dist/',
-		'**/build/',
-	]),
+
+	// Next.js TypeScript rules
+	...nextTs,
+
+	// Prettier configuration to disable conflicting rules
+	prettier,
+
+	// Custom rules and overrides
 	// {
-	// 	extends: fixupConfigRules(
-	// 		compat.extends(
-	// 			'plugin:@typescript-eslint/recommended',
-	// 			'plugin:@typescript-eslint/recommended-requiring-type-checking',
-	// 			'plugin:import/recommended',
-	// 			'plugin:import/typescript',
-	// 			'prettier',
-	// 			'next/core-web-vitals',
-	// 		),
-	// 	),
+	//   rules: {
+	//     // React/JSX rules
+	//     'react/react-in-jsx-scope': 'off', // Not needed in Next.js 13+
+	//     'react/prop-types': 'off', // Using TypeScript instead
+	//     'react/no-unescaped-entities': 'warn',
 
-	// 	plugins: {
-	// 		'@typescript-eslint': fixupPluginRules(typescriptEslint),
-	// 		import: fixupPluginRules(_import),
-	// 	},
+	//     // TypeScript rules
+	//     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+	//     '@typescript-eslint/no-explicit-any': 'warn',
 
-	// 	languageOptions: {
-	// 		ecmaVersion: 'latest',
-	// 		sourceType: 'script',
+	//     // Import rules
+	//     'import/order': [
+	//       'error',
+	//       {
+	//         groups: [
+	//           'builtin',
+	//           'external',
+	//           'internal',
+	//           'parent',
+	//           'sibling',
+	//           'index',
+	//         ],
+	//         'newlines-between': 'always',
+	//         alphabetize: {
+	//           order: 'asc',
+	//           caseInsensitive: true,
+	//         },
+	//       },
+	//     ],
 
-	// 		parserOptions: {
-	// 			project: 'tsconfig.json',
-	// 		},
-	// 	},
+	//     // Next.js specific rules
+	//     '@next/next/no-img-element': 'error',
+	//     '@next/next/no-html-link-for-pages': 'error',
 
-	// 	rules: {
-	// 		'import/order': 'error',
-	// 		'import/no-mutable-exports': 'error',
-	// 		'import/no-cycle': 'error',
-	// 		'import/no-default-export': 'error',
-	// 		'import/no-unresolved': 'error',
-
-	// 		'@typescript-eslint/no-empty-object-type': [
-	// 			'error',
-	// 			{
-	// 				allowObjectTypes: 'always',
-	// 				allowInterfaces: 'always',
-	// 			},
-	// 		],
-
-	// 		'@typescript-eslint/consistent-type-imports': [
-	// 			'error',
-	// 			{
-	// 				prefer: 'type-imports',
-	// 				fixStyle: 'inline-type-imports',
-	// 				disallowTypeAnnotations: false,
-	// 			},
-	// 		],
-
-	// 		'import/no-duplicates': [
-	// 			'error',
-	// 			{
-	// 				'prefer-inline': true,
-	// 			},
-	// 		],
-
-	// 		'import/namespace': ['off'],
-	// 		'no-empty-pattern': 'off',
-	// 		'@typescript-eslint/no-empty-interface': 'off',
-	// 		'@typescript-eslint/no-empty-function': 'off',
-	// 		'@typescript-eslint/require-await': 'off',
-	// 		'@typescript-eslint/return-await': ['error', 'in-try-catch'],
-
-	// 		'@typescript-eslint/no-unused-vars': [
-	// 			'error',
-	// 			{
-	// 				argsIgnorePattern: '^_',
-	// 				varsIgnorePattern: '^_',
-	// 			},
-	// 		],
-
-	// 		'@typescript-eslint/restrict-template-expressions': [
-	// 			'error',
-	// 			{
-	// 				allowNumber: true,
-	// 				allowBoolean: true,
-	// 			},
-	// 		],
-
-	// 		'@typescript-eslint/no-explicit-any': 'off',
-
-	// 		'@typescript-eslint/no-misused-promises': [
-	// 			'error',
-	// 			{
-	// 				checksVoidReturn: false,
-	// 			},
-	// 		],
-	// 	},
+	//     // General code quality rules
+	//     'no-console': 'warn',
+	//     'no-debugger': 'error',
+	//     'prefer-const': 'error',
+	//     'no-var': 'error',
+	//   },
 	// },
-	{
-		files: ['src/app/**/{page,layout,error,loading,not-found}.tsx', '**/*.ts'],
 
-		rules: {
-			'import/no-default-export': 'off',
-		},
-	},
-	{
-		files: ['src/checkout/**/*.{ts,tsx}'],
+	// Override default ignores of eslint-config-next
+	globalIgnores([
+		// Default Next.js ignores
+		'.next/**',
+		'out/**',
+		'build/**',
+		'next-env.d.ts',
 
-		rules: {
-			'no-restricted-imports': [
-				'error',
-				{
-					patterns: [
-						{
-							group: ['next/*', '@next/*', 'next'],
-							message:
-								'Usage of Next.js-specific imports inside src/checkout is forbidden. Checkout is a standalone component and should not depend on Next.js.',
-						},
-					],
-				},
-			],
-		},
-	},
-	{
-		files: ['__tests__/**/*.{ts,tsx}'],
-		extends: [...compat.extends('plugin:playwright/recommended')],
-	},
+		// Additional ignores
+		'node_modules/**',
+		'dist/**',
+		'.vercel/**',
+		'coverage/**',
+		'*.config.js',
+		'*.config.mjs',
+		'public/**',
+		'playwright-report/**',
+		'test-results/**',
+
+		// GraphQL generated files
+		'src/gql/**',
+		'src/graphql/generated/**',
+	]),
 ]);
+
+// const cache = new Set();
+// const replacer = (key, value) => {
+// 	if (typeof value === 'object' && value !== null) {
+// 		// Check if the object has been seen before
+// 		if (cache.has(value)) {
+// 			// Circular reference found, discard it
+// 			return; // Returning 'undefined' skips the property
+// 		}
+// 		// Store value in our collection
+// 		cache.add(value);
+// 	}
+// 	return value;
+// };
+
+// const str = JSON.stringify(eslintConfig, replacer, 2);
+
+// writeFileSync('out.json', str);
+
+export default eslintConfig;
