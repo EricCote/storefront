@@ -1,5 +1,6 @@
-import { useEffect, useState, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState, useCallback } from "react";
+
 import { usePathname } from "@/i18n/navigation";
 
 export const useMobileMenu = () => {

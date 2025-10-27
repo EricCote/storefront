@@ -1,9 +1,11 @@
 import { getLocale, getTranslations } from 'next-intl/server';
-import { NavLink } from './NavLink';
-import { Link } from '@/i18n/navigation';
-import { executeGraphQL } from '@/lib/graphql';
+
 import { MenuGetBySlugDocument } from '@/gql/graphql';
+import { Link } from '@/i18n/navigation';
 import { displayLang, type Translatable } from '@/i18n/translate';
+import { executeGraphQL } from '@/lib/graphql';
+
+import { NavLink } from './NavLink';
 
 export const NavLinks = async ({ channel }: { channel: string }) => {
 	const locale = await getLocale();

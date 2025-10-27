@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react';
+
 import { Footer } from '@/ui/components/Footer';
 import { Header } from '@/ui/components/Header';
 

@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+
 import { Loader } from "@/ui/atoms/Loader";
 import { LoginForm } from "@/ui/components/LoginForm";
 

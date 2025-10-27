@@ -1,6 +1,8 @@
 import { invariant } from "ts-invariant";
-import { type TypedDocumentString } from "../gql/graphql";
+
 import { getServerAuthClient } from "@/app/config";
+
+import { type TypedDocumentString } from "../gql/graphql";
 
 type GraphQLErrorResponse = {
 	errors: readonly {

@@ -1,7 +1,8 @@
 'use client';
 
-import { useTransition } from 'react';
 import { useTranslations } from 'next-intl';
+import { useTransition } from 'react';
+
 import { deleteLineFromCheckout } from './actions';
 
 type Props = {

@@ -1,10 +1,11 @@
-import { object, string } from "yup";
 import { useSaleorAuthContext } from "@saleor/auth-sdk/react";
+import { object, string } from "yup";
+
 import { type AccountErrorCode } from "@/checkout/graphql";
 import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
-import { useGetParsedErrors } from "@/checkout/hooks/useGetParsedErrors";
 import { useForm } from "@/checkout/hooks/useForm";
 import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
+import { useGetParsedErrors } from "@/checkout/hooks/useGetParsedErrors";
 
 interface SignInFormData {
 	email: string;

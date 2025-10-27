@@ -1,14 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
+ 
+ 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import AdyenCheckout from '@adyen/adyen-web';
 import { type CardElementData } from '@adyen/adyen-web/dist/types/components/Card/types';
 import type DropinElement from '@adyen/adyen-web/dist/types/components/Dropin';
-import { PaymentResponse as AdyenApiPaymentResponse } from '@adyen/api-library/lib/src/typings/checkout/paymentResponse';
 import { type CreateCheckoutSessionResponse } from '@adyen/api-library/lib/src/typings/checkout/createCheckoutSessionResponse';
-import { type AdyenPaymentResponse } from './types';
+import { PaymentResponse as AdyenApiPaymentResponse } from '@adyen/api-library/lib/src/typings/checkout/paymentResponse';
+
 import { replaceUrl } from '@/checkout/lib/utils/url';
+
+import { type AdyenPaymentResponse } from './types';
+
 
 export type AdyenDropInCreateSessionResponse = {
 	session: CreateCheckoutSessionResponse;
@@ -98,7 +101,7 @@ export function handlePaymentResult(
 	result: PostAdyenDropInPaymentsResponse | PostAdyenDropInPaymentsDetailsResponse,
 	component: DropinElement,
 ) {
-	/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
+	 
 	switch (result.payment.resultCode) {
 		// @todo https://docs.adyen.com/online-payments/payment-result-codes
 		case AdyenApiPaymentResponse.ResultCodeEnum.AuthenticationFinished:
@@ -137,5 +140,5 @@ export function handlePaymentResult(
 			return;
 		}
 	}
-	/* eslint-enable @typescript-eslint/no-unsafe-enum-comparison */
+	 
 }

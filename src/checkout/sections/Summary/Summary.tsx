@@ -1,13 +1,6 @@
-import { type FC } from 'react';
 import { clsx } from 'clsx';
-import { SummaryItem, type SummaryLine } from './SummaryItem';
-import { PromoCodeAdd } from './PromoCodeAdd';
-import { SummaryMoneyRow } from './SummaryMoneyRow';
-import { SummaryPromoCodeRow } from './SummaryPromoCodeRow';
-import { SummaryItemMoneyEditableSection } from './SummaryItemMoneyEditableSection';
-import { ChevronDownIcon } from '@/checkout/ui-kit/icons';
+import { type FC } from 'react';
 
-import { getFormattedMoney } from '@/checkout/lib/utils/money';
 import { Divider, Money, Title } from '@/checkout/components';
 import {
 	type CheckoutLineFragment,
@@ -15,8 +8,17 @@ import {
 	type Money as MoneyType,
 	type OrderLineFragment,
 } from '@/checkout/graphql';
-import { SummaryItemMoneySection } from '@/checkout/sections/Summary/SummaryItemMoneySection';
 import { type GrossMoney, type GrossMoneyWithTax } from '@/checkout/lib/globalTypes';
+import { getFormattedMoney } from '@/checkout/lib/utils/money';
+import { SummaryItemMoneySection } from '@/checkout/sections/Summary/SummaryItemMoneySection';
+import { ChevronDownIcon } from '@/checkout/ui-kit/icons';
+
+import { PromoCodeAdd } from './PromoCodeAdd';
+import { SummaryItem, type SummaryLine } from './SummaryItem';
+import { SummaryItemMoneyEditableSection } from './SummaryItemMoneyEditableSection';
+import { SummaryMoneyRow } from './SummaryMoneyRow';
+import { SummaryPromoCodeRow } from './SummaryPromoCodeRow';
+
 
 interface SummaryProps {
 	editable?: boolean;

@@ -1,9 +1,9 @@
 "use client";
 
+import { MDXProvider } from "@mdx-js/react";
 import React from "react";
 
 // Import MDX file (static import works because of @next/mdx)
-import { MDXProvider } from "@mdx-js/react";
 import Hello from "@/content/hello.mdx";
 
 const components = {

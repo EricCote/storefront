@@ -1,8 +1,10 @@
 import { useMemo } from "react";
-import { paymentMethodToComponent } from "./supportedPaymentApps";
+
 import { PaymentSectionSkeleton } from "@/checkout/sections/PaymentSection/PaymentSectionSkeleton";
 import { usePayments } from "@/checkout/sections/PaymentSection/usePayments";
 import { useCheckoutUpdateState } from "@/checkout/state/updateStateStore";
+
+import { paymentMethodToComponent } from "./supportedPaymentApps";
 
 export const PaymentMethods = () => {
 	const { availablePaymentGateways, fetching } = usePayments();

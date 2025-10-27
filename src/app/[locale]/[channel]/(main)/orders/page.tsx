@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+
 import { CurrentUserOrderListDocument } from '@/gql/graphql';
 import { executeGraphQL } from '@/lib/graphql';
 import { LoginForm } from '@/ui/components/LoginForm';

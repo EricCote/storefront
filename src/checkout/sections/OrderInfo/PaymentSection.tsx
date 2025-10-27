@@ -1,8 +1,10 @@
-import { AlertIcon, SuccessIcon } from "../../assets/icons";
-import { Section } from "./Section";
-
 import { useOrder } from "@/checkout/hooks/useOrder";
 import { usePaymentStatus } from "@/checkout/sections/PaymentSection/utils";
+
+import { AlertIcon, SuccessIcon } from "../../assets/icons";
+
+import { Section } from "./Section";
+
 
 const ErrorMessage = ({ message }: { message: string }) => {
 	return (

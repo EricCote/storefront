@@ -1,7 +1,8 @@
 import { Suspense } from "react";
-import { Summary, SummarySkeleton } from "@/checkout/sections/Summary";
-import { OrderInfo } from "@/checkout/sections/OrderInfo";
+
 import { useOrder } from "@/checkout/hooks/useOrder";
+import { OrderInfo } from "@/checkout/sections/OrderInfo";
+import { Summary, SummarySkeleton } from "@/checkout/sections/Summary";
 
 export const OrderConfirmation = () => {
 	const { order } = useOrder();

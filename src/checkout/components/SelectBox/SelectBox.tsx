@@ -1,8 +1,9 @@
 import { clsx } from 'clsx';
-import { type HTMLAttributes } from 'react';
 import { useField } from 'formik';
-import { type Children, type Classes } from '@/checkout/lib/globalTypes';
+import { type HTMLAttributes } from 'react';
+
 import { useFormContext } from '@/checkout/hooks/useForm';
+import { type Children, type Classes } from '@/checkout/lib/globalTypes';
 
 export interface SelectBoxProps<TFieldName extends string>
 	extends Classes,

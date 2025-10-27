@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+
 import { LinkWithChannel } from '../atoms/LinkWithChannel';
 
 export async function Pagination({

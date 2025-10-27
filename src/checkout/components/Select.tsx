@@ -1,4 +1,5 @@
 import { type SelectHTMLAttributes, type ChangeEvent, type ReactNode, useState } from 'react';
+
 import { useField } from '@/checkout/hooks/useForm/useField';
 
 export interface Option<TData extends string = string> {
@@ -57,13 +58,13 @@ export const Select = <TName extends string, TData extends string>({
 						</option>
 					)}
 
-					{/* eslint-disable @typescript-eslint/no-base-to-string */}
+					{ }
 					{options.map(({ label, value, disabled = false }) => (
 						<option value={value} disabled={disabled} key={label?.toString() + '_' + value}>
 							{label}
 						</option>
 					))}
-					{/* eslint-enable @typescript-eslint/no-base-to-string */}
+					{ }
 				</select>
 			</label>
 			{error && <p className='text-sm text-red-500'>{error}</p>}

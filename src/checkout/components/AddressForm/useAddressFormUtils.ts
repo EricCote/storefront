@@ -1,13 +1,14 @@
 import camelCase from 'lodash-es/camelCase';
 import { useCallback, useMemo } from 'react';
+
+import { type OptionalAddress, type AddressField } from '@/checkout/components/AddressForm/types';
+import { getOrderedAddressFields, getRequiredAddressFields } from '@/checkout/components/AddressForm/utils';
 import {
 	type CountryCode,
 	useAddressValidationRulesQuery,
 	type ValidationRulesFragment,
 } from '@/checkout/graphql';
-import { type OptionalAddress, type AddressField } from '@/checkout/components/AddressForm/types';
 import { defaultCountry } from '@/checkout/lib/consts/countries';
-import { getOrderedAddressFields, getRequiredAddressFields } from '@/checkout/components/AddressForm/utils';
 
 export type AddressFieldLabel = Exclude<AddressField, 'countryCode'> | 'country';
 export const addressFieldMessages: Record<AddressFieldLabel, string> = {

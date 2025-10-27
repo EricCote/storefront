@@ -1,16 +1,17 @@
-import { type FC, type PropsWithChildren, useEffect, useRef } from "react";
-import { difference } from "lodash-es";
 import { type FieldValidator } from "formik";
-import { type CountryCode } from "@/checkout/graphql";
+import { difference } from "lodash-es";
+import { type FC, type PropsWithChildren, useEffect, useRef } from "react";
+
 import { type AddressField, type AddressFormData } from "@/checkout/components/AddressForm/types";
-import { Title } from "@/checkout/components/Title";
-import { TextInput } from "@/checkout/components/TextInput";
-import { autocompleteTags, typeTags } from "@/checkout/lib/consts/inputAttributes";
+import { useAddressFormUtils } from "@/checkout/components/AddressForm/useAddressFormUtils";
+import { getEmptyAddressFormData, isMatchingAddressFormData } from "@/checkout/components/AddressForm/utils";
 import { CountrySelect } from "@/checkout/components/CountrySelect";
 import { Select } from "@/checkout/components/Select";
-import { getEmptyAddressFormData, isMatchingAddressFormData } from "@/checkout/components/AddressForm/utils";
+import { TextInput } from "@/checkout/components/TextInput";
+import { Title } from "@/checkout/components/Title";
+import { type CountryCode } from "@/checkout/graphql";
 import { type ChangeHandler, useFormContext, type BlurHandler } from "@/checkout/hooks/useForm";
-import { useAddressFormUtils } from "@/checkout/components/AddressForm/useAddressFormUtils";
+import { autocompleteTags, typeTags } from "@/checkout/lib/consts/inputAttributes";
 import { usePhoneNumberValidator } from "@/checkout/lib/utils/phoneNumber";
 
 export interface AddressFormProps {

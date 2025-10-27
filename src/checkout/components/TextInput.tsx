@@ -1,6 +1,6 @@
-import { type AllHTMLAttributes } from 'react';
 import { clsx } from 'clsx';
 import { Field, type FieldProps } from 'formik';
+import { type AllHTMLAttributes } from 'react';
 
 export interface TextInputProps<TName extends string> extends AllHTMLAttributes<HTMLInputElement> {
 	name: TName;

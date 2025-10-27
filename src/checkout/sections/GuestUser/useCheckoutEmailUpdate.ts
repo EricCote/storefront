@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
+
 import { useCheckoutEmailUpdateMutation } from "@/checkout/graphql";
 import { useDebouncedSubmit } from "@/checkout/hooks/useDebouncedSubmit";
 import { useSubmit } from "@/checkout/hooks/useSubmit/useSubmit";

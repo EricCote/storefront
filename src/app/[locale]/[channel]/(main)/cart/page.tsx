@@ -1,12 +1,14 @@
-import Image from 'next/image';
 import { type Metadata } from 'next';
+import Image from 'next/image';
 import { getLocale, getTranslations } from 'next-intl/server';
-import { CheckoutLink } from './CheckoutLink';
-import { DeleteLineButton } from './DeleteLineButton';
+
+import { displayLang, type Translatable } from '@/i18n/translate';
 import * as Checkout from '@/lib/checkout';
 import { formatMoney, getHrefForVariant } from '@/lib/utils';
 import { LinkWithChannel } from '@/ui/atoms/LinkWithChannel';
-import { displayLang, type Translatable } from '@/i18n/translate';
+
+import { CheckoutLink } from './CheckoutLink';
+import { DeleteLineButton } from './DeleteLineButton';
 
 export async function generateMetadata(): Promise<Metadata> {
 	const t = await getTranslations('cart');

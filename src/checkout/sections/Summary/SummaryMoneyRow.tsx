@@ -1,4 +1,5 @@
 import React, { type PropsWithChildren } from "react";
+
 import { Money, type MoneyProps } from "@/checkout/components/Money";
 
 export interface SummaryMoneyRowProps extends MoneyProps {

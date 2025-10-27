@@ -1,6 +1,5 @@
 import { compact } from "lodash-es";
-import { adyenGatewayId } from "./AdyenDropIn/types";
-import { stripeGatewayId } from "./StripeElements/types";
+
 import {
 	type CheckoutAuthorizeStatusEnum,
 	type CheckoutChargeStatusEnum,
@@ -12,6 +11,9 @@ import { type MightNotExist } from "@/checkout/lib/globalTypes";
 import { getUrl } from "@/checkout/lib/utils/url";
 import { type PaymentStatus } from "@/checkout/sections/PaymentSection/types";
 
+import { adyenGatewayId } from "./AdyenDropIn/types";
+import { stripeGatewayId } from "./StripeElements/types";
+
 export const supportedPaymentGateways = [adyenGatewayId, stripeGatewayId] as const;
 
 export const getFilteredPaymentGateways = (
@@ -22,7 +24,7 @@ export const getFilteredPaymentGateways = (
 	}
 
 	// we want to use only payment apps, not plugins
-	return compact(paymentGateways).filter(({ id }) => supportedPaymentGateways.includes(id));
+	return compact(paymentGateways).filter(({ id }) => supportedPaymentGateways.includes(id as typeof supportedPaymentGateways[number]));
 };
 
 export const getUrlForTransactionInitialize = () => getUrl({ query: { processingPayment: true } });

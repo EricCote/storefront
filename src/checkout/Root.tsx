@@ -1,13 +1,15 @@
 'use client';
-import { ErrorBoundary } from 'react-error-boundary';
-import { type Client, Provider as UrqlProvider, cacheExchange, createClient, fetchExchange } from 'urql';
-
-import { ToastContainer } from 'react-toastify';
 import { useAuthChange, useSaleorAuthContext } from '@saleor/auth-sdk/react';
 import { useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ToastContainer } from 'react-toastify';
+import { type Client, Provider as UrqlProvider, cacheExchange, createClient, fetchExchange } from 'urql';
+
+
+import { PageNotFound } from '@/checkout/views/PageNotFound';
+
 import { alertsContainerProps } from './hooks/useAlerts/consts';
 import { RootViews } from './views/RootViews';
-import { PageNotFound } from '@/checkout/views/PageNotFound';
 import './index.css';
 
 export const Root = ({ saleorApiUrl }: { saleorApiUrl: string }) => {

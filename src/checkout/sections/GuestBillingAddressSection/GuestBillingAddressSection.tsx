@@ -1,11 +1,11 @@
-import React, { Suspense } from "react";
-import { AddressForm } from "@/checkout/components/AddressForm";
-import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
-import { useGuestBillingAddressForm } from "@/checkout/sections/GuestBillingAddressSection/useGuestBillingAddressForm";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { AddressSectionSkeleton } from "@/checkout/components/AddressSectionSkeleton";
-import { useBillingSameAsShippingForm } from "@/checkout/sections/GuestBillingAddressSection/useBillingSameAsShippingForm";
-import { Checkbox } from "@/checkout/components";
+import { Checkbox } from '@/checkout/components';
+import { AddressForm } from '@/checkout/components/AddressForm';
+import { AddressSectionSkeleton } from '@/checkout/components/AddressSectionSkeleton';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { FormProvider } from '@/checkout/hooks/useForm/FormProvider';
+import { useBillingSameAsShippingForm } from '@/checkout/sections/GuestBillingAddressSection/useBillingSameAsShippingForm';
+import { useGuestBillingAddressForm } from '@/checkout/sections/GuestBillingAddressSection/useGuestBillingAddressForm';
+import { Suspense } from 'react';
 
 export const GuestBillingAddressSection = () => {
 	const {
@@ -26,21 +26,21 @@ export const GuestBillingAddressSection = () => {
 	return (
 		<Suspense fallback={<AddressSectionSkeleton />}>
 			{isShippingRequired && (
-				<div className="mb-4">
+				<div className='mb-4'>
 					<FormProvider form={billingSameAsShippingForm}>
 						<Checkbox
-							name="billingSameAsShipping"
-							label="Use shipping address as billing address"
-							data-testid="useShippingAsBillingCheckbox"
+							name='billingSameAsShipping'
+							label='Use shipping address as billing address'
+							data-testid='useShippingAsBillingCheckbox'
 						/>
 					</FormProvider>
 				</div>
 			)}
 			{!billingSameAsShipping && (
-				<div className="mb-4">
+				<div className='mb-4'>
 					<FormProvider form={form}>
 						<AddressForm
-							title="Billing address"
+							title='Billing address'
 							fieldProps={{
 								onChange: handleChange,
 								onBlur: handleBlur,

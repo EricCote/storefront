@@ -1,7 +1,8 @@
-import { notFound } from "next/navigation";
-import { type Metadata } from "next";
 import edjsHTML from "editorjs-html";
+import { type Metadata } from "next";
+import { notFound } from "next/navigation";
 import xss from "xss";
+
 import { PageGetBySlugDocument } from "@/gql/graphql";
 import { executeGraphQL } from "@/lib/graphql";
 

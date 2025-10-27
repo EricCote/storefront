@@ -1,7 +1,8 @@
 import { Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
-import { Suspense, type ReactNode } from 'react';
 import { type Locale, NextIntlClientProvider } from 'next-intl';
+import { Suspense, type ReactNode } from 'react';
+
 import { routing } from '@/i18n/routing';
 import { DraftModeNotification } from '@/ui/components/DraftModeNotification';
 

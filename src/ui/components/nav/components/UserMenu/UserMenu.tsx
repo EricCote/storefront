@@ -1,13 +1,15 @@
 'use client';
 
-import { Fragment } from 'react';
-import { clsx } from 'clsx';
 import { Menu, MenuButton, MenuItems, MenuItem, Transition } from '@headlessui/react';
-import { UserInfo } from './components/UserInfo';
-import { UserAvatar } from './components/UserAvatar';
-import { type UserDetailsFragment } from '@/gql/graphql';
+import { clsx } from 'clsx';
+import { Fragment } from 'react';
+
 import { logout } from '@/app/actions';
+import { type UserDetailsFragment } from '@/gql/graphql';
 import { LinkWithChannel } from '@/ui/atoms/LinkWithChannel';
+
+import { UserAvatar } from './components/UserAvatar';
+import { UserInfo } from './components/UserInfo';
 
 type Props = {
 	user: UserDetailsFragment;

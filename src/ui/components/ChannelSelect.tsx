@@ -1,6 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+
 import { useRouter } from '@/i18n/navigation';
 
 export const ChannelSelect = ({

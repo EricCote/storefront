@@ -1,12 +1,14 @@
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+
+import { useCheckout } from "@/checkout/hooks/useCheckout";
+import { CheckoutForm, CheckoutFormSkeleton } from "@/checkout/sections/CheckoutForm";
+import { Summary, SummarySkeleton } from "@/checkout/sections/Summary";
+import { CheckoutSkeleton } from "@/checkout/views/Checkout/CheckoutSkeleton";
+
+import { useUser } from "../../hooks/useUser";
 import { EmptyCartPage } from "../EmptyCartPage";
 import { PageNotFound } from "../PageNotFound";
-import { useUser } from "../../hooks/useUser";
-import { Summary, SummarySkeleton } from "@/checkout/sections/Summary";
-import { CheckoutForm, CheckoutFormSkeleton } from "@/checkout/sections/CheckoutForm";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { CheckoutSkeleton } from "@/checkout/views/Checkout/CheckoutSkeleton";
 
 export const Checkout = () => {
 	const { checkout, fetching: fetchingCheckout } = useCheckout();

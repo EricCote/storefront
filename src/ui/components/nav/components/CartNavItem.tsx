@@ -1,5 +1,6 @@
-import { ShoppingBagIcon } from 'lucide-react';
 import { clsx } from 'clsx';
+import { ShoppingBagIcon } from 'lucide-react';
+
 import * as Checkout from '@/lib/checkout';
 import { LinkWithChannel } from '@/ui/atoms/LinkWithChannel';
 

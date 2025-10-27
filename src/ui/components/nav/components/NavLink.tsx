@@ -2,8 +2,9 @@
 
 import { clsx } from 'clsx';
 import { type ReactElement } from 'react';
-import { LinkWithChannel } from '@/ui/atoms/LinkWithChannel';
+
 import useSelectedPathname from '@/hooks/useSelectedPathname';
+import { LinkWithChannel } from '@/ui/atoms/LinkWithChannel';
 
 export function NavLink({ href, children }: { href: string; children: ReactElement | string }) {
 	const pathname = useSelectedPathname();

@@ -1,10 +1,10 @@
 import { useMemo } from "react";
-import { type CheckoutLineFragment } from "@/checkout/graphql";
-import { TextInput } from "@/checkout/components/TextInput";
 
 import { Skeleton } from "@/checkout/components";
-import { SummaryItemMoneyInfo } from "@/checkout/sections/Summary/SummaryItemMoneyInfo";
+import { TextInput } from "@/checkout/components/TextInput";
+import { type CheckoutLineFragment } from "@/checkout/graphql";
 import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
+import { SummaryItemMoneyInfo } from "@/checkout/sections/Summary/SummaryItemMoneyInfo";
 import { useSummaryItemForm } from "@/checkout/sections/Summary/useSummaryItemForm";
 
 interface SummaryItemMoneyEditableSectionProps {

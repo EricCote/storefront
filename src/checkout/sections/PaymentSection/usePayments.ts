@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { useCheckout } from "@/checkout/hooks/useCheckout";
 import { useCheckoutComplete } from "@/checkout/hooks/useCheckoutComplete";
 import { type PaymentStatus } from "@/checkout/sections/PaymentSection/types";

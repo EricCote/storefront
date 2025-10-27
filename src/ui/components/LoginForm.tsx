@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+
 import { getServerAuthClient } from '@/app/config';
 
 export async function LoginForm() {
@@ -11,10 +12,10 @@ export async function LoginForm() {
 				action={async (formData) => {
 					'use server';
 
-					/* eslint-disable @typescript-eslint/no-base-to-string */
+					 
 					const email = formData.get('email')?.toString();
 					const password = formData.get('password')?.toString();
-					/* eslint-enable @typescript-eslint/no-base-to-string */
+					 
 
 					if (!email || !password) {
 						throw new Error(t('required'));

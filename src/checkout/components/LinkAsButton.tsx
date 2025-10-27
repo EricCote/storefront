@@ -1,5 +1,5 @@
-import { type ReactNode, type AnchorHTMLAttributes } from 'react';
 import { clsx } from 'clsx';
+import { type ReactNode, type AnchorHTMLAttributes } from 'react';
 
 type Props = AnchorHTMLAttributes<HTMLAnchorElement> & {
 	children: ReactNode;

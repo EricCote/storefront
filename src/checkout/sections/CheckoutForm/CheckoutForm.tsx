@@ -1,19 +1,20 @@
 import { Suspense, useState } from "react";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { Contact } from "@/checkout/sections/Contact";
-import { DeliveryMethods } from "@/checkout/sections/DeliveryMethods";
-import { ContactSkeleton } from "@/checkout/sections/Contact/ContactSkeleton";
-import { DeliveryMethodsSkeleton } from "@/checkout/sections/DeliveryMethods/DeliveryMethodsSkeleton";
+
+import { Divider } from "@/checkout/components";
 import { AddressSectionSkeleton } from "@/checkout/components/AddressSectionSkeleton";
+import { useCheckout } from "@/checkout/hooks/useCheckout";
+import { useUser } from "@/checkout/hooks/useUser";
 import { getQueryParams } from "@/checkout/lib/utils/url";
 import { CollapseSection } from "@/checkout/sections/CheckoutForm/CollapseSection";
-import { Divider } from "@/checkout/components";
-import { UserShippingAddressSection } from "@/checkout/sections/UserShippingAddressSection";
-import { GuestShippingAddressSection } from "@/checkout/sections/GuestShippingAddressSection";
-import { UserBillingAddressSection } from "@/checkout/sections/UserBillingAddressSection";
-import { PaymentSection, PaymentSectionSkeleton } from "@/checkout/sections/PaymentSection";
+import { Contact } from "@/checkout/sections/Contact";
+import { ContactSkeleton } from "@/checkout/sections/Contact/ContactSkeleton";
+import { DeliveryMethods } from "@/checkout/sections/DeliveryMethods";
+import { DeliveryMethodsSkeleton } from "@/checkout/sections/DeliveryMethods/DeliveryMethodsSkeleton";
 import { GuestBillingAddressSection } from "@/checkout/sections/GuestBillingAddressSection";
-import { useUser } from "@/checkout/hooks/useUser";
+import { GuestShippingAddressSection } from "@/checkout/sections/GuestShippingAddressSection";
+import { PaymentSection, PaymentSectionSkeleton } from "@/checkout/sections/PaymentSection";
+import { UserBillingAddressSection } from "@/checkout/sections/UserBillingAddressSection";
+import { UserShippingAddressSection } from "@/checkout/sections/UserShippingAddressSection";
 
 export const CheckoutForm = () => {
 	const { user } = useUser();

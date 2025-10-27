@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react';
-import { executeGraphQL } from '@/lib/graphql';
+
 import { ChannelsListDocument } from '@/gql/graphql';
+import { executeGraphQL } from '@/lib/graphql';
 
 export const generateStaticParams = async () => {
 	// the `channels` query is protected

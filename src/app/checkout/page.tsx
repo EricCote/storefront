@@ -1,6 +1,8 @@
 import { invariant } from 'ts-invariant';
+
+import Link from 'next/link';
+
 import { RootWrapper } from './pageWrapper';
-import { Link } from '@/i18n/navigation';
 
 export const metadata = {
 	title: 'Checkout · Saleor Storefront example',
@@ -21,7 +23,7 @@ export default async function CheckoutPage(props: {
 			<section className='mx-auto flex min-h-dvh max-w-7xl flex-col p-8'>
 				<div className='flex items-center font-bold'>
 					<Link aria-label='homepage' href='/'>
-						Jolar
+						Desired Deviance
 					</Link>
 				</div>
 				<h1 className='mt-8 text-3xl font-bold text-neutral-900'>Checkout</h1>

@@ -1,5 +1,5 @@
-import { SummarySkeleton } from "@/checkout/sections/Summary/SummarySkeleton";
 import { Skeleton } from "@/checkout/components/Skeleton";
+import { SummarySkeleton } from "@/checkout/sections/Summary/SummarySkeleton";
 
 export const OrderConfirmationSkeleton = () => {
 	return (

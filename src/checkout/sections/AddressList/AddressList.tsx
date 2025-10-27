@@ -1,14 +1,17 @@
-import React from "react";
 import { camelCase } from "lodash-es";
-import { AddressSelectBox } from "../../components/AddressSelectBox";
-import { type AddressFragment } from "@/checkout/graphql";
-import { SelectBoxGroup } from "@/checkout/components/SelectBoxGroup";
-import { useAddressAvailability } from "@/checkout/hooks/useAddressAvailability";
+import React from "react";
+
+
 import { Button } from "@/checkout/components/Button";
+import { SelectBoxGroup } from "@/checkout/components/SelectBoxGroup";
 import { Title } from "@/checkout/components/Title";
+import { type AddressFragment } from "@/checkout/graphql";
+import { useAddressAvailability } from "@/checkout/hooks/useAddressAvailability";
 import { type UseFormReturn } from "@/checkout/hooks/useForm";
-import { type AddressListFormData } from "@/checkout/sections/AddressList/useAddressListForm";
 import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
+import { type AddressListFormData } from "@/checkout/sections/AddressList/useAddressListForm";
+
+import { AddressSelectBox } from "../../components/AddressSelectBox";
 
 export interface AddressListProps {
 	onEditChange: (id: string) => void;

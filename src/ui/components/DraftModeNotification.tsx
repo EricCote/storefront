@@ -1,4 +1,5 @@
 import { draftMode } from 'next/headers';
+
 import { Link } from '@/i18n/navigation';
 
 export const DraftModeNotification = async () => {

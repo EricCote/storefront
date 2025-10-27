@@ -1,8 +1,11 @@
-import React from "react";
 import { useSaleorAuthContext } from "@saleor/auth-sdk/react";
-import { SignInFormContainer, type SignInFormContainerProps } from "../Contact/SignInFormContainer";
+import React from "react";
+
+
 import { Button } from "@/checkout/components/Button";
 import { useUser } from "@/checkout/hooks/useUser";
+
+import { SignInFormContainer, type SignInFormContainerProps } from "../Contact/SignInFormContainer";
 
 interface SignedInUserProps extends Pick<SignInFormContainerProps, "onSectionChange"> {
 	onSignOutSuccess: () => void;

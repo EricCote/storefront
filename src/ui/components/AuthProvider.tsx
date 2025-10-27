@@ -1,9 +1,9 @@
 'use client';
 
-import { SaleorAuthProvider, useAuthChange } from '@saleor/auth-sdk/react';
-import { invariant } from 'ts-invariant';
 import { createSaleorAuthClient } from '@saleor/auth-sdk';
+import { SaleorAuthProvider, useAuthChange } from '@saleor/auth-sdk/react';
 import { useState, type ReactNode } from 'react';
+import { invariant } from 'ts-invariant';
 import { type Client, Provider as UrqlProvider, cacheExchange, createClient, fetchExchange } from 'urql';
 
 const saleorApiUrl = process.env.NEXT_PUBLIC_SALEOR_API_URL;

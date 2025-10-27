@@ -1,9 +1,11 @@
 import React from "react";
-import { SignInFormContainer, type SignInFormContainerProps } from "../Contact/SignInFormContainer";
+
 import { Button } from "@/checkout/components/Button";
 import { PasswordInput } from "@/checkout/components/PasswordInput";
-import { useResetPasswordForm } from "@/checkout/sections/ResetPassword/useResetPasswordForm";
 import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
+import { useResetPasswordForm } from "@/checkout/sections/ResetPassword/useResetPasswordForm";
+
+import { SignInFormContainer, type SignInFormContainerProps } from "../Contact/SignInFormContainer";
 
 interface ResetPasswordProps extends Pick<SignInFormContainerProps, "onSectionChange"> {
 	onResetPasswordSuccess: () => void;

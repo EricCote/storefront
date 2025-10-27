@@ -1,10 +1,11 @@
 'use client';
 
-import { GlobeIcon } from 'lucide-react';
 import { clsx } from 'clsx';
+import { GlobeIcon } from 'lucide-react';
 //import { LinkWithChannel } from '@/ui/atoms/LinkWithChannel';
 import { useLocale } from 'next-intl';
 import { useTransition } from 'react';
+
 import { usePathname, useRouter } from '@/i18n/navigation';
 
 export const LanguageNavItem = () => {

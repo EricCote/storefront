@@ -1,10 +1,11 @@
 import { notFound, redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
+
+import { ProductsPerPage } from '@/app/config';
 import { OrderDirection, ProductOrderField, SearchProductsDocument } from '@/gql/graphql';
 import { executeGraphQL } from '@/lib/graphql';
 import { Pagination } from '@/ui/components/Pagination';
 import { ProductList } from '@/ui/components/ProductList';
-import { ProductsPerPage } from '@/app/config';
 
 export const metadata = {
 	title: 'Search products · Saleor Storefront example',

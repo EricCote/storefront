@@ -1,10 +1,12 @@
 import { getLocale } from 'next-intl/server';
-import { LinkWithChannel } from '../atoms/LinkWithChannel';
-import { ProductImageWrapper } from '@/ui/atoms/ProductImageWrapper';
+
 
 import type { ProductListItemFragment } from '@/gql/graphql';
-import { formatMoneyRange } from '@/lib/utils';
 import { displayLang, type Translatable } from '@/i18n/translate';
+import { formatMoneyRange } from '@/lib/utils';
+import { ProductImageWrapper } from '@/ui/atoms/ProductImageWrapper';
+
+import { LinkWithChannel } from '../atoms/LinkWithChannel';
 
 export async function ProductElement({
 	product,

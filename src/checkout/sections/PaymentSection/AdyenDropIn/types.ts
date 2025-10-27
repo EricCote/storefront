@@ -1,7 +1,7 @@
 import { type CardElementData } from "@adyen/adyen-web/dist/types/components/Card/types";
 import type DropinElement from "@adyen/adyen-web/dist/types/components/Dropin";
-import { type PaymentMethodsResponse } from "@adyen/adyen-web/dist/types/core/ProcessResponse/PaymentMethodsResponse/types";
 import { type PaymentResponse } from "@adyen/adyen-web/dist/types/components/types";
+import { type PaymentMethodsResponse } from "@adyen/adyen-web/dist/types/core/ProcessResponse/PaymentMethodsResponse/types";
 
 export const adyenGatewayId = "app.saleor.adyen";
 export type AdyenGatewayId = typeof adyenGatewayId;

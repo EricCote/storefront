@@ -1,19 +1,20 @@
 import { omit } from "lodash-es";
 import { useMemo } from "react";
+
+import { useAddressFormSchema } from "@/checkout/components/AddressForm/useAddressFormSchema";
 import {
 	getAddressFormDataFromAddress,
 	getAddressInputData,
 	getAddressValidationRulesVariables,
 } from "@/checkout/components/AddressForm/utils";
 import { useCheckoutBillingAddressUpdateMutation } from "@/checkout/graphql";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { useCheckoutFormValidationTrigger } from "@/checkout/hooks/useCheckoutFormValidationTrigger";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useAddressFormSchema } from "@/checkout/components/AddressForm/useAddressFormSchema";
 import {
 	type AutoSaveAddressFormData,
 	useAutoSaveAddressForm,
 } from "@/checkout/hooks/useAutoSaveAddressForm";
+import { useCheckout } from "@/checkout/hooks/useCheckout";
+import { useCheckoutFormValidationTrigger } from "@/checkout/hooks/useCheckoutFormValidationTrigger";
+import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
 import { useSetCheckoutFormValidationState } from "@/checkout/hooks/useSetCheckoutFormValidationState";
 import { useCheckoutUpdateStateActions } from "@/checkout/state/updateStateStore";
 

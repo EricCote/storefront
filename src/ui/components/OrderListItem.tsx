@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import { getLocale, getTranslations } from 'next-intl/server';
-import { LinkWithChannel } from '../atoms/LinkWithChannel';
-import { formatDate, formatMoney, getHrefForVariant } from '@/lib/utils';
+
 import { type OrderDetailsFragment } from '@/gql/graphql';
+import { formatDate, formatMoney, getHrefForVariant } from '@/lib/utils';
 import { PaymentStatus } from '@/ui/components/PaymentStatus';
+
+import { LinkWithChannel } from '../atoms/LinkWithChannel';
 
 type Props = {
 	order: OrderDetailsFragment;

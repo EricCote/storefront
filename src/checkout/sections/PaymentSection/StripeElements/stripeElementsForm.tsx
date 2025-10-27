@@ -1,8 +1,13 @@
-import { type FormEventHandler, useEffect, useState } from "react";
 import { PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { type StripePaymentElementOptions } from "@stripe/stripe-js";
-import { getUrlForTransactionInitialize } from "../utils";
-import { usePaymentProcessingScreen } from "../PaymentProcessingScreen";
+import { type FormEventHandler, useEffect, useState } from "react";
+
+import { useAlerts } from "@/checkout/hooks/useAlerts";
+import { useCheckout } from "@/checkout/hooks/useCheckout";
+import { useCheckoutComplete } from "@/checkout/hooks/useCheckoutComplete";
+import { useEvent } from "@/checkout/hooks/useEvent";
+import { useUser } from "@/checkout/hooks/useUser";
+import { getQueryParams } from "@/checkout/lib/utils/url";
 import {
 	useCheckoutValidationActions,
 	useCheckoutValidationState,
@@ -15,12 +20,9 @@ import {
 	areAnyRequestsInProgress,
 	hasFinishedApiChangesWithNoError,
 } from "@/checkout/state/updateStateStore";
-import { useEvent } from "@/checkout/hooks/useEvent";
-import { useUser } from "@/checkout/hooks/useUser";
-import { useAlerts } from "@/checkout/hooks/useAlerts";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useCheckoutComplete } from "@/checkout/hooks/useCheckoutComplete";
-import { getQueryParams } from "@/checkout/lib/utils/url";
+
+import { usePaymentProcessingScreen } from "../PaymentProcessingScreen";
+import { getUrlForTransactionInitialize } from "../utils";
 
 const paymentElementOptions: StripePaymentElementOptions = {
 	layout: "tabs",

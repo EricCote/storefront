@@ -1,11 +1,11 @@
 import AdyenCheckout from "@adyen/adyen-web";
 import { type FC, useCallback, useEffect, useRef } from "react";
 
-import { createAdyenCheckoutConfig } from "@/checkout/sections/PaymentSection/AdyenDropIn/utils";
 import {
 	type AdyenDropinProps,
 	useAdyenDropin,
 } from "@/checkout/sections/PaymentSection/AdyenDropIn/useAdyenDropin";
+import { createAdyenCheckoutConfig } from "@/checkout/sections/PaymentSection/AdyenDropIn/utils";
 import "@adyen/adyen-web/dist/adyen.css";
 import { type AdyenGatewayInitializePayload } from "@/checkout/sections/PaymentSection/AdyenDropIn/types";
 

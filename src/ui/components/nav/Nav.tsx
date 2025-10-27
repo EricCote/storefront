@@ -1,10 +1,11 @@
 import { Suspense } from 'react';
-import { UserMenuContainer } from './components/UserMenu/UserMenuContainer';
+
 import { CartNavItem } from './components/CartNavItem';
 import { LanguageNavItem } from './components/LanguageNavItem';
-import { NavLinks } from './components/NavLinks';
 import { MobileMenu } from './components/MobileMenu';
+import { NavLinks } from './components/NavLinks';
 import { SearchBar } from './components/SearchBar';
+import { UserMenuContainer } from './components/UserMenu/UserMenuContainer';
 
 export const Nav = ({ channel }: { channel: string }) => {
 	return (

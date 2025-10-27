@@ -1,19 +1,20 @@
 import React, { Suspense } from "react";
-import { useCheckoutFormValidationTrigger } from "@/checkout/hooks/useCheckoutFormValidationTrigger";
-import { getById } from "@/checkout/lib/utils/common";
+
+import { Checkbox } from "@/checkout/components";
+import { type OptionalAddress } from "@/checkout/components/AddressForm/types";
+import { getByMatchingAddress } from "@/checkout/components/AddressForm/utils";
 import { AddressSectionSkeleton } from "@/checkout/components/AddressSectionSkeleton";
-import { UserAddressSectionContainer } from "@/checkout/sections/UserAddressSectionContainer";
-import { useUserBillingAddressForm } from "@/checkout/sections/UserBillingAddressSection/useUserBillingAddressForm";
+import { type AddressFragment } from "@/checkout/graphql";
+import { useCheckout } from "@/checkout/hooks/useCheckout";
+import { useCheckoutFormValidationTrigger } from "@/checkout/hooks/useCheckoutFormValidationTrigger";
+import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
+import { getById } from "@/checkout/lib/utils/common";
 import { AddressCreateForm } from "@/checkout/sections/AddressCreateForm/AddressCreateForm";
 import { AddressEditForm } from "@/checkout/sections/AddressEditForm/AddressEditForm";
 import { AddressList } from "@/checkout/sections/AddressList/AddressList";
-import { Checkbox } from "@/checkout/components";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
 import { useBillingSameAsShippingForm } from "@/checkout/sections/GuestBillingAddressSection/useBillingSameAsShippingForm";
-import { type OptionalAddress } from "@/checkout/components/AddressForm/types";
-import { getByMatchingAddress } from "@/checkout/components/AddressForm/utils";
-import { type AddressFragment } from "@/checkout/graphql";
+import { UserAddressSectionContainer } from "@/checkout/sections/UserAddressSectionContainer";
+import { useUserBillingAddressForm } from "@/checkout/sections/UserBillingAddressSection/useUserBillingAddressForm";
 
 interface UserBillingAddressSectionProps {}
 

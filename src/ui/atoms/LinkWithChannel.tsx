@@ -1,6 +1,7 @@
 'use client';
 import { useParams } from 'next/navigation';
 import { type ComponentProps } from 'react';
+
 import { Link } from '@/i18n/navigation';
 
 export const LinkWithChannel = ({

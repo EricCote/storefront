@@ -1,11 +1,12 @@
 "use client";
 
-import { dummyGatewayId } from "./types";
 import { Button } from "@/checkout/components";
 import { useTransactionInitializeMutation } from "@/checkout/graphql";
 import { useAlerts } from "@/checkout/hooks/useAlerts";
 import { useCheckout } from "@/checkout/hooks/useCheckout";
 import { useCheckoutComplete } from "@/checkout/hooks/useCheckoutComplete";
+
+import { dummyGatewayId } from "./types";
 
 // Basic implementation of the test gateway:
 // https://github.com/saleor/dummy-payment-app/

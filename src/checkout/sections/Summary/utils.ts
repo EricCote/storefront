@@ -1,4 +1,5 @@
 import compact from "lodash-es/compact";
+
 import { type CheckoutLineFragment, type OrderLineFragment } from "@/checkout/graphql";
 import { type MightNotExist } from "@/checkout/lib/globalTypes";
 

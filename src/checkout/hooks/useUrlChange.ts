@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { getQueryParams, type QueryParams } from "@/checkout/lib/utils/url";
 
 export const POPSTATE_EVENT = "popstate";

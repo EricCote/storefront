@@ -1,20 +1,21 @@
 import { useEffect, useState, useMemo } from "react";
 import { bool, object, type Schema, string } from "yup";
+
 import { useUserRegisterMutation } from "@/checkout/graphql";
 import { useCheckout } from "@/checkout/hooks/useCheckout";
+import { useCheckoutFormValidationTrigger } from "@/checkout/hooks/useCheckoutFormValidationTrigger";
+import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
+import { type ChangeHandler, hasErrors, useForm } from "@/checkout/hooks/useForm";
+import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
+import { useUser } from "@/checkout/hooks/useUser";
+import { isValidEmail } from "@/checkout/lib/utils/common";
+import { getCurrentHref } from "@/checkout/lib/utils/locale";
+import { useCheckoutEmailUpdate } from "@/checkout/sections/GuestUser/useCheckoutEmailUpdate";
 import {
 	useCheckoutUpdateStateActions,
 	useCheckoutUpdateStateChange,
 	useUserRegisterState,
 } from "@/checkout/state/updateStateStore";
-import { useCheckoutFormValidationTrigger } from "@/checkout/hooks/useCheckoutFormValidationTrigger";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { type ChangeHandler, hasErrors, useForm } from "@/checkout/hooks/useForm";
-import { getCurrentHref } from "@/checkout/lib/utils/locale";
-import { useCheckoutEmailUpdate } from "@/checkout/sections/GuestUser/useCheckoutEmailUpdate";
-import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
-import { useUser } from "@/checkout/hooks/useUser";
-import { isValidEmail } from "@/checkout/lib/utils/common";
 
 export interface GuestUserFormData {
 	email: string;
@@ -125,7 +126,7 @@ export const useGuestUserForm = ({ initialEmail }: GuestUserFormProps) => {
 	const onChange: ChangeHandler = async (event) => {
 		handleChange(event);
 
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+		 
 		const error = await isValidEmail(event.target.value as string);
 
 		if (!error) {

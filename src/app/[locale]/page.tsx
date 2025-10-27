@@ -1,4 +1,5 @@
 import { type Locale } from 'next-intl';
+
 import { redirect } from '@/i18n/navigation';
 
 export default async function LocalePage(props: { params: Promise<{ locale: string }> }) {

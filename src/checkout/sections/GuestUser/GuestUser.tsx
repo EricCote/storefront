@@ -1,9 +1,10 @@
-import { SignInFormContainer, type SignInFormContainerProps } from "../Contact/SignInFormContainer";
-import { PasswordInput } from "@/checkout/components/PasswordInput";
 import { Checkbox } from "@/checkout/components/Checkbox";
+import { PasswordInput } from "@/checkout/components/PasswordInput";
 import { TextInput } from "@/checkout/components/TextInput";
-import { useGuestUserForm } from "@/checkout/sections/GuestUser/useGuestUserForm";
 import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
+import { useGuestUserForm } from "@/checkout/sections/GuestUser/useGuestUserForm";
+
+import { SignInFormContainer, type SignInFormContainerProps } from "../Contact/SignInFormContainer";
 
 type GuestUserProps = Pick<SignInFormContainerProps, "onSectionChange"> & {
 	onEmailChange: (email: string) => void;

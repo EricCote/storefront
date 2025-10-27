@@ -1,6 +1,6 @@
+import { shallow } from "zustand/shallow";
 import { createWithEqualityFn } from "zustand/traditional";
 
-import { shallow } from "zustand/shallow";
 
 export type CheckoutFormScope = "shippingAddress" | "billingAddress" | "guestUser";
 type CheckoutFormValidationStatus = "valid" | "invalid" | "validating";

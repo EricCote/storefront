@@ -1,11 +1,5 @@
 import { isEqual, omit, pick, reduce, uniq } from "lodash-es";
-import {
-	type OptionalAddress,
-	type AddressField,
-	type AddressFormData,
-	type ApiAddressField,
-} from "../../components/AddressForm/types";
-import { getCountryName } from "@/checkout/lib/utils/locale";
+
 import {
 	type AddressFragment,
 	type AddressInput,
@@ -14,6 +8,14 @@ import {
 	type CountryDisplay,
 } from "@/checkout/graphql";
 import { type MightNotExist } from "@/checkout/lib/globalTypes";
+import { getCountryName } from "@/checkout/lib/utils/locale";
+
+import {
+	type OptionalAddress,
+	type AddressField,
+	type AddressFormData,
+	type ApiAddressField,
+} from "../../components/AddressForm/types";
 
 export const getEmptyAddressFormData = (): AddressFormData => ({
 	firstName: "",

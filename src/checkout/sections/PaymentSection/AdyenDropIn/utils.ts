@@ -1,4 +1,5 @@
 import { type CoreOptions } from "@adyen/adyen-web/dist/types/core/types";
+
 import {
 	type AdyenCheckoutInstanceOnAdditionalDetails,
 	type AdyenCheckoutInstanceOnSubmit,

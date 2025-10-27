@@ -1,34 +1,38 @@
 import edjsHTML from 'editorjs-html';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
+import { type ResolvingMetadata, type Metadata } from 'next';
 import { revalidatePath } from 'next/cache';
 import { notFound } from 'next/navigation';
-import { type ResolvingMetadata, type Metadata } from 'next';
-import xss from 'xss';
-import { invariant } from 'ts-invariant';
-import { type WithContext, type Product } from 'schema-dts';
 import { getLocale } from 'next-intl/server';
-import { AddButton } from './AddButton';
-import { VariantSelector } from '@/ui/components/VariantSelector';
-//import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
+import { type WithContext, type Product } from 'schema-dts';
+import { invariant } from 'ts-invariant';
+import xss from 'xss';
+
+import { CheckoutAddLineDocument, ProductDetailsDocument, ProductListDocument } from '@/gql/graphql';
+import { displayLang, type Translatable } from '@/i18n/translate';
+import * as Checkout from '@/lib/checkout';
 import { executeGraphQL } from '@/lib/graphql';
 import { formatMoney, formatMoneyRange } from '@/lib/utils';
-import { CheckoutAddLineDocument, ProductDetailsDocument, ProductListDocument } from '@/gql/graphql';
-import * as Checkout from '@/lib/checkout';
 import { AvailabilityMessage } from '@/ui/components/AvailabilityMessage';
+import { ProductGallery } from '@/ui/components/ProductGallery';
+import { VariantSelector } from '@/ui/components/VariantSelector';
+
+import { AddButton } from './AddButton';
+import { Locale } from 'next-intl';
+//import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
 // Import Swiper React components
 // Client-only product gallery (Swiper is used inside the client component)
-import { ProductGallery } from '@/ui/components/ProductGallery';
-import { displayLang, type Translatable } from '@/i18n/translate';
 
-interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {}
 interface CalloutProps {
 	children?: React.ReactNode;
 }
 
 const components: Partial<Record<string, React.ComponentType<any>>> = {
-	h1: (props: HeadingProps) => <h1 className='mt-8 mb-4 text-5xl font-extrabold text-teal-600' {...props} />,
+	h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
+		<h1 className='mt-8 mb-4 text-5xl font-extrabold text-teal-600' {...props} />
+	),
 	//p: (props) => <p className="mb-4 text-lg leading-relaxed text-gray-700" {...props} />,
 	// A custom 'Callout' component that you can use with Markdown syntax
 	// by simply writing <Callout>This is a callout!</Callout> in the string.
@@ -260,7 +264,7 @@ export default async function Page(props: {
 								variants={variants}
 								product={product}
 								channel={params.channel}
-								locale={locale}
+								locale={locale as Locale}
 							/>
 						)}
 						<AvailabilityMessage isAvailable={isAvailable} />

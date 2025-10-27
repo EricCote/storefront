@@ -1,5 +1,6 @@
 import compact from "lodash-es/compact";
 import React, { type PropsWithChildren } from "react";
+
 import { type AddressFragment } from "@/checkout/graphql";
 
 interface AddressProps {

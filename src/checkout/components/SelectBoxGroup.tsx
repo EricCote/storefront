@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import { type PropsWithChildren } from 'react';
+
 import { type Classes } from '../lib/globalTypes';
 
 interface SelectBoxGroupProps extends Classes {

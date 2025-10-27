@@ -1,7 +1,8 @@
 'use client';
 
-import { LinkWithChannel } from '../atoms/LinkWithChannel';
 import { usePathname } from '@/i18n/navigation';
+
+import { LinkWithChannel } from '../atoms/LinkWithChannel';
 
 const companyName = 'Desired Deviance';
 

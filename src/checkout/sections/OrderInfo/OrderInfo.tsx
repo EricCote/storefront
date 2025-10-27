@@ -1,8 +1,9 @@
+import { Address } from "@/checkout/components/Address";
+import { useOrder } from "@/checkout/hooks/useOrder";
+
 import { DeliverySection } from "./DeliverySection";
 import { PaymentSection } from "./PaymentSection";
 import { Section } from "./Section";
-import { Address } from "@/checkout/components/Address";
-import { useOrder } from "@/checkout/hooks/useOrder";
 
 export const OrderInfo = () => {
 	const {

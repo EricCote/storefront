@@ -1,8 +1,9 @@
 import { useEffect, useMemo } from "react";
+
 import { useCheckoutCustomerAttachMutation } from "@/checkout/graphql";
+import { useCheckout } from "@/checkout/hooks/useCheckout";
 import { useSubmit } from "@/checkout/hooks/useSubmit/useSubmit";
 import { useUser } from "@/checkout/hooks/useUser";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
 
 export const useCustomerAttach = () => {
 	const { checkout, fetching: fetchingCheckout, refetch } = useCheckout();

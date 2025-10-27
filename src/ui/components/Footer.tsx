@@ -1,11 +1,15 @@
 import Image from 'next/image';
 import { getLocale, getTranslations } from 'next-intl/server';
-import { LinkWithChannel } from '../atoms/LinkWithChannel';
-import { ChannelSelect } from './ChannelSelect';
-import { Link } from '@/i18n/navigation';
+
 import { ChannelsListDocument, MenuGetBySlugDocument } from '@/gql/graphql';
-import { executeGraphQL } from '@/lib/graphql';
+import { Link } from '@/i18n/navigation';
 import { displayLang, type Translatable } from '@/i18n/translate';
+import { executeGraphQL } from '@/lib/graphql';
+
+import { LinkWithChannel } from '../atoms/LinkWithChannel';
+
+import { ChannelSelect } from './ChannelSelect';
+
 
 export async function Footer({ channel }: { channel: string }) {
 	const locale = await getLocale();

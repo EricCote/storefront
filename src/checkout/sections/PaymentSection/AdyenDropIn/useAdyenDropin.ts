@@ -1,9 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
+ 
+ 
 import type DropinElement from "@adyen/adyen-web/dist/types/components/Dropin";
-import { useCallback, useEffect, useMemo, useState } from "react";
 import { camelCase } from "lodash-es";
-import { apiErrorMessages } from "../errorMessages";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
+
 import {
 	type TransactionInitializeMutationVariables,
 	type TransactionProcessMutationVariables,
@@ -12,35 +13,37 @@ import {
 } from "@/checkout/graphql";
 import { useAlerts } from "@/checkout/hooks/useAlerts";
 import { useCheckout } from "@/checkout/hooks/useCheckout";
+import { useCheckoutComplete } from "@/checkout/hooks/useCheckoutComplete";
+import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
 import { useEvent } from "@/checkout/hooks/useEvent";
 import { useSubmit } from "@/checkout/hooks/useSubmit";
+import { useUser } from "@/checkout/hooks/useUser";
+import { type MightNotExist } from "@/checkout/lib/globalTypes";
+import { clearQueryParams, getQueryParams, type ParamBasicValue, replaceUrl } from "@/checkout/lib/utils/url";
+import { adyenErrorMessages } from "@/checkout/sections/PaymentSection/AdyenDropIn/errorMessages";
 import {
 	type AdyenCheckoutInstanceOnAdditionalDetails,
 	type AdyenCheckoutInstanceOnSubmit,
 	type AdyenCheckoutInstanceState,
 	type AdyenPaymentResponse,
 } from "@/checkout/sections/PaymentSection/AdyenDropIn/types";
+import { usePaymentProcessingScreen } from "@/checkout/sections/PaymentSection/PaymentProcessingScreen";
+import { type ParsedAdyenGateway } from "@/checkout/sections/PaymentSection/types";
+import { getUrlForTransactionInitialize } from "@/checkout/sections/PaymentSection/utils";
 import {
 	anyFormsValidating,
 	areAllFormsValid,
 	useCheckoutValidationActions,
 	useCheckoutValidationState,
 } from "@/checkout/state/checkoutValidationStateStore";
-import { clearQueryParams, getQueryParams, type ParamBasicValue, replaceUrl } from "@/checkout/lib/utils/url";
-import { type ParsedAdyenGateway } from "@/checkout/sections/PaymentSection/types";
 import {
 	areAnyRequestsInProgress,
 	hasFinishedApiChangesWithNoError,
 	useCheckoutUpdateState,
 	useCheckoutUpdateStateActions,
 } from "@/checkout/state/updateStateStore";
-import { useCheckoutComplete } from "@/checkout/hooks/useCheckoutComplete";
-import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
-import { adyenErrorMessages } from "@/checkout/sections/PaymentSection/AdyenDropIn/errorMessages";
-import { type MightNotExist } from "@/checkout/lib/globalTypes";
-import { useUser } from "@/checkout/hooks/useUser";
-import { getUrlForTransactionInitialize } from "@/checkout/sections/PaymentSection/utils";
-import { usePaymentProcessingScreen } from "@/checkout/sections/PaymentSection/PaymentProcessingScreen";
+
+import { apiErrorMessages } from "../errorMessages";
 
 export interface AdyenDropinProps {
 	config: ParsedAdyenGateway;

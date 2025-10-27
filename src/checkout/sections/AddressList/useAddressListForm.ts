@@ -1,5 +1,6 @@
 import { compact } from "lodash-es";
 import { useCallback, useEffect, useRef } from "react";
+
 import { type OptionalAddress } from "@/checkout/components/AddressForm/types";
 import { getByMatchingAddress, isMatchingAddress } from "@/checkout/components/AddressForm/utils";
 import { type AddressFragment } from "@/checkout/graphql";

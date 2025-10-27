@@ -1,5 +1,6 @@
-import { Section } from "./Section";
 import { type OrderFragment, type ShippingFragment } from "@/checkout/graphql";
+
+import { Section } from "./Section";
 
 const isShipping = (deliveryMethod: OrderFragment["deliveryMethod"]): deliveryMethod is ShippingFragment =>
 	deliveryMethod?.__typename === "ShippingMethod";

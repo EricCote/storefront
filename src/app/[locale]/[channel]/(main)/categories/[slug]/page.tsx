@@ -1,10 +1,11 @@
-import { notFound } from 'next/navigation';
 import { type ResolvingMetadata, type Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getLocale } from 'next-intl/server';
+
 import { ProductListByCategoryDocument } from '@/gql/graphql';
+import { displayLang, type Translatable } from '@/i18n/translate';
 import { executeGraphQL } from '@/lib/graphql';
 import { ProductList } from '@/ui/components/ProductList';
-import { displayLang, type Translatable } from '@/i18n/translate';
 
 export const generateMetadata = async (
 	props: { params: Promise<{ slug: string; channel: string }> },

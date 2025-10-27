@@ -1,13 +1,12 @@
-import React from "react";
-import { ContactSkeleton } from "@/checkout/sections/Contact";
-import { DeliveryMethodsSkeleton } from "@/checkout/sections/DeliveryMethods";
-import { PaymentSectionSkeleton } from "@/checkout/sections/PaymentSection";
-import { Divider } from "@/checkout/components";
-import { AddressSectionSkeleton } from "@/checkout/components/AddressSectionSkeleton";
+import { Divider } from '@/checkout/components';
+import { AddressSectionSkeleton } from '@/checkout/components/AddressSectionSkeleton';
+import { ContactSkeleton } from '@/checkout/sections/Contact';
+import { DeliveryMethodsSkeleton } from '@/checkout/sections/DeliveryMethods';
+import { PaymentSectionSkeleton } from '@/checkout/sections/PaymentSection';
 
 export const CheckoutFormSkeleton = () => (
-	<div className="flex flex-col items-end">
-		<div className="flex w-full flex-col rounded ">
+	<div className='flex flex-col items-end'>
+		<div className='flex w-full flex-col rounded'>
 			<ContactSkeleton />
 			<Divider />
 			<AddressSectionSkeleton />

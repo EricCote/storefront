@@ -1,10 +1,12 @@
 import React from "react";
-import { SummaryMoneyRow, type SummaryMoneyRowProps } from "./SummaryMoneyRow";
+
 import { IconButton } from "@/checkout/components/IconButton";
-import { RemoveIcon } from "@/checkout/ui-kit/icons";
 import { useCheckoutRemovePromoCodeMutation } from "@/checkout/graphql";
 import { useCheckout } from "@/checkout/hooks/useCheckout";
 import { isOrderConfirmationPage } from "@/checkout/lib/utils/url";
+import { RemoveIcon } from "@/checkout/ui-kit/icons";
+
+import { SummaryMoneyRow, type SummaryMoneyRowProps } from "./SummaryMoneyRow";
 
 interface SummaryPromoCodeRowProps extends SummaryMoneyRowProps {
 	promoCode?: string;

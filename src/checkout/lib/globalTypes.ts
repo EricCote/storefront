@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+
 import { type TaxedMoney } from "@/checkout/graphql";
 
 export interface Classes {

@@ -1,10 +1,11 @@
-import { type StripeGatewayId } from "./StripeElements/types";
-import { type DummyGatewayId } from "./DummyDropIn/types";
 import { type PaymentGatewayConfig } from "@/checkout/graphql";
 import {
 	type AdyenGatewayId,
 	type AdyenGatewayInitializePayload,
 } from "@/checkout/sections/PaymentSection/AdyenDropIn/types";
+
+import { type DummyGatewayId } from "./DummyDropIn/types";
+import { type StripeGatewayId } from "./StripeElements/types";
 
 export type PaymentGatewayId = AdyenGatewayId | StripeGatewayId | DummyGatewayId;
 

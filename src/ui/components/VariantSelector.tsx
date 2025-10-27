@@ -1,9 +1,12 @@
 import { clsx } from 'clsx';
-import { LinkWithChannel } from '../atoms/LinkWithChannel';
-import { redirect } from '@/i18n/navigation';
+
 import { type ProductListItemFragment, type VariantDetailsFragment } from '@/gql/graphql';
-import { getHrefForVariant } from '@/lib/utils';
+import { redirect } from '@/i18n/navigation';
 import { displayLang, type Translatable } from '@/i18n/translate';
+import { getHrefForVariant } from '@/lib/utils';
+
+import { LinkWithChannel } from '../atoms/LinkWithChannel';
+import { Locale } from 'next-intl';
 
 export function VariantSelector({
 	variants,
@@ -16,7 +19,7 @@ export function VariantSelector({
 	product: ProductListItemFragment;
 	selectedVariant?: VariantDetailsFragment;
 	channel: string;
-	locale: string;
+	locale: Locale;
 }) {
 	if (!selectedVariant && variants.length === 1 && variants[0]?.quantityAvailable) {
 		redirect({

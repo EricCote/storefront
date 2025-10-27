@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
 import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, FreeMode, Thumbs, Zoom } from 'swiper/modules';
+import { useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper'; // Import the core Swiper type
+import { Navigation, FreeMode, Thumbs, Zoom } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';

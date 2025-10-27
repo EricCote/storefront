@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, type AllHTMLAttributes } from 'react';
 import { clsx } from 'clsx';
 import { Field, type FieldProps } from 'formik';
-import { EyeHiddenIcon, EyeIcon } from '@/checkout/ui-kit/icons';
+import { useState, type AllHTMLAttributes } from 'react';
+
 import { IconButton } from '@/checkout/components/IconButton';
+import { EyeHiddenIcon, EyeIcon } from '@/checkout/ui-kit/icons';
 
 export interface PasswordInputProps<TName extends string> extends AllHTMLAttributes<HTMLInputElement> {
 	name: TName;
