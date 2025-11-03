@@ -1,11 +1,11 @@
-import { type CoreOptions } from "@adyen/adyen-web/dist/types/core/types";
+import { type CoreOptions } from '@adyen/adyen-web/dist/types/core/types';
 
 import {
 	type AdyenCheckoutInstanceOnAdditionalDetails,
 	type AdyenCheckoutInstanceOnSubmit,
 	type AdyenGatewayInitializePayload,
 	type ApplePayCallback,
-} from "@/checkout/sections/PaymentSection/AdyenDropIn/types";
+} from '@/checkout/sections/PaymentSection/AdyenDropIn/types';
 
 interface CreateAdyenCheckoutConfigProps extends AdyenGatewayInitializePayload {
 	onSubmit: AdyenCheckoutInstanceOnSubmit;
@@ -24,7 +24,7 @@ export const createAdyenCheckoutConfig = ({
 	clientKey,
 	onSubmit,
 	onAdditionalDetails,
-	locale: "en-US",
+	locale: 'en-US',
 	analytics: {
 		enabled: true,
 	},
@@ -37,8 +37,8 @@ export const createAdyenCheckoutConfig = ({
 			billingAddressRequired: false,
 		},
 		applepay: {
-			buttonType: "plain",
-			buttonColor: "black",
+			buttonType: 'plain',
+			buttonColor: 'black',
 			onPaymentMethodSelected: (
 				resolve: ApplePayCallback,
 				_reject: ApplePayCallback,

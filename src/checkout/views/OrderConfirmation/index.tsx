@@ -1,2 +1,2 @@
-export * from "./OrderConfirmation";
-export * from "./OrderConfirmationSkeleton";
+export * from './OrderConfirmation';
+export * from './OrderConfirmationSkeleton';

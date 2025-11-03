@@ -1,23 +1,23 @@
  
-import React from "react";
+import React from 'react';
 
-import { AddressForm, type AddressFormProps } from "@/checkout/components/AddressForm";
-import { type AddressFormData } from "@/checkout/components/AddressForm/types";
-import { useAddressFormSchema } from "@/checkout/components/AddressForm/useAddressFormSchema";
-import { getAddressFormDataFromAddress, getAddressInputData } from "@/checkout/components/AddressForm/utils";
-import { AddressFormActions } from "@/checkout/components/ManualSaveAddressForm";
+import { AddressForm, type AddressFormProps } from '@/checkout/components/AddressForm';
+import { type AddressFormData } from '@/checkout/components/AddressForm/types';
+import { useAddressFormSchema } from '@/checkout/components/AddressForm/useAddressFormSchema';
+import { getAddressFormDataFromAddress, getAddressInputData } from '@/checkout/components/AddressForm/utils';
+import { AddressFormActions } from '@/checkout/components/ManualSaveAddressForm';
 import {
 	type AddressFragment,
 	type CountryCode,
 	useUserAddressDeleteMutation,
 	useUserAddressUpdateMutation,
-} from "@/checkout/graphql";
-import { type ChangeHandler, useForm } from "@/checkout/hooks/useForm";
-import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { useSubmit } from "@/checkout/hooks/useSubmit/useSubmit";
+} from '@/checkout/graphql';
+import { type ChangeHandler, useForm } from '@/checkout/hooks/useForm';
+import { FormProvider } from '@/checkout/hooks/useForm/FormProvider';
+import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
+import { useSubmit } from '@/checkout/hooks/useSubmit/useSubmit';
 
-export interface AddressEditFormProps extends Pick<AddressFormProps, "title" | "availableCountries"> {
+export interface AddressEditFormProps extends Pick<AddressFormProps, 'title' | 'availableCountries'> {
 	address: AddressFragment;
 	onUpdate: (address: AddressFragment) => void;
 	onDelete: (id: string) => void;
@@ -36,7 +36,7 @@ export const AddressEditForm: React.FC<AddressEditFormProps> = ({
 	const { setCountryCode, validationSchema } = useAddressFormSchema();
 
 	const onSubmit = useFormSubmit<AddressFormData, typeof userAddressUpdate>({
-		scope: "userAddressUpdate",
+		scope: 'userAddressUpdate',
 		onSubmit: userAddressUpdate,
 		parse: (formData) => ({ id: address.id, address: { ...getAddressInputData(formData) } }),
 		onSuccess: ({ data: { address } }) => {
@@ -48,7 +48,7 @@ export const AddressEditForm: React.FC<AddressEditFormProps> = ({
 	});
 
 	const onAddressDelete = useSubmit<{ id: string }, typeof userAddressDelete>({
-		scope: "userAddressDelete",
+		scope: 'userAddressDelete',
 		onSubmit: userAddressDelete,
 		parse: ({ id }) => ({ id }),
 		onSuccess: ({ formData: { id } }) => {
@@ -68,7 +68,7 @@ export const AddressEditForm: React.FC<AddressEditFormProps> = ({
 	const onChange: ChangeHandler = (event) => {
 		const { name, value } = event.target;
 
-		if (name === "countryCode") {
+		if (name === 'countryCode') {
 			setCountryCode(value as CountryCode);
 		}
 
@@ -77,7 +77,7 @@ export const AddressEditForm: React.FC<AddressEditFormProps> = ({
 
 	return (
 		<FormProvider form={{ ...form, handleChange: onChange }}>
-			<AddressForm title="Edit address" availableCountries={availableCountries}>
+			<AddressForm title='Edit address' availableCountries={availableCountries}>
 				<AddressFormActions
 					onSubmit={handleSubmit}
 					loading={updating || deleting}

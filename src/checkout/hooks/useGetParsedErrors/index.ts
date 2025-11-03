@@ -1,2 +1,2 @@
-export * from "./useGetParsedErrors";
-export * from "./types";
+export * from './useGetParsedErrors';
+export * from './types';

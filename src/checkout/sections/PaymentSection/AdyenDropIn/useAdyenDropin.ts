@@ -1,8 +1,8 @@
  
  
-import type DropinElement from "@adyen/adyen-web/dist/types/components/Dropin";
-import { camelCase } from "lodash-es";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import type DropinElement from '@adyen/adyen-web/dist/types/components/Dropin';
+import { camelCase } from 'lodash-es';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 
 import {
@@ -10,40 +10,40 @@ import {
 	type TransactionProcessMutationVariables,
 	useTransactionInitializeMutation,
 	useTransactionProcessMutation,
-} from "@/checkout/graphql";
-import { useAlerts } from "@/checkout/hooks/useAlerts";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useCheckoutComplete } from "@/checkout/hooks/useCheckoutComplete";
-import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
-import { useEvent } from "@/checkout/hooks/useEvent";
-import { useSubmit } from "@/checkout/hooks/useSubmit";
-import { useUser } from "@/checkout/hooks/useUser";
-import { type MightNotExist } from "@/checkout/lib/globalTypes";
-import { clearQueryParams, getQueryParams, type ParamBasicValue, replaceUrl } from "@/checkout/lib/utils/url";
-import { adyenErrorMessages } from "@/checkout/sections/PaymentSection/AdyenDropIn/errorMessages";
+} from '@/checkout/graphql';
+import { useAlerts } from '@/checkout/hooks/useAlerts';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { useCheckoutComplete } from '@/checkout/hooks/useCheckoutComplete';
+import { useErrorMessages } from '@/checkout/hooks/useErrorMessages';
+import { useEvent } from '@/checkout/hooks/useEvent';
+import { useSubmit } from '@/checkout/hooks/useSubmit';
+import { useUser } from '@/checkout/hooks/useUser';
+import { type MightNotExist } from '@/checkout/lib/globalTypes';
+import { clearQueryParams, getQueryParams, type ParamBasicValue, replaceUrl } from '@/checkout/lib/utils/url';
+import { adyenErrorMessages } from '@/checkout/sections/PaymentSection/AdyenDropIn/errorMessages';
 import {
 	type AdyenCheckoutInstanceOnAdditionalDetails,
 	type AdyenCheckoutInstanceOnSubmit,
 	type AdyenCheckoutInstanceState,
 	type AdyenPaymentResponse,
-} from "@/checkout/sections/PaymentSection/AdyenDropIn/types";
-import { usePaymentProcessingScreen } from "@/checkout/sections/PaymentSection/PaymentProcessingScreen";
-import { type ParsedAdyenGateway } from "@/checkout/sections/PaymentSection/types";
-import { getUrlForTransactionInitialize } from "@/checkout/sections/PaymentSection/utils";
+} from '@/checkout/sections/PaymentSection/AdyenDropIn/types';
+import { usePaymentProcessingScreen } from '@/checkout/sections/PaymentSection/PaymentProcessingScreen';
+import { type ParsedAdyenGateway } from '@/checkout/sections/PaymentSection/types';
+import { getUrlForTransactionInitialize } from '@/checkout/sections/PaymentSection/utils';
 import {
 	anyFormsValidating,
 	areAllFormsValid,
 	useCheckoutValidationActions,
 	useCheckoutValidationState,
-} from "@/checkout/state/checkoutValidationStateStore";
+} from '@/checkout/state/checkoutValidationStateStore';
 import {
 	areAnyRequestsInProgress,
 	hasFinishedApiChangesWithNoError,
 	useCheckoutUpdateState,
 	useCheckoutUpdateStateActions,
-} from "@/checkout/state/updateStateStore";
+} from '@/checkout/state/updateStateStore';
 
-import { apiErrorMessages } from "../errorMessages";
+import { apiErrorMessages } from '../errorMessages';
 
 export interface AdyenDropinProps {
 	config: ParsedAdyenGateway;
@@ -107,18 +107,18 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
 			}
 
 			switch (resultCode) {
-				case "Authorised":
-					adyenCheckoutSubmitParams?.component.setStatus("success");
+				case 'Authorised':
+					adyenCheckoutSubmitParams?.component.setStatus('success');
 					void onCheckoutComplete();
 					return;
-				case "Error":
-					adyenCheckoutSubmitParams?.component.setStatus("error");
-					showCustomErrors([{ message: "There was an error processing your payment." }]);
+				case 'Error':
+					adyenCheckoutSubmitParams?.component.setStatus('error');
+					showCustomErrors([{ message: 'There was an error processing your payment.' }]);
 					return;
-				case "Refused":
+				case 'Refused':
 					setCurrentTransactionId(undefined);
 
-					adyenCheckoutSubmitParams?.component.setStatus("ready");
+					adyenCheckoutSubmitParams?.component.setStatus('ready');
 
 					const messageKey = camelCase(paymentResponse.refusalReason);
 
@@ -139,7 +139,7 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
 				onSubmit: transactionInitialize,
 				onError: () => {
 					showCustomErrors([{ message: commonErrorMessages.somethingWentWrong }]);
-					adyenCheckoutSubmitParams?.component.setStatus("ready");
+					adyenCheckoutSubmitParams?.component.setStatus('ready');
 				},
 				extractCustomErrors: (result) => result?.data?.transactionInitialize?.data?.errors,
 				onSuccess: async ({ data }) => {
@@ -180,11 +180,11 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
 					// will tell the processing screen to disappear
 					setIsProcessingPayment(false);
 					// we don't do these at onFinished since redirect will happen first
-					clearQueryParams("transaction");
+					clearQueryParams('transaction');
 					setCurrentTransactionId(null);
 
 					showCustomErrors([{ message: commonErrorMessages.somethingWentWrong }]);
-					adyenCheckoutSubmitParams?.component.setStatus("ready");
+					adyenCheckoutSubmitParams?.component.setStatus('ready');
 				},
 				extractCustomErrors: (result) => result?.data?.transactionProcess?.data?.errors,
 				onSuccess: ({ data }) => {
@@ -199,7 +199,7 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
 					} = data;
 
 					// we don't do these at onFinished since redirect will happen first
-					clearQueryParams("transaction");
+					clearQueryParams('transaction');
 					setCurrentTransactionId(null);
 
 					handlePaymentResult({
@@ -221,7 +221,7 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
 
 	// handler for when user presses submit in the dropin
 	const onSubmitInitialize: AdyenCheckoutInstanceOnSubmit = useEvent(async (state, component) => {
-		component.setStatus("loading");
+		component.setStatus('loading');
 		setAdyenCheckoutSubmitParams({ state, component });
 		validateAllForms(authenticated);
 		setShouldRegisterUser(true);
@@ -244,11 +244,11 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
 		// there was en error either in some other request or form validation
 		// - stop the submission altogether
 		if (!finishedApiChangesWithNoError || !allFormsValid) {
-			adyenCheckoutSubmitParams?.component.setStatus("ready");
+			adyenCheckoutSubmitParams?.component.setStatus('ready');
 			return;
 		}
 
-		adyenCheckoutSubmitParams.component.setStatus("loading");
+		adyenCheckoutSubmitParams.component.setStatus('loading');
 
 		// there is a previous transaction going on, we want to process instead of initialize
 		if (currentTransactionId) {
@@ -288,7 +288,7 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
 	const onAdditionalDetails: AdyenCheckoutInstanceOnAdditionalDetails = useEvent(async (state, component) => {
 		setAdyenCheckoutSubmitParams({ state, component });
 		if (currentTransactionId) {
-			adyenCheckoutSubmitParams?.component?.setStatus("loading");
+			adyenCheckoutSubmitParams?.component?.setStatus('loading');
 			setSubmitInProgress(true);
 		}
 	});
@@ -305,7 +305,7 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
 
 		setCurrentTransactionId(transaction);
 
-		clearQueryParams("redirectResult", "resultCode");
+		clearQueryParams('redirectResult', 'resultCode');
 
 		void onTransactionProccess({
 			id: transaction,

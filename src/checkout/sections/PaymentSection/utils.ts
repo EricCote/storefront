@@ -1,4 +1,4 @@
-import { compact } from "lodash-es";
+import { compact } from 'lodash-es';
 
 import {
 	type CheckoutAuthorizeStatusEnum,
@@ -6,13 +6,13 @@ import {
 	type OrderAuthorizeStatusEnum,
 	type OrderChargeStatusEnum,
 	type PaymentGateway,
-} from "@/checkout/graphql";
-import { type MightNotExist } from "@/checkout/lib/globalTypes";
-import { getUrl } from "@/checkout/lib/utils/url";
-import { type PaymentStatus } from "@/checkout/sections/PaymentSection/types";
+} from '@/checkout/graphql';
+import { type MightNotExist } from '@/checkout/lib/globalTypes';
+import { getUrl } from '@/checkout/lib/utils/url';
+import { type PaymentStatus } from '@/checkout/sections/PaymentSection/types';
 
-import { adyenGatewayId } from "./AdyenDropIn/types";
-import { stripeGatewayId } from "./StripeElements/types";
+import { adyenGatewayId } from './AdyenDropIn/types';
+import { stripeGatewayId } from './StripeElements/types';
 
 export const supportedPaymentGateways = [adyenGatewayId, stripeGatewayId] as const;
 
@@ -36,17 +36,17 @@ export const usePaymentStatus = ({
 	chargeStatus: CheckoutChargeStatusEnum | OrderChargeStatusEnum;
 	authorizeStatus: CheckoutAuthorizeStatusEnum | OrderAuthorizeStatusEnum;
 }): PaymentStatus => {
-	if (chargeStatus === "NONE" && authorizeStatus === "FULL") {
-		return "authorized";
+	if (chargeStatus === 'NONE' && authorizeStatus === 'FULL') {
+		return 'authorized';
 	}
 
-	if (chargeStatus === "FULL") {
-		return "paidInFull";
+	if (chargeStatus === 'FULL') {
+		return 'paidInFull';
 	}
 
-	if (chargeStatus === "OVERCHARGED") {
-		return "overpaid";
+	if (chargeStatus === 'OVERCHARGED') {
+		return 'overpaid';
 	}
 
-	return "none";
+	return 'none';
 };

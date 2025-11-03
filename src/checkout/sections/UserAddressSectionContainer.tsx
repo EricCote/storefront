@@ -1,4 +1,4 @@
-import { type ReactElement, useState } from "react";
+import { type ReactElement, useState } from 'react';
 
 interface ChildrenProps {
 	displayAddressList: boolean;

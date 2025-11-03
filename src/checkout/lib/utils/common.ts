@@ -1,4 +1,4 @@
-import { string } from "yup";
+import { string } from 'yup';
 
 export const getById =
 	<TId extends string = string>(idToCompare: TId | undefined) =>

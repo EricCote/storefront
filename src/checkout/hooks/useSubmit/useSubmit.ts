@@ -1,11 +1,11 @@
  
-import { useCallback } from "react";
-import { type CombinedError } from "urql";
+import { useCallback } from 'react';
+import { type CombinedError } from 'urql';
 
-import { useAlerts } from "@/checkout/hooks/useAlerts";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { type FormDataBase } from "@/checkout/hooks/useForm";
-import { type ApiErrors } from "@/checkout/hooks/useGetParsedErrors/types";
+import { useAlerts } from '@/checkout/hooks/useAlerts';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { type FormDataBase } from '@/checkout/hooks/useForm';
+import { type ApiErrors } from '@/checkout/hooks/useGetParsedErrors/types';
 import {
 	type CommonVars,
 	type MutationBaseFn,
@@ -14,12 +14,12 @@ import {
 	type MutationVars,
 	type ParserFunction,
 	type SimpleSubmitFn,
-} from "@/checkout/hooks/useSubmit/types";
-import { extractMutationData, extractMutationErrors } from "@/checkout/hooks/useSubmit/utils";
+} from '@/checkout/hooks/useSubmit/types';
+import { extractMutationData, extractMutationErrors } from '@/checkout/hooks/useSubmit/utils';
 import {
 	type CheckoutUpdateStateScope,
 	useCheckoutUpdateStateChange,
-} from "@/checkout/state/updateStateStore";
+} from '@/checkout/state/updateStateStore';
 
 interface CallbackProps<TData> {
 	formData: TData;
@@ -82,20 +82,20 @@ export const useSubmit = <
 
 			onStart?.(callbackProps);
 
-			const shouldAbortSubmit = typeof shouldAbort === "function" ? await shouldAbort(callbackProps) : false;
+			const shouldAbortSubmit = typeof shouldAbort === 'function' ? await shouldAbort(callbackProps) : false;
 
 			if (shouldAbortSubmit) {
-				if (typeof onAbort === "function") {
-					setCheckoutUpdateState("success");
+				if (typeof onAbort === 'function') {
+					setCheckoutUpdateState('success');
 					onAbort(callbackProps);
 				}
 				return { hasErrors: false, apiErrors: [], customErrors: [], graphqlErrors: [] };
 			}
 
-			setCheckoutUpdateState("loading");
+			setCheckoutUpdateState('loading');
 
 			const commonData: CommonVars = {
-				languageCode: "EN_US",
+				languageCode: 'EN_US',
 				channel: checkout.channel.slug,
 				checkoutId: checkout.id,
 			};
@@ -103,7 +103,7 @@ export const useSubmit = <
 			const unparsedMutationVars = { ...formData, ...commonData };
 
 			const result = await onSubmit(
-				typeof parse === "function"
+				typeof parse === 'function'
 					? parse(unparsedMutationVars)
 					: (unparsedMutationVars as MutationVars<TMutationFn>),
 			);
@@ -117,7 +117,7 @@ export const useSubmit = <
 
 			if (!hasErrors && success) {
 				onSuccess?.({ ...callbackProps, data });
-				setCheckoutUpdateState("success");
+				setCheckoutUpdateState('success');
 
 				onFinished?.();
 				return { hasErrors, apiErrors, ...errorsRest };
@@ -125,7 +125,7 @@ export const useSubmit = <
 
 			onError?.({ ...callbackProps, errors: apiErrors, ...errorsRest });
 
-			setCheckoutUpdateState("error");
+			setCheckoutUpdateState('error');
 
 			if (!hideAlerts && scope) {
 				showErrors(apiErrors, scope);

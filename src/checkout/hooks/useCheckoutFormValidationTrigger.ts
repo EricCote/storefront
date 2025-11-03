@@ -1,12 +1,12 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from 'react';
 
-import { type FormDataBase, type UseFormReturn } from "@/checkout/hooks/useForm";
-import { useSetCheckoutFormValidationState } from "@/checkout/hooks/useSetCheckoutFormValidationState";
+import { type FormDataBase, type UseFormReturn } from '@/checkout/hooks/useForm';
+import { useSetCheckoutFormValidationState } from '@/checkout/hooks/useSetCheckoutFormValidationState';
 import {
 	type CheckoutFormScope,
 	useCheckoutValidationActions,
 	useCheckoutValidationState,
-} from "@/checkout/state/checkoutValidationStateStore";
+} from '@/checkout/state/checkoutValidationStateStore';
 
 interface UseCheckoutFormValidationTriggerProps<TData extends FormDataBase> {
 	scope: CheckoutFormScope;
@@ -24,13 +24,13 @@ export const useCheckoutFormValidationTrigger = <TData extends FormDataBase>({
 	const { setCheckoutFormValidationState } = useSetCheckoutFormValidationState(scope);
 	const { setValidationState } = useCheckoutValidationActions();
 
-	const validating = validationState[scope] === "validating";
+	const validating = validationState[scope] === 'validating';
 
 	const handleGlobalValidationTrigger = useCallback(async () => {
 		if (validating) {
 			if (skip) {
 				// we don't validate this form, so just set valid
-				setValidationState(scope, "valid");
+				setValidationState(scope, 'valid');
 				return;
 			}
 

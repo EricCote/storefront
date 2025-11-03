@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import { Select } from "@/checkout/components/Select";
-import { type CountryCode } from "@/checkout/graphql";
-import { countries as allCountries } from "@/checkout/lib/consts/countries";
-import { getCountryName } from "@/checkout/lib/utils/locale";
+import { Select } from '@/checkout/components/Select';
+import { type CountryCode } from '@/checkout/graphql';
+import { countries as allCountries } from '@/checkout/lib/consts/countries';
+import { getCountryName } from '@/checkout/lib/utils/locale';
 
 interface CountrySelectProps {
 	only?: CountryCode[];
@@ -17,5 +17,5 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({ only = [] }) => {
 		label: getCountryName(countryCode),
 	}));
 
-	return <Select name="countryCode" label="Country" options={countryOptions} autoComplete="countryCode" />;
+	return <Select name='countryCode' label='Country' options={countryOptions} autoComplete='countryCode' />;
 };

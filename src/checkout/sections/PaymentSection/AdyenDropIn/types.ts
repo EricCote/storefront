@@ -1,13 +1,13 @@
-import { type CardElementData } from "@adyen/adyen-web/dist/types/components/Card/types";
-import type DropinElement from "@adyen/adyen-web/dist/types/components/Dropin";
-import { type PaymentResponse } from "@adyen/adyen-web/dist/types/components/types";
-import { type PaymentMethodsResponse } from "@adyen/adyen-web/dist/types/core/ProcessResponse/PaymentMethodsResponse/types";
+import { type CardElementData } from '@adyen/adyen-web/dist/types/components/Card/types';
+import type DropinElement from '@adyen/adyen-web/dist/types/components/Dropin';
+import { type PaymentResponse } from '@adyen/adyen-web/dist/types/components/types';
+import { type PaymentMethodsResponse } from '@adyen/adyen-web/dist/types/core/ProcessResponse/PaymentMethodsResponse/types';
 
-export const adyenGatewayId = "app.saleor.adyen";
+export const adyenGatewayId = 'app.saleor.adyen';
 export type AdyenGatewayId = typeof adyenGatewayId;
 
 // because it's defined to these in the docs but it's a string in the response type
-type AdyenResultCode = "Authorised" | "Error" | "Pending" | "PresentToShopper" | "Refused" | "Received";
+type AdyenResultCode = 'Authorised' | 'Error' | 'Pending' | 'PresentToShopper' | 'Refused' | 'Received';
 
 export interface AdyenGatewayInitializePayload {
 	paymentMethodsResponse: PaymentMethodsResponse;
@@ -15,7 +15,7 @@ export interface AdyenGatewayInitializePayload {
 	environment: string;
 }
 
-export interface AdyenPaymentResponse extends Omit<PaymentResponse, "resultCode"> {
+export interface AdyenPaymentResponse extends Omit<PaymentResponse, 'resultCode'> {
 	resultCode: AdyenResultCode;
 	refusalReason?: string;
 }

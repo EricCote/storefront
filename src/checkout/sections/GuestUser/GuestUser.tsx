@@ -1,12 +1,12 @@
-import { Checkbox } from "@/checkout/components/Checkbox";
-import { PasswordInput } from "@/checkout/components/PasswordInput";
-import { TextInput } from "@/checkout/components/TextInput";
-import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
-import { useGuestUserForm } from "@/checkout/sections/GuestUser/useGuestUserForm";
+import { Checkbox } from '@/checkout/components/Checkbox';
+import { PasswordInput } from '@/checkout/components/PasswordInput';
+import { TextInput } from '@/checkout/components/TextInput';
+import { FormProvider } from '@/checkout/hooks/useForm/FormProvider';
+import { useGuestUserForm } from '@/checkout/sections/GuestUser/useGuestUserForm';
 
-import { SignInFormContainer, type SignInFormContainerProps } from "../Contact/SignInFormContainer";
+import { SignInFormContainer, type SignInFormContainerProps } from '../Contact/SignInFormContainer';
 
-type GuestUserProps = Pick<SignInFormContainerProps, "onSectionChange"> & {
+type GuestUserProps = Pick<SignInFormContainerProps, 'onSectionChange'> & {
 	onEmailChange: (email: string) => void;
 	email: string;
 };
@@ -22,30 +22,30 @@ export const GuestUser: React.FC<GuestUserProps> = ({
 
 	return (
 		<SignInFormContainer
-			title="Contact details"
-			redirectSubtitle="Already have an account?"
-			redirectButtonLabel="Sign in"
+			title='Contact details'
+			redirectSubtitle='Already have an account?'
+			redirectButtonLabel='Sign in'
 			onSectionChange={onSectionChange}
 		>
 			<FormProvider form={form}>
-				<div className="grid grid-cols-1 gap-3">
+				<div className='grid grid-cols-1 gap-3'>
 					<TextInput
 						required
-						name="email"
-						label="Email"
+						name='email'
+						label='Email'
 						onChange={(event) => {
 							handleChange(event);
 							onEmailChange(event.currentTarget.value);
 						}}
 					/>
 					<Checkbox
-						name="createAccount"
-						label="I want to create account"
-						data-testid={"createAccountCheckbox"}
+						name='createAccount'
+						label='I want to create account'
+						data-testid={'createAccountCheckbox'}
 					/>
 					{createAccount && (
-						<div className="mt-2">
-							<PasswordInput name="password" label="Password (minimum 8 characters)" required />
+						<div className='mt-2'>
+							<PasswordInput name='password' label='Password (minimum 8 characters)' required />
 						</div>
 					)}
 				</div>

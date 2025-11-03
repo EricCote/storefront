@@ -1,7 +1,7 @@
-import { useCallback } from "react";
+import { useCallback } from 'react';
 
-import { type CountryCode } from "@/checkout/graphql";
-import { useAvailableShippingCountries } from "@/checkout/hooks/useAvailableShippingCountries";
+import { type CountryCode } from '@/checkout/graphql';
+import { useAvailableShippingCountries } from '@/checkout/hooks/useAvailableShippingCountries';
 
 export const useAddressAvailability = (skipCheck = false) => {
 	const { availableShippingCountries } = useAvailableShippingCountries();

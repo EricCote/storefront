@@ -2,10 +2,10 @@ import {
 	type CheckoutLineFragment,
 	useCheckoutLineDeleteMutation,
 	useCheckoutLinesUpdateMutation,
-} from "@/checkout/graphql";
-import { useForm } from "@/checkout/hooks/useForm";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { useSubmit } from "@/checkout/hooks/useSubmit/useSubmit";
+} from '@/checkout/graphql';
+import { useForm } from '@/checkout/hooks/useForm';
+import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
+import { useSubmit } from '@/checkout/hooks/useSubmit/useSubmit';
 
 export interface SummaryItemFormProps {
 	line: CheckoutLineFragment;
@@ -20,7 +20,7 @@ export const useSummaryItemForm = ({ line }: SummaryItemFormProps) => {
 	const [, deleteLines] = useCheckoutLineDeleteMutation();
 
 	const onSubmit = useFormSubmit<SummaryLineFormData, typeof updateLines>({
-		scope: "checkoutLinesUpdate",
+		scope: 'checkoutLinesUpdate',
 		onSubmit: updateLines,
 		parse: ({ quantity, languageCode, checkoutId }) => ({
 			languageCode,
@@ -33,7 +33,7 @@ export const useSummaryItemForm = ({ line }: SummaryItemFormProps) => {
 			],
 		}),
 		onError: ({ formData: { quantity }, formHelpers: { setFieldValue } }) => {
-			return setFieldValue("quantity", quantity);
+			return setFieldValue('quantity', quantity);
 		},
 	});
 
@@ -43,7 +43,7 @@ export const useSummaryItemForm = ({ line }: SummaryItemFormProps) => {
 	});
 
 	const onLineDelete = useSubmit<{}, typeof deleteLines>({
-		scope: "checkoutLinesDelete",
+		scope: 'checkoutLinesDelete',
 		onSubmit: deleteLines,
 		parse: ({ languageCode, checkoutId }) => ({ languageCode, checkoutId, lineId: line.id }),
 	});

@@ -1,2 +1,2 @@
-export * from "./DeliveryMethods";
-export * from "./DeliveryMethodsSkeleton";
+export * from './DeliveryMethods';
+export * from './DeliveryMethodsSkeleton';

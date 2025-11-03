@@ -1,10 +1,10 @@
-import edjsHTML from "editorjs-html";
-import { type Metadata } from "next";
-import { notFound } from "next/navigation";
-import xss from "xss";
+import edjsHTML from 'editorjs-html';
+import { type Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import xss from 'xss';
 
-import { PageGetBySlugDocument } from "@/gql/graphql";
-import { executeGraphQL } from "@/lib/graphql";
+import { PageGetBySlugDocument } from '@/gql/graphql';
+import { executeGraphQL } from '@/lib/graphql';
 
 const parser = edjsHTML();
 
@@ -16,7 +16,7 @@ export const generateMetadata = async (props: { params: Promise<{ slug: string }
 	});
 
 	return {
-		title: `${page?.seoTitle || page?.title || "Page"} · Saleor Storefront example`,
+		title: `${page?.seoTitle || page?.title || 'Page'} · Saleor Storefront example`,
 		description: page?.seoDescription || page?.seoTitle || page?.title,
 	};
 };
@@ -37,10 +37,10 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
 	const contentHtml = content ? parser.parse(JSON.parse(content)) : null;
 
 	return (
-		<div className="mx-auto max-w-7xl p-8 pb-16">
-			<h1 className="text-3xl font-semibold">{title}</h1>
+		<div className='mx-auto max-w-7xl p-8 pb-16'>
+			<h1 className='text-3xl font-semibold'>{title}</h1>
 			{contentHtml && (
-				<div className="prose">
+				<div className='prose'>
 					{contentHtml.map((content) => (
 						<div key={content} dangerouslySetInnerHTML={{ __html: xss(content) }} />
 					))}

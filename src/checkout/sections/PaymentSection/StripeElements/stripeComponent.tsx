@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import { useEffect, useMemo } from "react";
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { useEffect, useMemo } from 'react';
 
-import { useTransactionInitializeMutation } from "@/checkout/graphql";
-import { useAlerts } from "@/checkout/hooks/useAlerts";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
+import { useTransactionInitializeMutation } from '@/checkout/graphql';
+import { useAlerts } from '@/checkout/hooks/useAlerts';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { useErrorMessages } from '@/checkout/hooks/useErrorMessages';
 
-import { apiErrorMessages } from "../errorMessages";
+import { apiErrorMessages } from '../errorMessages';
 
-import { CheckoutForm } from "./stripeElementsForm";
-import { stripeGatewayId } from "./types";
+import { CheckoutForm } from './stripeElementsForm';
+import { stripeGatewayId } from './types';
 
 
 export const StripeComponent = () => {
@@ -59,7 +59,7 @@ export const StripeComponent = () => {
 
 	return (
 		<Elements
-			options={{ clientSecret: stripeData.paymentIntent.client_secret, appearance: { theme: "stripe" } }}
+			options={{ clientSecret: stripeData.paymentIntent.client_secret, appearance: { theme: 'stripe' } }}
 			stripe={stripePromise}
 		>
 			<CheckoutForm />

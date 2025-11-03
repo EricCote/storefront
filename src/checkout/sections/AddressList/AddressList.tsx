@@ -1,17 +1,17 @@
-import { camelCase } from "lodash-es";
-import React from "react";
+import { camelCase } from 'lodash-es';
+import React from 'react';
 
 
-import { Button } from "@/checkout/components/Button";
-import { SelectBoxGroup } from "@/checkout/components/SelectBoxGroup";
-import { Title } from "@/checkout/components/Title";
-import { type AddressFragment } from "@/checkout/graphql";
-import { useAddressAvailability } from "@/checkout/hooks/useAddressAvailability";
-import { type UseFormReturn } from "@/checkout/hooks/useForm";
-import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
-import { type AddressListFormData } from "@/checkout/sections/AddressList/useAddressListForm";
+import { Button } from '@/checkout/components/Button';
+import { SelectBoxGroup } from '@/checkout/components/SelectBoxGroup';
+import { Title } from '@/checkout/components/Title';
+import { type AddressFragment } from '@/checkout/graphql';
+import { useAddressAvailability } from '@/checkout/hooks/useAddressAvailability';
+import { type UseFormReturn } from '@/checkout/hooks/useForm';
+import { FormProvider } from '@/checkout/hooks/useForm/FormProvider';
+import { type AddressListFormData } from '@/checkout/sections/AddressList/useAddressListForm';
 
-import { AddressSelectBox } from "../../components/AddressSelectBox";
+import { AddressSelectBox } from '../../components/AddressSelectBox';
 
 export interface AddressListProps {
 	onEditChange: (id: string) => void;
@@ -36,23 +36,23 @@ export const AddressList: React.FC<AddressListProps> = ({
 
 	return (
 		<FormProvider form={form}>
-			<div className="flex flex-col">
+			<div className='flex flex-col'>
 				<Title>{title}</Title>
-				{addressList.length < 1 && <p className="mb-3">You currently have no saved addresses.</p>}
+				{addressList.length < 1 && <p className='mb-3'>You currently have no saved addresses.</p>}
 				<Button
-					variant="secondary"
-					ariaLabel="add address"
+					variant='secondary'
+					ariaLabel='add address'
 					onClick={onAddAddressClick}
-					label="Add address"
-					className="w-full"
+					label='Add address'
+					className='w-full'
 				/>
-				<SelectBoxGroup label="user addresses" className="mt-2">
+				<SelectBoxGroup label='user addresses' className='mt-2'>
 					{addressList.map(({ id, ...rest }: AddressFragment) => {
 						const identifier = `${camelCase(title)}-${id}}`;
 
 						return (
 							<AddressSelectBox
-								name="selectedAddressId"
+								name='selectedAddressId'
 								id={identifier}
 								key={identifier}
 								value={id}

@@ -15,48 +15,50 @@ const eslintConfig = defineConfig([
 	prettier,
 
 	// Custom rules and overrides
-	// {
-	//   rules: {
-	//     // React/JSX rules
-	//     'react/react-in-jsx-scope': 'off', // Not needed in Next.js 13+
-	//     'react/prop-types': 'off', // Using TypeScript instead
-	//     'react/no-unescaped-entities': 'warn',
+	{
+		rules: {
+			//     // React/JSX rules
+			//     'react/react-in-jsx-scope': 'off', // Not needed in Next.js 13+
+			//     'react/prop-types': 'off', // Using TypeScript instead
+			//     'react/no-unescaped-entities': 'warn',
 
-	//     // TypeScript rules
-	//     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-	//     '@typescript-eslint/no-explicit-any': 'warn',
+			//     // TypeScript rules
+			//     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+			'@typescript-eslint/no-explicit-any': 'off',
+			quotes: ['error', 'single', { avoidEscape: true }],
+			'jsx-quotes': ['error', 'prefer-single'],
 
-	//     // Import rules
-	//     'import/order': [
-	//       'error',
-	//       {
-	//         groups: [
-	//           'builtin',
-	//           'external',
-	//           'internal',
-	//           'parent',
-	//           'sibling',
-	//           'index',
-	//         ],
-	//         'newlines-between': 'always',
-	//         alphabetize: {
-	//           order: 'asc',
-	//           caseInsensitive: true,
-	//         },
-	//       },
-	//     ],
+			//     // Import rules
+			//     'import/order': [
+			//       'error',
+			//       {
+			//         groups: [
+			//           'builtin',
+			//           'external',
+			//           'internal',
+			//           'parent',
+			//           'sibling',
+			//           'index',
+			//         ],
+			//         'newlines-between': 'always',
+			//         alphabetize: {
+			//           order: 'asc',
+			//           caseInsensitive: true,
+			//         },
+			//       },
+			//     ],
 
-	//     // Next.js specific rules
-	//     '@next/next/no-img-element': 'error',
-	//     '@next/next/no-html-link-for-pages': 'error',
+			//     // Next.js specific rules
+			//     '@next/next/no-img-element': 'error',
+			//     '@next/next/no-html-link-for-pages': 'error',
 
-	//     // General code quality rules
-	//     'no-console': 'warn',
-	//     'no-debugger': 'error',
-	//     'prefer-const': 'error',
-	//     'no-var': 'error',
-	//   },
-	// },
+			//     // General code quality rules
+			//     'no-console': 'warn',
+			//     'no-debugger': 'error',
+			//     'prefer-const': 'error',
+			//     'no-var': 'error',
+		},
+	},
 
 	// Override default ignores of eslint-config-next
 	globalIgnores([

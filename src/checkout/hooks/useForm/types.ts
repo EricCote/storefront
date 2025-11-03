@@ -1,8 +1,8 @@
-import { type FormikConfig, type FormikErrors, type FormikHelpers, type useFormik } from "formik";
-import { type DebouncedFunc } from "lodash-es";
-import { type FocusEventHandler } from "react";
+import { type FormikConfig, type FormikErrors, type FormikHelpers, type useFormik } from 'formik';
+import { type DebouncedFunc } from 'lodash-es';
+import { type FocusEventHandler } from 'react';
 
-import { type FormSubmitFn } from "@/checkout/hooks/useFormSubmit";
+import { type FormSubmitFn } from '@/checkout/hooks/useFormSubmit';
 
 export type FormDataBase = Record<string, any>;
 
@@ -13,7 +13,7 @@ export type FormDataField<TData extends FormDataBase> = Extract<keyof TData, str
 // we make these types more strict than default formik ones
 export type UseFormReturn<TData extends FormDataBase> = Omit<
 	ReturnType<typeof useFormik<TData>>,
-	"setFieldValue" | "validateForm" | "setValues"
+	'setFieldValue' | 'validateForm' | 'setValues'
 > & {
 	// we use keyof FormData instead of plain string
 	setFieldValue: <TFieldName extends FormDataField<TData>>(
@@ -26,7 +26,7 @@ export type UseFormReturn<TData extends FormDataBase> = Omit<
 
 export type FormProps<TData extends FormDataBase> = Omit<
 	FormikConfig<TData>,
-	"validationSchema" | "onSubmit"
+	'validationSchema' | 'onSubmit'
 > & {
 	onSubmit:
 		| FormSubmitFn<TData>
@@ -40,9 +40,9 @@ export type FormProps<TData extends FormDataBase> = Omit<
 
 export type FormHelpers<TData extends FormDataBase> = Omit<
 	FormikHelpers<TData>,
-	"validateForm" | "setTouched"
+	'validateForm' | 'setTouched'
 > &
-	Pick<UseFormReturn<TData>, "validateForm" | "setTouched">;
+	Pick<UseFormReturn<TData>, 'validateForm' | 'setTouched'>;
 
 export type ChangeHandler<TElement = any> = (e: React.ChangeEvent<TElement>) => void;
 export type BlurHandler = FocusEventHandler<HTMLSelectElement | HTMLInputElement>;

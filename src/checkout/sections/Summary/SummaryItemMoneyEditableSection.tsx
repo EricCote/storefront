@@ -1,11 +1,11 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
-import { Skeleton } from "@/checkout/components";
-import { TextInput } from "@/checkout/components/TextInput";
-import { type CheckoutLineFragment } from "@/checkout/graphql";
-import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
-import { SummaryItemMoneyInfo } from "@/checkout/sections/Summary/SummaryItemMoneyInfo";
-import { useSummaryItemForm } from "@/checkout/sections/Summary/useSummaryItemForm";
+import { Skeleton } from '@/checkout/components';
+import { TextInput } from '@/checkout/components/TextInput';
+import { type CheckoutLineFragment } from '@/checkout/graphql';
+import { FormProvider } from '@/checkout/hooks/useForm/FormProvider';
+import { SummaryItemMoneyInfo } from '@/checkout/sections/Summary/SummaryItemMoneyInfo';
+import { useSummaryItemForm } from '@/checkout/sections/Summary/useSummaryItemForm';
 
 interface SummaryItemMoneyEditableSectionProps {
 	line: CheckoutLineFragment;
@@ -34,8 +34,8 @@ export const SummaryItemMoneyEditableSection: React.FC<SummaryItemMoneyEditableS
 
 		const isQuantityValid = !Number.isNaN(quantity) && quantity >= 0;
 
-		if (quantityString === "" || !isQuantityValid) {
-			void setFieldValue("quantity", String(line.quantity));
+		if (quantityString === '' || !isQuantityValid) {
+			void setFieldValue('quantity', String(line.quantity));
 			return;
 		}
 
@@ -48,19 +48,19 @@ export const SummaryItemMoneyEditableSection: React.FC<SummaryItemMoneyEditableS
 	};
 
 	return (
-		<div className="flex flex-col items-end gap-2">
+		<div className='flex flex-col items-end gap-2'>
 			<FormProvider form={form}>
 				<TextInput
 					required
 					onChange={handleChange}
 					onBlur={handleQuantityInputBlur}
-					name="quantity"
-					label="Quantity"
-					className="max-w-[6ch] text-center"
+					name='quantity'
+					label='Quantity'
+					className='max-w-[6ch] text-center'
 				/>
 			</FormProvider>
 			{isSubmitting ? (
-				<div className="flex max-w-[6ch] flex-col">
+				<div className='flex max-w-[6ch] flex-col'>
 					<Skeleton />
 					<Skeleton />
 				</div>

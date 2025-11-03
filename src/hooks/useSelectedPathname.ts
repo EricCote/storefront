@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useParams } from "next/navigation";
+import { useParams } from 'next/navigation';
 
-import { usePathname } from "@/i18n/navigation";
+import { usePathname } from '@/i18n/navigation';
 
 function useSelectedPathname() {
 	const pathname = usePathname();
 
 	const { channel } = useParams<{ channel?: string }>();
 
-	const selectedPathname = channel ? pathname.replace(`/${channel}`, "") : pathname;
+	const selectedPathname = channel ? pathname.replace(`/${channel}`, '') : pathname;
 	return selectedPathname;
 }
 

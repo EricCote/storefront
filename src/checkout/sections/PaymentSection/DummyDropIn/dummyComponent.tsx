@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { Button } from "@/checkout/components";
-import { useTransactionInitializeMutation } from "@/checkout/graphql";
-import { useAlerts } from "@/checkout/hooks/useAlerts";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useCheckoutComplete } from "@/checkout/hooks/useCheckoutComplete";
+import { Button } from '@/checkout/components';
+import { useTransactionInitializeMutation } from '@/checkout/graphql';
+import { useAlerts } from '@/checkout/hooks/useAlerts';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { useCheckoutComplete } from '@/checkout/hooks/useCheckoutComplete';
 
-import { dummyGatewayId } from "./types";
+import { dummyGatewayId } from './types';
 
 // Basic implementation of the test gateway:
 // https://github.com/saleor/dummy-payment-app/
@@ -25,14 +25,14 @@ export const DummyComponent = () => {
 			paymentGateway: {
 				id: dummyGatewayId,
 				data: {
-					"event": {
-						"includePspReference": true,
-						"type": "CHARGE_SUCCESS"
+					'event': {
+						'includePspReference': true,
+						'type': 'CHARGE_SUCCESS'
 					}
 				},
 			},
 		}).catch((err) => {
-			console.error("There was a problem with Dummy Payment Gateway:", err);
+			console.error('There was a problem with Dummy Payment Gateway:', err);
 		}).then((_) => {
 			return onCheckoutComplete()
 		}).then((res) => {
@@ -45,10 +45,10 @@ export const DummyComponent = () => {
 	}
 
 	if(isInProgress){
-		return <Button variant="primary" disabled={true} label="Processing payment..."/>
+		return <Button variant='primary' disabled={true} label='Processing payment...'/>
 	}
 
 	return (
-		<Button variant="primary" onClick={onInitalizeClick} label="Make payment and create order"/>		
+		<Button variant='primary' onClick={onInitalizeClick} label='Make payment and create order'/>		
 	);
 };

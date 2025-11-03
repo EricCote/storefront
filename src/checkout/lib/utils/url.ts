@@ -1,27 +1,27 @@
-import queryString from "query-string";
+import queryString from 'query-string';
 
-import { type CountryCode } from "@/checkout/graphql";
-import { type MightNotExist } from "@/checkout/lib/globalTypes";
+import { type CountryCode } from '@/checkout/graphql';
+import { type MightNotExist } from '@/checkout/lib/globalTypes';
 
 export type ParamBasicValue = MightNotExist<string>;
 
 const queryParamsMap = {
-	redirectUrl: "redirectUrl",
-	checkout: "checkoutId",
-	order: "orderId",
-	token: "passwordResetToken",
-	email: "passwordResetEmail",
-	saleorApiUrl: "saleorApiUrl",
+	redirectUrl: 'redirectUrl',
+	checkout: 'checkoutId',
+	order: 'orderId',
+	token: 'passwordResetToken',
+	email: 'passwordResetEmail',
+	saleorApiUrl: 'saleorApiUrl',
 	// payment flow
-	transaction: "transaction", // allows us to process started transaction
-	processingPayment: "processingPayment", // tell the processing screen to show up
+	transaction: 'transaction', // allows us to process started transaction
+	processingPayment: 'processingPayment', // tell the processing screen to show up
 	// adyen
-	redirectResult: "redirectResult",
-	resultCode: "resultCode",
-	type: "type",
+	redirectResult: 'redirectResult',
+	resultCode: 'resultCode',
+	type: 'type',
 	// stripe
-	payment_intent: "paymentIntent",
-	payment_intent_client_secret: "paymentIntentClientSecret",
+	payment_intent: 'paymentIntent',
+	payment_intent_client_secret: 'paymentIntentClientSecret',
 } as const;
 
 type UnmappedQueryParam = keyof typeof queryParamsMap;
@@ -77,7 +77,7 @@ export const getUrl = ({
 	replaceWholeQuery?: boolean;
 }) => {
 	const baseUrl = replaceWholeQuery
-		? window.location.toString().replace(window.location.search, "")
+		? window.location.toString().replace(window.location.search, '')
 		: window.location.toString();
 	const newQuery = replaceWholeQuery ? query : { ...getRawQueryParams(), ...query };
 	const newUrl = queryString.stringifyUrl({ url: baseUrl, query: newQuery });
@@ -101,7 +101,7 @@ export const replaceUrl = ({
 			url: newUrl,
 			as: newUrl,
 		},
-		"",
+		'',
 		newUrl,
 	);
 
@@ -112,11 +112,11 @@ export const extractCheckoutIdFromUrl = (): string => {
 	const { checkoutId } = getQueryParams();
 
 	if (isOrderConfirmationPage()) {
-		return "";
+		return '';
 	}
 
-	if (typeof checkoutId !== "string") {
-		throw new Error("Checkout token does not exist");
+	if (typeof checkoutId !== 'string') {
+		throw new Error('Checkout token does not exist');
 	}
 
 	return checkoutId;
@@ -124,5 +124,5 @@ export const extractCheckoutIdFromUrl = (): string => {
 
 export const isOrderConfirmationPage = () => {
 	const { orderId } = getQueryParams();
-	return typeof orderId === "string";
+	return typeof orderId === 'string';
 };

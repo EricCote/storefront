@@ -1,2 +1,2 @@
-export * from "./useFetch";
-export * from "./types";
+export * from './useFetch';
+export * from './types';

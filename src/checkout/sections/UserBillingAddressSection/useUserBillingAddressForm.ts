@@ -1,22 +1,22 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
 import {
 	getAddressInputDataFromAddress,
 	getAddressValidationRulesVariables,
 	getByMatchingAddress,
 	isMatchingAddress,
-} from "@/checkout/components/AddressForm/utils";
-import { type AddressFragment, useCheckoutBillingAddressUpdateMutation } from "@/checkout/graphql";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { type ChangeHandler } from "@/checkout/hooks/useForm";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { useUser } from "@/checkout/hooks/useUser";
-import { getById } from "@/checkout/lib/utils/common";
+} from '@/checkout/components/AddressForm/utils';
+import { type AddressFragment, useCheckoutBillingAddressUpdateMutation } from '@/checkout/graphql';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { type ChangeHandler } from '@/checkout/hooks/useForm';
+import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
+import { useUser } from '@/checkout/hooks/useUser';
+import { getById } from '@/checkout/lib/utils/common';
 import {
 	type AddressListFormData,
 	useAddressListForm,
-} from "@/checkout/sections/AddressList/useAddressListForm";
-import { useCheckoutUpdateStateActions } from "@/checkout/state/updateStateStore";
+} from '@/checkout/sections/AddressList/useAddressListForm';
+import { useCheckoutUpdateStateActions } from '@/checkout/state/updateStateStore';
 
 export const useUserBillingAddressForm = () => {
 	const { checkout } = useCheckout();
@@ -29,7 +29,7 @@ export const useUserBillingAddressForm = () => {
 	const onSubmit = useFormSubmit<AddressListFormData, typeof checkoutBillingAddressUpdate>(
 		useMemo(
 			() => ({
-				scope: "checkoutBillingUpdate",
+				scope: 'checkoutBillingUpdate',
 				onSubmit: checkoutBillingAddressUpdate,
 				shouldAbort: ({ formData: { addressList, selectedAddressId } }) =>
 					!selectedAddressId ||

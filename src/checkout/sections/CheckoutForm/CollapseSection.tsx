@@ -1,4 +1,4 @@
-import { type Children } from "@/checkout/lib/globalTypes";
+import { type Children } from '@/checkout/lib/globalTypes';
 
 interface CollapseSectionProps extends Children {
 	collapse: boolean;

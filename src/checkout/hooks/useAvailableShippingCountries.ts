@@ -1,7 +1,7 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
-import { type CountryCode, useChannelQuery } from "@/checkout/graphql";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
+import { type CountryCode, useChannelQuery } from '@/checkout/graphql';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
 
 interface UseAvailableShippingCountries {
 	availableShippingCountries: CountryCode[];

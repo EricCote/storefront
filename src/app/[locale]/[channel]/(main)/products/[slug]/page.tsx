@@ -279,7 +279,7 @@ export default async function Page(props: {
 							<AddButton disabled={!selectedVariantID || !selectedVariant?.quantityAvailable} />
 						</div>
 						{mdxEn && (
-							<div className='mx-auto prose mt-8 text-neutral-500'>
+							<div className='mx-auto prose prose-lg mt-8 text-neutral-500'>
 								{/* mdxFr is expected to be HTML/HTML-like. Sanitize before injecting. */}
 								<h2 className='text-2xl font-bold text-neutral-600'>Description</h2>
 								<ReactMarkdown

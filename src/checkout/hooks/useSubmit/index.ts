@@ -1,2 +1,2 @@
-export * from "./useSubmit";
-export * from "./types";
+export * from './useSubmit';
+export * from './types';

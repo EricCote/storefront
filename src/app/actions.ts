@@ -1,8 +1,8 @@
-"use server";
+'use server';
 
-import { getServerAuthClient } from "@/app/config";
+import { getServerAuthClient } from '@/app/config';
 
 export async function logout() {
-	"use server";
+	'use server';
 	(await getServerAuthClient()).signOut();
 }

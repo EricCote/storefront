@@ -1,15 +1,15 @@
-import compact from "lodash-es/compact";
+import compact from 'lodash-es/compact';
 
-import { type CheckoutLineFragment, type OrderLineFragment } from "@/checkout/graphql";
-import { type MightNotExist } from "@/checkout/lib/globalTypes";
+import { type CheckoutLineFragment, type OrderLineFragment } from '@/checkout/graphql';
+import { type MightNotExist } from '@/checkout/lib/globalTypes';
 
 export const isCheckoutLine = (
 	line: CheckoutLineFragment | OrderLineFragment,
-): line is CheckoutLineFragment => line.__typename === "CheckoutLine";
+): line is CheckoutLineFragment => line.__typename === 'CheckoutLine';
 
 export const getThumbnailFromLine = (line: CheckoutLineFragment) =>
-	line.variant.media?.find(({ type }) => type === "IMAGE") ||
-	line.variant.product.media?.find(({ type }) => type === "IMAGE");
+	line.variant.media?.find(({ type }) => type === 'IMAGE') ||
+	line.variant.product.media?.find(({ type }) => type === 'IMAGE');
 
 export const getSummaryLineProps = (line: OrderLineFragment | CheckoutLineFragment) =>
 	isCheckoutLine(line)
@@ -35,7 +35,7 @@ export const useSummaryLineLineAttributesText = (line: CheckoutLineFragment | Or
 					}
 
 					if (dateTime) {
-						return new Intl.DateTimeFormat("EN-US", { dateStyle: "medium" }).format(new Date(dateTime));
+						return new Intl.DateTimeFormat('EN-US', { dateStyle: 'medium' }).format(new Date(dateTime));
 					}
 
 					return name;
@@ -44,5 +44,5 @@ export const useSummaryLineLineAttributesText = (line: CheckoutLineFragment | Or
 			[],
 		) || [];
 
-	return compact(parsedValues).join(", ");
+	return compact(parsedValues).join(', ');
 };

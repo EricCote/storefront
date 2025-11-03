@@ -1,18 +1,18 @@
-import { type FieldValidator } from "formik";
-import { difference } from "lodash-es";
-import { type FC, type PropsWithChildren, useEffect, useRef } from "react";
+import { type FieldValidator } from 'formik';
+import { difference } from 'lodash-es';
+import { type FC, type PropsWithChildren, useEffect, useRef } from 'react';
 
-import { type AddressField, type AddressFormData } from "@/checkout/components/AddressForm/types";
-import { useAddressFormUtils } from "@/checkout/components/AddressForm/useAddressFormUtils";
-import { getEmptyAddressFormData, isMatchingAddressFormData } from "@/checkout/components/AddressForm/utils";
-import { CountrySelect } from "@/checkout/components/CountrySelect";
-import { Select } from "@/checkout/components/Select";
-import { TextInput } from "@/checkout/components/TextInput";
-import { Title } from "@/checkout/components/Title";
-import { type CountryCode } from "@/checkout/graphql";
-import { type ChangeHandler, useFormContext, type BlurHandler } from "@/checkout/hooks/useForm";
-import { autocompleteTags, typeTags } from "@/checkout/lib/consts/inputAttributes";
-import { usePhoneNumberValidator } from "@/checkout/lib/utils/phoneNumber";
+import { type AddressField, type AddressFormData } from '@/checkout/components/AddressForm/types';
+import { useAddressFormUtils } from '@/checkout/components/AddressForm/useAddressFormUtils';
+import { getEmptyAddressFormData, isMatchingAddressFormData } from '@/checkout/components/AddressForm/utils';
+import { CountrySelect } from '@/checkout/components/CountrySelect';
+import { Select } from '@/checkout/components/Select';
+import { TextInput } from '@/checkout/components/TextInput';
+import { Title } from '@/checkout/components/Title';
+import { type CountryCode } from '@/checkout/graphql';
+import { type ChangeHandler, useFormContext, type BlurHandler } from '@/checkout/hooks/useForm';
+import { autocompleteTags, typeTags } from '@/checkout/lib/consts/inputAttributes';
+import { usePhoneNumberValidator } from '@/checkout/lib/utils/phoneNumber';
 
 export interface AddressFormProps {
 	title: string;
@@ -78,8 +78,8 @@ export const AddressForm: FC<PropsWithChildren<AddressFormProps>> = ({
 
 	return (
 		<>
-			<Title className="mb-4">{title}</Title>
-			<div className="mt-2 grid grid-cols-1 gap-3">
+			<Title className='mb-4'>{title}</Title>
+			<div className='mt-2 grid grid-cols-1 gap-3'>
 				<CountrySelect only={availableCountries} />
 				{orderedAddressFields.map((field) => {
 					const isRequired = isRequiredField(field);
@@ -94,12 +94,12 @@ export const AddressForm: FC<PropsWithChildren<AddressFormProps>> = ({
 						...fieldProps,
 					};
 
-					if (field === "countryArea" && isRequired) {
+					if (field === 'countryArea' && isRequired) {
 						return (
 							<Select
 								{...commonProps}
 								key={field}
-								placeholder={getFieldLabel("countryArea")}
+								placeholder={getFieldLabel('countryArea')}
 								options={
 									countryAreaChoices?.map(({ verbose, raw }) => ({
 										label: verbose as string,
@@ -111,7 +111,7 @@ export const AddressForm: FC<PropsWithChildren<AddressFormProps>> = ({
 					}
 
 					return (
-						<TextInput required={isRequired} {...commonProps} key={field} type={typeTags[field] || "text"} />
+						<TextInput required={isRequired} {...commonProps} key={field} type={typeTags[field] || 'text'} />
 					);
 				})}
 				{children}

@@ -1,4 +1,4 @@
-import { isEqual, omit, pick, reduce, uniq } from "lodash-es";
+import { isEqual, omit, pick, reduce, uniq } from 'lodash-es';
 
 import {
 	type AddressFragment,
@@ -6,29 +6,29 @@ import {
 	type CheckoutAddressValidationRules,
 	type CountryCode,
 	type CountryDisplay,
-} from "@/checkout/graphql";
-import { type MightNotExist } from "@/checkout/lib/globalTypes";
-import { getCountryName } from "@/checkout/lib/utils/locale";
+} from '@/checkout/graphql';
+import { type MightNotExist } from '@/checkout/lib/globalTypes';
+import { getCountryName } from '@/checkout/lib/utils/locale';
 
 import {
 	type OptionalAddress,
 	type AddressField,
 	type AddressFormData,
 	type ApiAddressField,
-} from "../../components/AddressForm/types";
+} from '../../components/AddressForm/types';
 
 export const getEmptyAddressFormData = (): AddressFormData => ({
-	firstName: "",
-	lastName: "",
-	streetAddress1: "",
-	streetAddress2: "",
-	companyName: "",
-	city: "",
-	cityArea: "",
-	countryArea: "",
-	postalCode: "",
-	phone: "",
-	countryCode: "US",
+	firstName: '',
+	lastName: '',
+	streetAddress1: '',
+	streetAddress2: '',
+	companyName: '',
+	city: '',
+	cityArea: '',
+	countryArea: '',
+	postalCode: '',
+	phone: '',
+	countryCode: 'US',
 });
 
 export const getEmptyAddress = (): AddressFragment => {
@@ -36,7 +36,7 @@ export const getEmptyAddress = (): AddressFragment => {
 
 	return {
 		...emptyAddressRest,
-		id: "",
+		id: '',
 		country: {
 			code: countryCode,
 			country: getCountryName(countryCode),
@@ -73,7 +73,7 @@ export const getAddressInputDataFromAddress = (
 		...pick(rest, getAllAddressFieldKeys()),
 		country: country?.code as CountryCode,
 		// cause in api phone can be null
-		phone: phone || "",
+		phone: phone || '',
 	};
 };
 
@@ -81,15 +81,15 @@ export const getAddressFormDataFromAddress = (address: OptionalAddress): Address
 	if (!address) {
 		return {
 			...getEmptyAddressFormData(),
-			countryCode: "US",
+			countryCode: 'US',
 		};
 	}
 
 	const { country, ...rest } = address;
 
-	const parsedAddressBase = reduce(rest, (result, val, key) => ({ ...result, [key]: val || "" }), {}) as Omit<
+	const parsedAddressBase = reduce(rest, (result, val, key) => ({ ...result, [key]: val || '' }), {}) as Omit<
 		AddressFormData,
-		"countryCode"
+		'countryCode'
 	>;
 
 	return pick(
@@ -107,8 +107,8 @@ export const isMatchingAddress = (
 	addressToMatch?: Partial<AddressFragment> | null,
 ) => {
 	const isTheSameAddressById =
-		typeof address?.id === "string" &&
-		typeof addressToMatch?.id === "string" &&
+		typeof address?.id === 'string' &&
+		typeof addressToMatch?.id === 'string' &&
 		address.id === addressToMatch.id;
 
 	if (isTheSameAddressById) {
@@ -132,7 +132,7 @@ export const isMatchingAddressFormData = (
 	address?: Partial<AddressFormData> | null,
 	addressToMatch?: Partial<AddressFormData> | null,
 ) => {
-	const propsToOmit = ["id", "autoSave", "__typename"];
+	const propsToOmit = ['id', 'autoSave', '__typename'];
 
 	return isEqual(omit(address, propsToOmit), omit(addressToMatch, propsToOmit));
 };
@@ -147,17 +147,17 @@ export const getAddressValidationRulesVariables = (
 		: {};
 
 export const addressFieldsOrder: AddressField[] = [
-	"firstName",
-	"lastName",
-	"companyName",
-	"streetAddress1",
-	"streetAddress2",
-	"city",
-	"countryCode",
-	"postalCode",
-	"cityArea",
-	"countryArea",
-	"phone",
+	'firstName',
+	'lastName',
+	'companyName',
+	'streetAddress1',
+	'streetAddress2',
+	'city',
+	'countryCode',
+	'postalCode',
+	'cityArea',
+	'countryArea',
+	'phone',
 ];
 
 // api doesn't order the fields but we want to
@@ -171,16 +171,16 @@ export const getOrderedAddressFields = (addressFields: AddressField[] = []): Add
 
 export const getRequiredAddressFields = (requiredFields: AddressField[] = []): AddressField[] => [
 	...requiredFields,
-	"firstName",
-	"lastName",
+	'firstName',
+	'lastName',
 ];
 
 // api doesn't approve of "name" so we replace it with "firstName"
 // and "lastName"
 export const getFilteredAddressFields = (addressFields: ApiAddressField[]): AddressField[] => {
 	const filteredAddressFields = addressFields.filter(
-		(addressField: ApiAddressField) => addressField !== "name",
+		(addressField: ApiAddressField) => addressField !== 'name',
 	);
 
-	return uniq([...filteredAddressFields, "firstName", "lastName", "phone"]);
+	return uniq([...filteredAddressFields, 'firstName', 'lastName', 'phone']);
 };

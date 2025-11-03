@@ -1,5 +1,5 @@
-import { debounce } from "lodash-es";
-import { useCallback, useEffect } from "react";
+import { debounce } from 'lodash-es';
+import { useCallback, useEffect } from 'react';
 
 export const useDebouncedSubmit = <TArgs extends Array<any>>(
 	onSubmit: (...args: TArgs) => Promise<any> | void,

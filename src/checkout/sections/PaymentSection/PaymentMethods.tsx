@@ -1,10 +1,10 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
-import { PaymentSectionSkeleton } from "@/checkout/sections/PaymentSection/PaymentSectionSkeleton";
-import { usePayments } from "@/checkout/sections/PaymentSection/usePayments";
-import { useCheckoutUpdateState } from "@/checkout/state/updateStateStore";
+import { PaymentSectionSkeleton } from '@/checkout/sections/PaymentSection/PaymentSectionSkeleton';
+import { usePayments } from '@/checkout/sections/PaymentSection/usePayments';
+import { useCheckoutUpdateState } from '@/checkout/state/updateStateStore';
 
-import { paymentMethodToComponent } from "./supportedPaymentApps";
+import { paymentMethodToComponent } from './supportedPaymentApps';
 
 export const PaymentMethods = () => {
 	const { availablePaymentGateways, fetching } = usePayments();
@@ -19,12 +19,12 @@ export const PaymentMethods = () => {
 	);
 
 	// delivery methods change total price so we want to wait until the change is done
-	if (changingBillingCountry || fetching || checkoutDeliveryMethodUpdate === "loading") {
+	if (changingBillingCountry || fetching || checkoutDeliveryMethodUpdate === 'loading') {
 		return <PaymentSectionSkeleton />;
 	}
 
 	return (
-		<div className="gap-y-8">
+		<div className='gap-y-8'>
 			{gatewaysWithDefinedComponent.map((gateway) => {
 				const Component = paymentMethodToComponent[gateway.id];
 				return (

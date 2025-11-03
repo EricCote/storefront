@@ -1,20 +1,20 @@
-import React, { Suspense } from "react";
+import React, { Suspense } from 'react';
 
-import { Checkbox } from "@/checkout/components";
-import { type OptionalAddress } from "@/checkout/components/AddressForm/types";
-import { getByMatchingAddress } from "@/checkout/components/AddressForm/utils";
-import { AddressSectionSkeleton } from "@/checkout/components/AddressSectionSkeleton";
-import { type AddressFragment } from "@/checkout/graphql";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useCheckoutFormValidationTrigger } from "@/checkout/hooks/useCheckoutFormValidationTrigger";
-import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
-import { getById } from "@/checkout/lib/utils/common";
-import { AddressCreateForm } from "@/checkout/sections/AddressCreateForm/AddressCreateForm";
-import { AddressEditForm } from "@/checkout/sections/AddressEditForm/AddressEditForm";
-import { AddressList } from "@/checkout/sections/AddressList/AddressList";
-import { useBillingSameAsShippingForm } from "@/checkout/sections/GuestBillingAddressSection/useBillingSameAsShippingForm";
-import { UserAddressSectionContainer } from "@/checkout/sections/UserAddressSectionContainer";
-import { useUserBillingAddressForm } from "@/checkout/sections/UserBillingAddressSection/useUserBillingAddressForm";
+import { Checkbox } from '@/checkout/components';
+import { type OptionalAddress } from '@/checkout/components/AddressForm/types';
+import { getByMatchingAddress } from '@/checkout/components/AddressForm/utils';
+import { AddressSectionSkeleton } from '@/checkout/components/AddressSectionSkeleton';
+import { type AddressFragment } from '@/checkout/graphql';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { useCheckoutFormValidationTrigger } from '@/checkout/hooks/useCheckoutFormValidationTrigger';
+import { FormProvider } from '@/checkout/hooks/useForm/FormProvider';
+import { getById } from '@/checkout/lib/utils/common';
+import { AddressCreateForm } from '@/checkout/sections/AddressCreateForm/AddressCreateForm';
+import { AddressEditForm } from '@/checkout/sections/AddressEditForm/AddressEditForm';
+import { AddressList } from '@/checkout/sections/AddressList/AddressList';
+import { useBillingSameAsShippingForm } from '@/checkout/sections/GuestBillingAddressSection/useBillingSameAsShippingForm';
+import { UserAddressSectionContainer } from '@/checkout/sections/UserAddressSectionContainer';
+import { useUserBillingAddressForm } from '@/checkout/sections/UserBillingAddressSection/useUserBillingAddressForm';
 
 interface UserBillingAddressSectionProps {}
 
@@ -49,7 +49,7 @@ export const UserBillingAddressSection: React.FC<UserBillingAddressSectionProps>
 	});
 
 	useCheckoutFormValidationTrigger({
-		scope: "billingAddress",
+		scope: 'billingAddress',
 		form: billingSameAsShippingForm,
 	});
 
@@ -60,18 +60,18 @@ export const UserBillingAddressSection: React.FC<UserBillingAddressSectionProps>
 	return (
 		<Suspense fallback={<AddressSectionSkeleton />}>
 			{isShippingRequired && (
-				<div className="mb-4">
+				<div className='mb-4'>
 					<FormProvider form={billingSameAsShippingForm}>
 						<Checkbox
-							name="billingSameAsShipping"
-							label="Use shipping address as billing address"
-							data-testid={"useShippingAsBillingCheckbox"}
+							name='billingSameAsShipping'
+							label='Use shipping address as billing address'
+							data-testid={'useShippingAsBillingCheckbox'}
 						/>
 					</FormProvider>
 				</div>
 			)}
 			{!billingSameAsShipping && (
-				<div className="pb-2">
+				<div className='pb-2'>
 					<UserAddressSectionContainer>
 						{({
 							displayAddressCreate,
@@ -91,7 +91,7 @@ export const UserBillingAddressSection: React.FC<UserBillingAddressSectionProps>
 
 								{displayAddressEdit && (
 									<AddressEditForm
-										title="Billing address"
+										title='Billing address'
 										onClose={() => setDisplayAddressEdit()}
 										address={form.values.addressList.find(getById(editedAddressId)) as AddressFragment}
 										onUpdate={onAddressUpdateSuccess}
@@ -103,7 +103,7 @@ export const UserBillingAddressSection: React.FC<UserBillingAddressSectionProps>
 									<AddressList
 										onEditChange={setDisplayAddressEdit}
 										onAddAddressClick={() => setDisplayAddressCreate(true)}
-										title="Billing address"
+										title='Billing address'
 										form={form}
 									/>
 								)}

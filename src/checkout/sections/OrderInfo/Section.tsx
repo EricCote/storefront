@@ -1,4 +1,4 @@
-import { type FC, type ReactNode } from "react";
+import { type FC, type ReactNode } from 'react';
 
 interface SectionProps {
 	children: ReactNode;
@@ -6,8 +6,8 @@ interface SectionProps {
 }
 
 export const Section: FC<SectionProps> = ({ children, title }) => (
-	<div className="mb-6">
-		<p color="secondary" className="mb-2 font-bold">
+	<div className='mb-6'>
+		<p color='secondary' className='mb-2 font-bold'>
 			{title}
 		</p>
 		{children}

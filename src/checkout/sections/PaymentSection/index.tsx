@@ -1,2 +1,2 @@
-export * from "./PaymentSection";
-export * from "./PaymentSectionSkeleton";
+export * from './PaymentSection';
+export * from './PaymentSectionSkeleton';

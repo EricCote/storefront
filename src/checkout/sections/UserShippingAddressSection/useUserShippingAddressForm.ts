@@ -1,20 +1,20 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
 import {
 	getAddressInputDataFromAddress,
 	getAddressValidationRulesVariables,
 	getByMatchingAddress,
 	isMatchingAddress,
-} from "@/checkout/components/AddressForm/utils";
-import { type AddressFragment, useCheckoutShippingAddressUpdateMutation } from "@/checkout/graphql";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { useUser } from "@/checkout/hooks/useUser";
-import { getById } from "@/checkout/lib/utils/common";
+} from '@/checkout/components/AddressForm/utils';
+import { type AddressFragment, useCheckoutShippingAddressUpdateMutation } from '@/checkout/graphql';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
+import { useUser } from '@/checkout/hooks/useUser';
+import { getById } from '@/checkout/lib/utils/common';
 import {
 	type AddressListFormData,
 	useAddressListForm,
-} from "@/checkout/sections/AddressList/useAddressListForm";
+} from '@/checkout/sections/AddressList/useAddressListForm';
 
 export const useUserShippingAddressForm = () => {
 	const { checkout } = useCheckout();
@@ -25,7 +25,7 @@ export const useUserShippingAddressForm = () => {
 	const onSubmit = useFormSubmit<AddressListFormData, typeof checkoutShippingAddressUpdate>(
 		useMemo(
 			() => ({
-				scope: "checkoutShippingUpdate",
+				scope: 'checkoutShippingUpdate',
 				onSubmit: checkoutShippingAddressUpdate,
 				shouldAbort: ({ formData: { addressList, selectedAddressId } }) =>
 					!selectedAddressId ||

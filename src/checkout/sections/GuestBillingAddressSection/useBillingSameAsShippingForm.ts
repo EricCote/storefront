@@ -1,20 +1,20 @@
  
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { type OptionalAddress } from "@/checkout/components/AddressForm/types";
+import { type OptionalAddress } from '@/checkout/components/AddressForm/types';
 import {
 	getAddressInputDataFromAddress,
 	getAddressValidationRulesVariables,
 	getEmptyAddress,
 	isMatchingAddress,
 	isMatchingAddressData,
-} from "@/checkout/components/AddressForm/utils";
-import { type AddressFragment, useCheckoutBillingAddressUpdateMutation } from "@/checkout/graphql";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { type ChangeHandler, useForm } from "@/checkout/hooks/useForm";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { type MightNotExist } from "@/checkout/lib/globalTypes";
-import { useCheckoutUpdateStateActions } from "@/checkout/state/updateStateStore";
+} from '@/checkout/components/AddressForm/utils';
+import { type AddressFragment, useCheckoutBillingAddressUpdateMutation } from '@/checkout/graphql';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { type ChangeHandler, useForm } from '@/checkout/hooks/useForm';
+import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
+import { type MightNotExist } from '@/checkout/lib/globalTypes';
+import { useCheckoutUpdateStateActions } from '@/checkout/state/updateStateStore';
 
 interface BillingSameAsShippingFormData {
 	billingSameAsShipping: boolean;
@@ -40,7 +40,7 @@ export const useBillingSameAsShippingForm = (
 	const [, checkoutBillingAddressUpdate] = useCheckoutBillingAddressUpdateMutation();
 
 	const onSubmit = useFormSubmit<BillingSameAsShippingFormData, typeof checkoutBillingAddressUpdate>({
-		scope: "checkoutBillingUpdate",
+		scope: 'checkoutBillingUpdate',
 		onSubmit: checkoutBillingAddressUpdate,
 		shouldAbort: () => !formBillingAddress || !Object.keys(formBillingAddress).length,
 		onStart: () => {
@@ -91,7 +91,7 @@ export const useBillingSameAsShippingForm = (
 	} = form;
 
 	const onChange: ChangeHandler = (event) => {
-		if (event.target.name === "billingSameAsShipping") {
+		if (event.target.name === 'billingSameAsShipping') {
 			previousBillingSameAsShipping.current = billingSameAsShipping;
 		}
 		handleChange(event);
@@ -123,7 +123,7 @@ export const useBillingSameAsShippingForm = (
 
 			previousBillingSameAsShipping.current = true;
 			setFormBillingAddress(shippingAddress);
-			if (typeof onSetBillingSameAsShipping === "function") {
+			if (typeof onSetBillingSameAsShipping === 'function') {
 				onSetBillingSameAsShipping(shippingAddress);
 			}
 		};
@@ -169,7 +169,7 @@ export const useBillingSameAsShippingForm = (
 
 	useEffect(() => {
 		if (!isShippingRequired && previousIsShippingRequired) {
-			void setFieldValue("billingSameAsShipping", false);
+			void setFieldValue('billingSameAsShipping', false);
 		}
 	}, [isShippingRequired, setFieldValue]);
 

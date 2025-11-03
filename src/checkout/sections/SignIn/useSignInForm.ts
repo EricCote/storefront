@@ -1,11 +1,11 @@
-import { useSaleorAuthContext } from "@saleor/auth-sdk/react";
-import { object, string } from "yup";
+import { useSaleorAuthContext } from '@saleor/auth-sdk/react';
+import { object, string } from 'yup';
 
-import { type AccountErrorCode } from "@/checkout/graphql";
-import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
-import { useForm } from "@/checkout/hooks/useForm";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { useGetParsedErrors } from "@/checkout/hooks/useGetParsedErrors";
+import { type AccountErrorCode } from '@/checkout/graphql';
+import { useErrorMessages } from '@/checkout/hooks/useErrorMessages';
+import { useForm } from '@/checkout/hooks/useForm';
+import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
+import { useGetParsedErrors } from '@/checkout/hooks/useGetParsedErrors';
 
 interface SignInFormData {
 	email: string;
@@ -30,25 +30,25 @@ export const useSignInForm = ({ onSuccess, initialEmail }: SignInFormProps) => {
 
 	const defaultFormData: SignInFormData = {
 		email: initialEmail,
-		password: "",
+		password: '',
 	};
 
 	const onSubmit = useFormSubmit<SignInFormData, typeof signIn, AccountErrorCode>({
 		onSubmit: signIn,
-		scope: "signIn",
+		scope: 'signIn',
 		onSuccess,
 		onError: ({ errors, formHelpers: { setErrors } }) => {
 			const parsedErrors = errors.reduce((result, error) => {
 				const { code, field } = error;
 				const parsedError = getParsedApiError(error);
 
-				if (code === "INVALID_CREDENTIALS" && field === "email") {
+				if (code === 'INVALID_CREDENTIALS' && field === 'email') {
 					//  api will attribute invalid credentials error to
 					// email but we'd rather highlight both fields
-					return { ...result, email: parsedError.message, password: "" };
+					return { ...result, email: parsedError.message, password: '' };
 				}
 
-				if (code === "INACTIVE") {
+				if (code === 'INACTIVE') {
 					// we don't really want to show anything here
 					return result;
 				}

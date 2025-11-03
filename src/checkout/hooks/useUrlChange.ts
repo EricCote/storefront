@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { getQueryParams, type QueryParams } from "@/checkout/lib/utils/url";
+import { getQueryParams, type QueryParams } from '@/checkout/lib/utils/url';
 
-export const POPSTATE_EVENT = "popstate";
+export const POPSTATE_EVENT = 'popstate';
 
 export type UrlChangeHandlerArgs = { queryParams: QueryParams };
 

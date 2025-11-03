@@ -1,4 +1,4 @@
-import { type MightNotExist } from "@/checkout/lib/globalTypes";
+import { type MightNotExist } from '@/checkout/lib/globalTypes';
 
 export type Money = {
 	currency: string;
@@ -7,14 +7,14 @@ export type Money = {
 
 export const getFormattedMoney = <TMoney extends Money>(money: MightNotExist<TMoney>, negative = false) => {
 	if (!money) {
-		return "";
+		return '';
 	}
 
 	const { amount, currency } = money;
 
-	return new Intl.NumberFormat("en-US", {
-		style: "currency",
+	return new Intl.NumberFormat('en-US', {
+		style: 'currency',
 		currency,
-		currencyDisplay: "symbol",
+		currencyDisplay: 'symbol',
 	}).format(negative ? -amount : amount);
 };

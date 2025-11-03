@@ -1,1 +1,1 @@
-export * from "./AddressSelectBox";
+export * from './AddressSelectBox';

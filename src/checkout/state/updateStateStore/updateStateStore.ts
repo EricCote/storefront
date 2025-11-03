@@ -1,13 +1,13 @@
-import { memoize, omit } from "lodash-es";
-import { useMemo } from "react";
-import { shallow } from "zustand/shallow";
-import { createWithEqualityFn } from "zustand/traditional";
+import { memoize, omit } from 'lodash-es';
+import { useMemo } from 'react';
+import { shallow } from 'zustand/shallow';
+import { createWithEqualityFn } from 'zustand/traditional';
 
-import { type CheckoutScope } from "@/checkout/hooks/useAlerts";
+import { type CheckoutScope } from '@/checkout/hooks/useAlerts';
 
-export type CheckoutUpdateStateStatus = "success" | "loading" | "error";
+export type CheckoutUpdateStateStatus = 'success' | 'loading' | 'error';
 
-export type CheckoutUpdateStateScope = Exclude<CheckoutScope, "checkoutPay" | "checkoutFinalize">;
+export type CheckoutUpdateStateScope = Exclude<CheckoutScope, 'checkoutPay' | 'checkoutFinalize'>;
 
 export interface CheckoutUpdateState {
 	loadingCheckout: boolean;
@@ -34,22 +34,22 @@ const useCheckoutUpdateStateStore = createWithEqualityFn<CheckoutUpdateStateStor
 		loadingCheckout: false,
 		changingBillingCountry: false,
 		updateState: {
-			paymentGatewaysInitialize: "success",
-			checkoutShippingUpdate: "success",
-			checkoutCustomerAttach: "success",
-			checkoutBillingUpdate: "success",
-			checkoutAddPromoCode: "success",
-			checkoutDeliveryMethodUpdate: "success",
-			checkoutLinesUpdate: "success",
-			checkoutEmailUpdate: "success",
-			userRegister: "success",
-			resetPassword: "success",
-			signIn: "success",
-			requestPasswordReset: "success",
-			checkoutLinesDelete: "success",
-			userAddressCreate: "success",
-			userAddressDelete: "success",
-			userAddressUpdate: "success",
+			paymentGatewaysInitialize: 'success',
+			checkoutShippingUpdate: 'success',
+			checkoutCustomerAttach: 'success',
+			checkoutBillingUpdate: 'success',
+			checkoutAddPromoCode: 'success',
+			checkoutDeliveryMethodUpdate: 'success',
+			checkoutLinesUpdate: 'success',
+			checkoutEmailUpdate: 'success',
+			userRegister: 'success',
+			resetPassword: 'success',
+			signIn: 'success',
+			requestPasswordReset: 'success',
+			checkoutLinesDelete: 'success',
+			userAddressCreate: 'success',
+			userAddressDelete: 'success',
+			userAddressUpdate: 'success',
 		},
 		actions: {
 			setSubmitInProgress: (submitInProgress: boolean) => set({ submitInProgress }),
@@ -96,7 +96,7 @@ export const useUserRegisterState = () => {
 };
 
 export const useCheckoutUpdateStateActions = () =>
-	useCheckoutUpdateStateStore(({ actions }) => omit(actions, "setUpdateState"));
+	useCheckoutUpdateStateStore(({ actions }) => omit(actions, 'setUpdateState'));
 
 export function useCheckoutUpdateStateChange(scope: CheckoutUpdateStateScope): {
 	setCheckoutUpdateState: (status: CheckoutUpdateStateStatus) => void;

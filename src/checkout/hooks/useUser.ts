@@ -1,4 +1,4 @@
-import { useUserQuery } from "@/checkout/graphql";
+import { useUserQuery } from '@/checkout/graphql';
 
 export const useUser = () => {
 	const [{ data, fetching: loading, stale }] = useUserQuery();

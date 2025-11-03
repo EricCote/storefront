@@ -1,13 +1,13 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
-import { type CountryCode, useCheckoutDeliveryMethodUpdateMutation } from "@/checkout/graphql";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useDebouncedSubmit } from "@/checkout/hooks/useDebouncedSubmit";
-import { type ChangeHandler, useForm, type UseFormReturn } from "@/checkout/hooks/useForm";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { type MightNotExist } from "@/checkout/lib/globalTypes";
-import { getById } from "@/checkout/lib/utils/common";
-import { useCheckoutUpdateStateChange } from "@/checkout/state/updateStateStore";
+import { type CountryCode, useCheckoutDeliveryMethodUpdateMutation } from '@/checkout/graphql';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { useDebouncedSubmit } from '@/checkout/hooks/useDebouncedSubmit';
+import { type ChangeHandler, useForm, type UseFormReturn } from '@/checkout/hooks/useForm';
+import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
+import { type MightNotExist } from '@/checkout/lib/globalTypes';
+import { getById } from '@/checkout/lib/utils/common';
+import { useCheckoutUpdateStateChange } from '@/checkout/state/updateStateStore';
 
 interface DeliveryMethodsFormData {
 	selectedMethodId: string | undefined;
@@ -17,7 +17,7 @@ export const useDeliveryMethodsForm = (): UseFormReturn<DeliveryMethodsFormData>
 	const { checkout } = useCheckout();
 	const { shippingMethods, shippingAddress, deliveryMethod } = checkout;
 	const [, updateDeliveryMethod] = useCheckoutDeliveryMethodUpdateMutation();
-	const { setCheckoutUpdateState } = useCheckoutUpdateStateChange("checkoutDeliveryMethodUpdate");
+	const { setCheckoutUpdateState } = useCheckoutUpdateStateChange('checkoutDeliveryMethodUpdate');
 
 	const previousShippingCountry = useRef<MightNotExist<CountryCode>>(
 		shippingAddress?.country?.code as CountryCode | undefined,
@@ -44,7 +44,7 @@ export const useDeliveryMethodsForm = (): UseFormReturn<DeliveryMethodsFormData>
 	const onSubmit = useFormSubmit<DeliveryMethodsFormData, typeof updateDeliveryMethod>(
 		useMemo(
 			() => ({
-				scope: "checkoutDeliveryMethodUpdate",
+				scope: 'checkoutDeliveryMethodUpdate',
 				onSubmit: updateDeliveryMethod,
 				shouldAbort: ({ formData: { selectedMethodId } }) =>
 					!selectedMethodId || selectedMethodId === checkout.deliveryMethod?.id,
@@ -89,7 +89,7 @@ export const useDeliveryMethodsForm = (): UseFormReturn<DeliveryMethodsFormData>
 			return;
 		}
 
-		void setFieldValue("selectedMethodId", getAutoSetMethod()?.id);
+		void setFieldValue('selectedMethodId', getAutoSetMethod()?.id);
 
 		if (hasShippingCountryChanged) {
 			previousShippingCountry.current = shippingAddress?.country?.code as CountryCode;
@@ -104,7 +104,7 @@ export const useDeliveryMethodsForm = (): UseFormReturn<DeliveryMethodsFormData>
 	]);
 
 	const onChange: ChangeHandler = (event) => {
-		setCheckoutUpdateState("loading");
+		setCheckoutUpdateState('loading');
 		handleChange(event);
 	};
 

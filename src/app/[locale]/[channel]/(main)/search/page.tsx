@@ -63,7 +63,7 @@ export default async function Page(props: {
 					<Pagination
 						pageInfo={{
 							...products.pageInfo,
-							basePathname: `/search`,
+							basePathname: '/search',
 							urlSearchParams: newSearchParams,
 						}}
 					/>

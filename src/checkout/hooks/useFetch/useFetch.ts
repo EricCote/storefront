@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
 import {
 	type FetchFn,
@@ -6,7 +6,7 @@ import {
 	type GetDataType,
 	type UseFetchOptionalProps,
 	type UseFetchResult,
-} from "./types";
+} from './types';
 
 export const useFetch = <
 	TError,

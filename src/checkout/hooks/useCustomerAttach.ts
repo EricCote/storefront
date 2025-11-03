@@ -1,9 +1,9 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo } from 'react';
 
-import { useCheckoutCustomerAttachMutation } from "@/checkout/graphql";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useSubmit } from "@/checkout/hooks/useSubmit/useSubmit";
-import { useUser } from "@/checkout/hooks/useUser";
+import { useCheckoutCustomerAttachMutation } from '@/checkout/graphql';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { useSubmit } from '@/checkout/hooks/useSubmit/useSubmit';
+import { useUser } from '@/checkout/hooks/useUser';
 
 export const useCustomerAttach = () => {
 	const { checkout, fetching: fetchingCheckout, refetch } = useCheckout();
@@ -15,7 +15,7 @@ export const useCustomerAttach = () => {
 		useMemo(
 			() => ({
 				hideAlerts: true,
-				scope: "checkoutCustomerAttach",
+				scope: 'checkoutCustomerAttach',
 				shouldAbort: () =>
 					!!checkout?.user?.id || !authenticated || fetchingCustomerAttach || fetchingCheckout,
 				onSubmit: customerAttach,
@@ -25,7 +25,7 @@ export const useCustomerAttach = () => {
 						errors.some(
 							(error) =>
 								error?.message?.includes(
-									"[GraphQL] You cannot reassign a checkout that is already attached to a user.",
+									'[GraphQL] You cannot reassign a checkout that is already attached to a user.',
 								),
 						)
 					) {

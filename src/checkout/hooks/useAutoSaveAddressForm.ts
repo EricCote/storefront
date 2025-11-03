@@ -1,11 +1,11 @@
  
-import { pick } from "lodash-es";
-import { useCallback } from "react";
+import { pick } from 'lodash-es';
+import { useCallback } from 'react';
 
-import { type AddressFormData } from "@/checkout/components/AddressForm/types";
-import { useAddressFormSchema } from "@/checkout/components/AddressForm/useAddressFormSchema";
-import { type CountryCode } from "@/checkout/graphql";
-import { useDebouncedSubmit } from "@/checkout/hooks/useDebouncedSubmit";
+import { type AddressFormData } from '@/checkout/components/AddressForm/types';
+import { useAddressFormSchema } from '@/checkout/components/AddressForm/useAddressFormSchema';
+import { type CountryCode } from '@/checkout/graphql';
+import { useDebouncedSubmit } from '@/checkout/hooks/useDebouncedSubmit';
 import {
 	type BlurHandler,
 	type ChangeHandler,
@@ -14,11 +14,11 @@ import {
 	hasErrors,
 	useForm,
 	type UseFormReturn,
-} from "@/checkout/hooks/useForm";
+} from '@/checkout/hooks/useForm';
 import {
 	type CheckoutUpdateStateScope,
 	useCheckoutUpdateStateChange,
-} from "@/checkout/state/updateStateStore";
+} from '@/checkout/state/updateStateStore';
 
 export type AutoSaveAddressFormData = Partial<AddressFormData>;
 
@@ -38,19 +38,19 @@ export const useAutoSaveAddressForm = ({
 	const debouncedSubmit = useDebouncedSubmit(onSubmit);
 
 	const formHelpers = pick(form, [
-		"setErrors",
-		"setStatus",
-		"setTouched",
-		"setValues",
-		"setSubmitting",
-		"setFormikState",
-		"setFieldValue",
-		"setFieldTouched",
-		"setFieldError",
-		"validateForm",
-		"validateField",
-		"resetForm",
-		"submitForm",
+		'setErrors',
+		'setStatus',
+		'setTouched',
+		'setValues',
+		'setSubmitting',
+		'setFormikState',
+		'setFieldValue',
+		'setFieldTouched',
+		'setFieldError',
+		'validateForm',
+		'validateField',
+		'resetForm',
+		'submitForm',
 	]) as FormHelpers<AutoSaveAddressFormData>;
 
 	// it'd make sense for onSubmit prop to be optional but formik has ignored this
@@ -60,7 +60,7 @@ export const useAutoSaveAddressForm = ({
 		const formErrors = validateForm(values);
 
 		if (!hasErrors(formErrors) && dirty) {
-			setCheckoutUpdateState("loading");
+			setCheckoutUpdateState('loading');
 			void debouncedSubmit({ ...initialValues, countryCode: values.countryCode, ...values }, formHelpers);
 		}
 	}, [validateForm, values, dirty, setCheckoutUpdateState, debouncedSubmit, initialValues, formHelpers]);
@@ -68,7 +68,7 @@ export const useAutoSaveAddressForm = ({
 	const onChange: ChangeHandler = (event) => {
 		const { name, value } = event.target;
 
-		if (name === "countryCode") {
+		if (name === 'countryCode') {
 			setCountryCode(value as CountryCode);
 		}
 

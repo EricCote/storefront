@@ -1,20 +1,20 @@
-import { omit } from "lodash-es";
-import { useMemo } from "react";
+import { omit } from 'lodash-es';
+import { useMemo } from 'react';
 
 import {
 	getAddressFormDataFromAddress,
 	getAddressInputData,
 	getAddressValidationRulesVariables,
-} from "@/checkout/components/AddressForm/utils";
-import { useCheckoutShippingAddressUpdateMutation } from "@/checkout/graphql";
+} from '@/checkout/components/AddressForm/utils';
+import { useCheckoutShippingAddressUpdateMutation } from '@/checkout/graphql';
 import {
 	type AutoSaveAddressFormData,
 	useAutoSaveAddressForm,
-} from "@/checkout/hooks/useAutoSaveAddressForm";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useCheckoutFormValidationTrigger } from "@/checkout/hooks/useCheckoutFormValidationTrigger";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { useSetCheckoutFormValidationState } from "@/checkout/hooks/useSetCheckoutFormValidationState";
+} from '@/checkout/hooks/useAutoSaveAddressForm';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { useCheckoutFormValidationTrigger } from '@/checkout/hooks/useCheckoutFormValidationTrigger';
+import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
+import { useSetCheckoutFormValidationState } from '@/checkout/hooks/useSetCheckoutFormValidationState';
 
 export const useGuestShippingAddressForm = () => {
 	const {
@@ -22,17 +22,17 @@ export const useGuestShippingAddressForm = () => {
 	} = useCheckout();
 
 	const [, checkoutShippingAddressUpdate] = useCheckoutShippingAddressUpdateMutation();
-	const { setCheckoutFormValidationState } = useSetCheckoutFormValidationState("shippingAddress");
+	const { setCheckoutFormValidationState } = useSetCheckoutFormValidationState('shippingAddress');
 
 	const onSubmit = useFormSubmit<AutoSaveAddressFormData, typeof checkoutShippingAddressUpdate>(
 		useMemo(
 			() => ({
-				scope: "checkoutShippingUpdate",
+				scope: 'checkoutShippingUpdate',
 				onSubmit: checkoutShippingAddressUpdate,
 				parse: ({ languageCode, checkoutId, ...rest }) => ({
 					languageCode,
 					checkoutId,
-					shippingAddress: getAddressInputData(omit(rest, "channel")),
+					shippingAddress: getAddressInputData(omit(rest, 'channel')),
 					validationRules: getAddressValidationRulesVariables({ autoSave: true }),
 				}),
 				onSuccess: ({ data, formHelpers }) => {
@@ -49,12 +49,12 @@ export const useGuestShippingAddressForm = () => {
 	const form = useAutoSaveAddressForm({
 		onSubmit,
 		initialValues: getAddressFormDataFromAddress(shippingAddress),
-		scope: "checkoutShippingUpdate",
+		scope: 'checkoutShippingUpdate',
 	});
 
 	useCheckoutFormValidationTrigger({
 		form,
-		scope: "shippingAddress",
+		scope: 'shippingAddress',
 	});
 
 	return form;

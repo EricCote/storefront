@@ -1,11 +1,11 @@
-import { type OrderFragment, type ShippingFragment } from "@/checkout/graphql";
+import { type OrderFragment, type ShippingFragment } from '@/checkout/graphql';
 
-import { Section } from "./Section";
+import { Section } from './Section';
 
-const isShipping = (deliveryMethod: OrderFragment["deliveryMethod"]): deliveryMethod is ShippingFragment =>
-	deliveryMethod?.__typename === "ShippingMethod";
+const isShipping = (deliveryMethod: OrderFragment['deliveryMethod']): deliveryMethod is ShippingFragment =>
+	deliveryMethod?.__typename === 'ShippingMethod';
 
-export const DeliverySection = ({ deliveryMethod }: { deliveryMethod: OrderFragment["deliveryMethod"] }) => {
+export const DeliverySection = ({ deliveryMethod }: { deliveryMethod: OrderFragment['deliveryMethod'] }) => {
 	const getDeliveryEstimateText = () => {
 		const { minimumDeliveryDays: min, maximumDeliveryDays: max } = deliveryMethod as ShippingFragment;
 
@@ -17,9 +17,9 @@ export const DeliverySection = ({ deliveryMethod }: { deliveryMethod: OrderFragm
 	};
 
 	return (
-		<Section title="Delivery method">
+		<Section title='Delivery method'>
 			{!isShipping(deliveryMethod) ? (
-				<p color="secondary">Not applicable</p>
+				<p color='secondary'>Not applicable</p>
 			) : (
 				<>
 					<p>{deliveryMethod.name}</p>

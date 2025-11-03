@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from 'react';
 
-import { useCheckoutEmailUpdateMutation } from "@/checkout/graphql";
-import { useDebouncedSubmit } from "@/checkout/hooks/useDebouncedSubmit";
-import { useSubmit } from "@/checkout/hooks/useSubmit/useSubmit";
-import { isValidEmail } from "@/checkout/lib/utils/common";
+import { useCheckoutEmailUpdateMutation } from '@/checkout/graphql';
+import { useDebouncedSubmit } from '@/checkout/hooks/useDebouncedSubmit';
+import { useSubmit } from '@/checkout/hooks/useSubmit/useSubmit';
+import { isValidEmail } from '@/checkout/lib/utils/common';
 
 interface CheckoutEmailUpdateFormData {
 	email: string;
@@ -16,7 +16,7 @@ export const useCheckoutEmailUpdate = ({ email }: CheckoutEmailUpdateFormData) =
 	const onSubmit = useSubmit<CheckoutEmailUpdateFormData, typeof updateEmail>(
 		useMemo(
 			() => ({
-				scope: "checkoutEmailUpdate",
+				scope: 'checkoutEmailUpdate',
 				onSubmit: updateEmail,
 				shouldAbort: async ({ formData: { email } }) => {
 					// @todo we'll use validateField once we fix it because

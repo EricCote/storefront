@@ -1,21 +1,21 @@
-import { useEffect, useState, useMemo } from "react";
-import { bool, object, type Schema, string } from "yup";
+import { useEffect, useState, useMemo } from 'react';
+import { bool, object, type Schema, string } from 'yup';
 
-import { useUserRegisterMutation } from "@/checkout/graphql";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useCheckoutFormValidationTrigger } from "@/checkout/hooks/useCheckoutFormValidationTrigger";
-import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
-import { type ChangeHandler, hasErrors, useForm } from "@/checkout/hooks/useForm";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { useUser } from "@/checkout/hooks/useUser";
-import { isValidEmail } from "@/checkout/lib/utils/common";
-import { getCurrentHref } from "@/checkout/lib/utils/locale";
-import { useCheckoutEmailUpdate } from "@/checkout/sections/GuestUser/useCheckoutEmailUpdate";
+import { useUserRegisterMutation } from '@/checkout/graphql';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { useCheckoutFormValidationTrigger } from '@/checkout/hooks/useCheckoutFormValidationTrigger';
+import { useErrorMessages } from '@/checkout/hooks/useErrorMessages';
+import { type ChangeHandler, hasErrors, useForm } from '@/checkout/hooks/useForm';
+import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
+import { useUser } from '@/checkout/hooks/useUser';
+import { isValidEmail } from '@/checkout/lib/utils/common';
+import { getCurrentHref } from '@/checkout/lib/utils/locale';
+import { useCheckoutEmailUpdate } from '@/checkout/sections/GuestUser/useCheckoutEmailUpdate';
 import {
 	useCheckoutUpdateStateActions,
 	useCheckoutUpdateStateChange,
 	useUserRegisterState,
-} from "@/checkout/state/updateStateStore";
+} from '@/checkout/state/updateStateStore';
 
 export interface GuestUserFormData {
 	email: string;
@@ -34,29 +34,29 @@ export const useGuestUserForm = ({ initialEmail }: GuestUserFormProps) => {
 	const shouldUserRegister = useUserRegisterState();
 	const { setShouldRegisterUser, setSubmitInProgress } = useCheckoutUpdateStateActions();
 	const { errorMessages } = useErrorMessages();
-	const { setCheckoutUpdateState: setRegisterState } = useCheckoutUpdateStateChange("userRegister");
+	const { setCheckoutUpdateState: setRegisterState } = useCheckoutUpdateStateChange('userRegister');
 	const [, userRegister] = useUserRegisterMutation();
 	const [userRegisterDisabled, setUserRegistrationDisabled] = useState(false);
-	const { setCheckoutUpdateState } = useCheckoutUpdateStateChange("checkoutEmailUpdate");
+	const { setCheckoutUpdateState } = useCheckoutUpdateStateChange('checkoutEmailUpdate');
 
 	const validationSchema = object({
 		createAccount: bool(),
 		email: string().email(errorMessages.invalid).required(errorMessages.required),
-		password: string().when(["createAccount"], ([createAccount], field) =>
-			createAccount ? field.min(8, "Password must be at least 8 characters").required() : field,
+		password: string().when(['createAccount'], ([createAccount], field) =>
+			createAccount ? field.min(8, 'Password must be at least 8 characters').required() : field,
 		),
 	}) as Schema<GuestUserFormData>;
 
 	const defaultFormData: GuestUserFormData = {
-		email: initialEmail || checkout.email || "",
-		password: "",
+		email: initialEmail || checkout.email || '',
+		password: '',
 		createAccount: false,
 	};
 
 	const onSubmit = useFormSubmit<GuestUserFormData, typeof userRegister>(
 		useMemo(
 			() => ({
-				scope: "userRegister",
+				scope: 'userRegister',
 				onSubmit: userRegister,
 				onStart: () => setShouldRegisterUser(false),
 				shouldAbort: ({ formData, formHelpers: { validateForm } }) => {
@@ -73,12 +73,12 @@ export const useGuestUserForm = ({ initialEmail }: GuestUserFormProps) => {
 				}),
 				onError: ({ errors }) => {
 					setSubmitInProgress(false);
-					const hasAccountForCurrentEmail = errors.some(({ code }) => code === "UNIQUE");
+					const hasAccountForCurrentEmail = errors.some(({ code }) => code === 'UNIQUE');
 
 					if (hasAccountForCurrentEmail) {
 						setUserRegistrationDisabled(true);
 						// @todo this logic will be removed once new register flow is implemented
-						setTimeout(() => setRegisterState("success"), 100);
+						setTimeout(() => setRegisterState('success'), 100);
 					}
 				},
 				onSuccess: () => setUserRegistrationDisabled(true),
@@ -103,7 +103,7 @@ export const useGuestUserForm = ({ initialEmail }: GuestUserFormProps) => {
 	} = form;
 
 	useCheckoutFormValidationTrigger({
-		scope: "guestUser",
+		scope: 'guestUser',
 		form,
 	});
 
@@ -130,7 +130,7 @@ export const useGuestUserForm = ({ initialEmail }: GuestUserFormProps) => {
 		const error = await isValidEmail(event.target.value as string);
 
 		if (!error) {
-			setCheckoutUpdateState("loading");
+			setCheckoutUpdateState('loading');
 		}
 	};
 

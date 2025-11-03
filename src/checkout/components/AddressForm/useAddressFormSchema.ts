@@ -1,10 +1,10 @@
-import { useCallback, useMemo, useState } from "react";
-import { mixed, object, string } from "yup";
+import { useCallback, useMemo, useState } from 'react';
+import { mixed, object, string } from 'yup';
 
-import { type AddressField } from "@/checkout/components/AddressForm/types";
-import { useAddressFormUtils } from "@/checkout/components/AddressForm/useAddressFormUtils";
-import { type CountryCode } from "@/checkout/graphql";
-import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
+import { type AddressField } from '@/checkout/components/AddressForm/types';
+import { useAddressFormUtils } from '@/checkout/components/AddressForm/useAddressFormUtils';
+import { type CountryCode } from '@/checkout/graphql';
+import { useErrorMessages } from '@/checkout/hooks/useErrorMessages';
 
 export const useAddressFormSchema = (initialCountryCode?: CountryCode) => {
 	const { errorMessages } = useErrorMessages();
@@ -13,7 +13,7 @@ export const useAddressFormSchema = (initialCountryCode?: CountryCode) => {
 
 	const getFieldValidator = useCallback(
 		(field: AddressField) => {
-			if (field === "countryCode") {
+			if (field === 'countryCode') {
 				return mixed<CountryCode>().required(errorMessages.required);
 			}
 

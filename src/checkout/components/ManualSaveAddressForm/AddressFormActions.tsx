@@ -1,6 +1,6 @@
-import { Button } from "@/checkout/components/Button";
-import { IconButton } from "@/checkout/components/IconButton";
-import { TrashIcon } from "@/checkout/ui-kit/icons";
+import { Button } from '@/checkout/components/Button';
+import { IconButton } from '@/checkout/components/IconButton';
+import { TrashIcon } from '@/checkout/ui-kit/icons';
 
 interface AddressFormActionsProps {
 	onDelete?: () => void;
@@ -16,23 +16,23 @@ export const AddressFormActions: React.FC<AddressFormActionsProps> = ({
 	loading,
 }) => {
 	return (
-		<div className="flex flex-row justify-end gap-2">
+		<div className='flex flex-row justify-end gap-2'>
 			{onDelete && (
-				<div className="flex">
-					<IconButton ariaLabel="Delete address" onClick={onDelete} icon={<TrashIcon aria-hidden />} />
+				<div className='flex'>
+					<IconButton ariaLabel='Delete address' onClick={onDelete} icon={<TrashIcon aria-hidden />} />
 				</div>
 			)}
 
-			<Button ariaLabel="Cancel editing" variant="secondary" onClick={onCancel} label="Cancel" />
+			<Button ariaLabel='Cancel editing' variant='secondary' onClick={onCancel} label='Cancel' />
 			{loading ? (
 				<Button
 					ariaDisabled
-					ariaLabel="Save address"
+					ariaLabel='Save address'
 					onClick={(e) => e.preventDefault()}
-					label="Processing…"
+					label='Processing…'
 				/>
 			) : (
-				<Button ariaLabel="Save address" onClick={onSubmit} label="Save address" />
+				<Button ariaLabel='Save address' onClick={onSubmit} label='Save address' />
 			)}
 		</div>
 	);

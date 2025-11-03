@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react';
 
-import { Button } from "@/checkout/components/Button";
-import { PasswordInput } from "@/checkout/components/PasswordInput";
-import { TextInput } from "@/checkout/components/TextInput";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
-import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
-import { isValidEmail } from "@/checkout/lib/utils/common";
+import { Button } from '@/checkout/components/Button';
+import { PasswordInput } from '@/checkout/components/PasswordInput';
+import { TextInput } from '@/checkout/components/TextInput';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { useErrorMessages } from '@/checkout/hooks/useErrorMessages';
+import { FormProvider } from '@/checkout/hooks/useForm/FormProvider';
+import { isValidEmail } from '@/checkout/lib/utils/common';
 import {
 	SignInFormContainer,
 	type SignInFormContainerProps,
-} from "@/checkout/sections/Contact/SignInFormContainer";
-import { usePasswordResetRequest } from "@/checkout/sections/SignIn/usePasswordResetRequest";
-import { useSignInForm } from "@/checkout/sections/SignIn/useSignInForm";
+} from '@/checkout/sections/Contact/SignInFormContainer';
+import { usePasswordResetRequest } from '@/checkout/sections/SignIn/usePasswordResetRequest';
+import { useSignInForm } from '@/checkout/sections/SignIn/useSignInForm';
 
-interface SignInProps extends Pick<SignInFormContainerProps, "onSectionChange"> {
+interface SignInProps extends Pick<SignInFormContainerProps, 'onSectionChange'> {
 	onSignInSuccess: () => void;
 	onEmailChange: (email: string) => void;
 	email: string;
@@ -33,7 +33,7 @@ export const SignIn: React.FC<SignInProps> = ({
 
 	const form = useSignInForm({
 		onSuccess: onSignInSuccess,
-		initialEmail: initialEmail || checkoutEmail || "",
+		initialEmail: initialEmail || checkoutEmail || '',
 	});
 
 	const {
@@ -64,37 +64,37 @@ export const SignIn: React.FC<SignInProps> = ({
 
 	return (
 		<SignInFormContainer
-			title="Sign in"
-			redirectSubtitle="New customer?"
-			redirectButtonLabel="Guest checkout"
+			title='Sign in'
+			redirectSubtitle='New customer?'
+			redirectButtonLabel='Guest checkout'
 			onSectionChange={onSectionChange}
 		>
 			<FormProvider form={form}>
-				<div className="grid grid-cols-1 gap-3">
+				<div className='grid grid-cols-1 gap-3'>
 					<TextInput
 						required
-						name="email"
-						label="Email"
+						name='email'
+						label='Email'
 						onChange={(event) => {
 							handleChange(event);
 							onEmailChange(event.currentTarget.value);
 						}}
 					/>
-					<PasswordInput name="password" label="Password" required />
-					<div className="flex w-full flex-row items-center justify-end">
+					<PasswordInput name='password' label='Password' required />
+					<div className='flex w-full flex-row items-center justify-end'>
 						<Button
 							ariaDisabled={isSubmitting}
-							ariaLabel="send password reset link"
-							variant="tertiary"
-							label={passwordResetSent ? "Resend?" : "Forgot password?"}
-							className="ml-1 mr-4"
+							ariaLabel='send password reset link'
+							variant='tertiary'
+							label={passwordResetSent ? 'Resend?' : 'Forgot password?'}
+							className='ml-1 mr-4'
 							onClick={(e) => (isSubmitting ? e.preventDefault() : onPasswordResetRequest)}
 						/>
 						<Button
-							type="submit"
+							type='submit'
 							disabled={isSubmitting}
-							ariaLabel={"Sign in"}
-							label={isSubmitting ? "Processing…" : "Sign in"}
+							ariaLabel={'Sign in'}
+							label={isSubmitting ? 'Processing…' : 'Sign in'}
 						/>
 					</div>
 				</div>

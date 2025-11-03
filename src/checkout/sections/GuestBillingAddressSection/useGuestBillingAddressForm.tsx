@@ -1,22 +1,22 @@
-import { omit } from "lodash-es";
-import { useMemo } from "react";
+import { omit } from 'lodash-es';
+import { useMemo } from 'react';
 
-import { useAddressFormSchema } from "@/checkout/components/AddressForm/useAddressFormSchema";
+import { useAddressFormSchema } from '@/checkout/components/AddressForm/useAddressFormSchema';
 import {
 	getAddressFormDataFromAddress,
 	getAddressInputData,
 	getAddressValidationRulesVariables,
-} from "@/checkout/components/AddressForm/utils";
-import { useCheckoutBillingAddressUpdateMutation } from "@/checkout/graphql";
+} from '@/checkout/components/AddressForm/utils';
+import { useCheckoutBillingAddressUpdateMutation } from '@/checkout/graphql';
 import {
 	type AutoSaveAddressFormData,
 	useAutoSaveAddressForm,
-} from "@/checkout/hooks/useAutoSaveAddressForm";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useCheckoutFormValidationTrigger } from "@/checkout/hooks/useCheckoutFormValidationTrigger";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { useSetCheckoutFormValidationState } from "@/checkout/hooks/useSetCheckoutFormValidationState";
-import { useCheckoutUpdateStateActions } from "@/checkout/state/updateStateStore";
+} from '@/checkout/hooks/useAutoSaveAddressForm';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { useCheckoutFormValidationTrigger } from '@/checkout/hooks/useCheckoutFormValidationTrigger';
+import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
+import { useSetCheckoutFormValidationState } from '@/checkout/hooks/useSetCheckoutFormValidationState';
+import { useCheckoutUpdateStateActions } from '@/checkout/state/updateStateStore';
 
 interface GuestBillingAddressFormProps {
 	skipValidation: boolean;
@@ -28,13 +28,13 @@ export const useGuestBillingAddressForm = ({ skipValidation }: GuestBillingAddre
 	} = useCheckout();
 	const validationSchema = useAddressFormSchema();
 	const [, checkoutBillingAddressUpdate] = useCheckoutBillingAddressUpdateMutation();
-	const { setCheckoutFormValidationState } = useSetCheckoutFormValidationState("billingAddress");
+	const { setCheckoutFormValidationState } = useSetCheckoutFormValidationState('billingAddress');
 	const { setChangingBillingCountry } = useCheckoutUpdateStateActions();
 
 	const onSubmit = useFormSubmit<AutoSaveAddressFormData, typeof checkoutBillingAddressUpdate>(
 		useMemo(
 			() => ({
-				scope: "checkoutBillingUpdate",
+				scope: 'checkoutBillingUpdate',
 				onSubmit: checkoutBillingAddressUpdate,
 				onStart: ({ formData }) => {
 					if (formData.countryCode !== billingAddress?.country.code) {
@@ -44,7 +44,7 @@ export const useGuestBillingAddressForm = ({ skipValidation }: GuestBillingAddre
 				parse: ({ languageCode, checkoutId, ...rest }) => ({
 					languageCode,
 					checkoutId,
-					billingAddress: getAddressInputData(omit(rest, ["channel"])),
+					billingAddress: getAddressInputData(omit(rest, ['channel'])),
 					validationRules: getAddressValidationRulesVariables({ autoSave: true }),
 				}),
 				onSuccess: ({ data, formHelpers }) => {
@@ -70,12 +70,12 @@ export const useGuestBillingAddressForm = ({ skipValidation }: GuestBillingAddre
 		onSubmit,
 		initialValues: getAddressFormDataFromAddress(billingAddress),
 		validationSchema,
-		scope: "checkoutBillingUpdate",
+		scope: 'checkoutBillingUpdate',
 	});
 
 	useCheckoutFormValidationTrigger({
 		form,
-		scope: "billingAddress",
+		scope: 'billingAddress',
 		skip: skipValidation,
 	});
 

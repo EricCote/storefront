@@ -1,5 +1,5 @@
-import { type FormDataBase } from "@/checkout/hooks/useForm";
-import { type ErrorCode } from "@/checkout/lib/globalTypes";
+import { type FormDataBase } from '@/checkout/hooks/useForm';
+import { type ErrorCode } from '@/checkout/lib/globalTypes';
 
 export type CustomErrors = any[];
 

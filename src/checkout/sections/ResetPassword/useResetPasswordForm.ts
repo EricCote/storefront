@@ -1,10 +1,10 @@
-import { useSaleorAuthContext } from "@saleor/auth-sdk/react";
-import { object, string } from "yup";
+import { useSaleorAuthContext } from '@saleor/auth-sdk/react';
+import { object, string } from 'yup';
 
-import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
-import { useForm } from "@/checkout/hooks/useForm";
-import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
-import { clearQueryParams, getQueryParams } from "@/checkout/lib/utils/url";
+import { useErrorMessages } from '@/checkout/hooks/useErrorMessages';
+import { useForm } from '@/checkout/hooks/useForm';
+import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
+import { clearQueryParams, getQueryParams } from '@/checkout/lib/utils/url';
 
 interface ResetPasswordFormData {
 	password: string;
@@ -20,18 +20,18 @@ export const useResetPasswordForm = ({ onSuccess }: { onSuccess: () => void }) =
 
 	const onSubmit = useFormSubmit<ResetPasswordFormData, typeof resetPassword>({
 		onSubmit: resetPassword,
-		scope: "resetPassword",
+		scope: 'resetPassword',
 		parse: ({ password }) => {
 			const { passwordResetEmail, passwordResetToken } = getQueryParams();
-			return { password, email: passwordResetEmail || "", token: passwordResetToken || "" };
+			return { password, email: passwordResetEmail || '', token: passwordResetToken || '' };
 		},
 		onSuccess: () => {
-			clearQueryParams("passwordResetToken", "passwordResetEmail");
+			clearQueryParams('passwordResetToken', 'passwordResetEmail');
 			onSuccess();
 		},
 	});
 
-	const initialValues: ResetPasswordFormData = { password: "" };
+	const initialValues: ResetPasswordFormData = { password: '' };
 
 	const form = useForm<ResetPasswordFormData>({
 		initialValues,

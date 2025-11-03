@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import { IconButton } from "@/checkout/components/IconButton";
-import { useCheckoutRemovePromoCodeMutation } from "@/checkout/graphql";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { isOrderConfirmationPage } from "@/checkout/lib/utils/url";
-import { RemoveIcon } from "@/checkout/ui-kit/icons";
+import { IconButton } from '@/checkout/components/IconButton';
+import { useCheckoutRemovePromoCodeMutation } from '@/checkout/graphql';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { isOrderConfirmationPage } from '@/checkout/lib/utils/url';
+import { RemoveIcon } from '@/checkout/ui-kit/icons';
 
-import { SummaryMoneyRow, type SummaryMoneyRowProps } from "./SummaryMoneyRow";
+import { SummaryMoneyRow, type SummaryMoneyRowProps } from './SummaryMoneyRow';
 
 interface SummaryPromoCodeRowProps extends SummaryMoneyRowProps {
 	promoCode?: string;
@@ -27,7 +27,7 @@ export const SummaryPromoCodeRow: React.FC<SummaryPromoCodeRowProps> = ({
 		const variables = promoCode ? { promoCode: promoCode } : { promoCodeId: promoCodeId as string };
 
 		void checkoutRemovePromoCode({
-			languageCode: "EN_US",
+			languageCode: 'EN_US',
 			checkoutId: checkout.id,
 			...variables,
 		});
@@ -37,7 +37,7 @@ export const SummaryPromoCodeRow: React.FC<SummaryPromoCodeRowProps> = ({
 		<SummaryMoneyRow {...rest}>
 			{editable && (
 				<div>
-					<IconButton onClick={onDelete} ariaLabel="remove promo code" icon={<RemoveIcon aria-hidden />} />
+					<IconButton onClick={onDelete} ariaLabel='remove promo code' icon={<RemoveIcon aria-hidden />} />
 				</div>
 			)}
 		</SummaryMoneyRow>

@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { type CountryCode, usePaymentGatewaysInitializeMutation } from "@/checkout/graphql";
-import { useCheckout } from "@/checkout/hooks/useCheckout";
-import { useSubmit } from "@/checkout/hooks/useSubmit";
-import { type MightNotExist } from "@/checkout/lib/globalTypes";
-import { type ParsedPaymentGateways } from "@/checkout/sections/PaymentSection/types";
-import { getFilteredPaymentGateways } from "@/checkout/sections/PaymentSection/utils";
+import { type CountryCode, usePaymentGatewaysInitializeMutation } from '@/checkout/graphql';
+import { useCheckout } from '@/checkout/hooks/useCheckout';
+import { useSubmit } from '@/checkout/hooks/useSubmit';
+import { type MightNotExist } from '@/checkout/lib/globalTypes';
+import { type ParsedPaymentGateways } from '@/checkout/sections/PaymentSection/types';
+import { getFilteredPaymentGateways } from '@/checkout/sections/PaymentSection/utils';
 
 export const usePaymentGatewaysInitialize = () => {
 	const {
@@ -26,7 +26,7 @@ export const usePaymentGatewaysInitialize = () => {
 		useMemo(
 			() => ({
 				hideAlerts: true,
-				scope: "paymentGatewaysInitialize",
+				scope: 'paymentGatewaysInitialize',
 				shouldAbort: () => !availablePaymentGateways.length,
 				onSubmit: paymentGatewaysInitialize,
 				parse: () => ({
@@ -40,7 +40,7 @@ export const usePaymentGatewaysInitialize = () => {
 					const parsedConfigs = (data.gatewayConfigs || []) as ParsedPaymentGateways;
 
 					if (!parsedConfigs.length) {
-						throw new Error("No available payment gateways");
+						throw new Error('No available payment gateways');
 					}
 
 					setGatewayConfigs(parsedConfigs);

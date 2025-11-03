@@ -7,7 +7,7 @@ import { type AddressFragment } from '@/checkout/graphql';
 
 interface AddressSelectBoxProps<TFieldName extends string>
 	extends Omit<SelectBoxProps<TFieldName>, 'children'> {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	 
 	address: Partial<Record<AddressField, any>>;
 	onEdit: () => void;
 	unavailable: boolean;

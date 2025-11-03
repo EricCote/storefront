@@ -1,9 +1,9 @@
-import { Address } from "@/checkout/components/Address";
-import { useOrder } from "@/checkout/hooks/useOrder";
+import { Address } from '@/checkout/components/Address';
+import { useOrder } from '@/checkout/hooks/useOrder';
 
-import { DeliverySection } from "./DeliverySection";
-import { PaymentSection } from "./PaymentSection";
-import { Section } from "./Section";
+import { DeliverySection } from './DeliverySection';
+import { PaymentSection } from './PaymentSection';
+import { Section } from './Section';
 
 export const OrderInfo = () => {
 	const {
@@ -11,19 +11,19 @@ export const OrderInfo = () => {
 	} = useOrder();
 
 	return (
-		<section className="mt-8">
+		<section className='mt-8'>
 			<PaymentSection />
 			<DeliverySection deliveryMethod={deliveryMethod} />
-			<Section title="Contact details">
+			<Section title='Contact details'>
 				<p>{userEmail}</p>
 			</Section>
 			{shippingAddress && (
-				<Section title="Shipping address">
+				<Section title='Shipping address'>
 					<Address address={shippingAddress} />
 				</Section>
 			)}
 			{billingAddress && (
-				<Section title="Billing address">
+				<Section title='Billing address'>
 					<Address address={billingAddress} />
 				</Section>
 			)}

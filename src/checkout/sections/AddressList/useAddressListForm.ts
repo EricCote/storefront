@@ -1,15 +1,15 @@
-import { compact } from "lodash-es";
-import { useCallback, useEffect, useRef } from "react";
+import { compact } from 'lodash-es';
+import { useCallback, useEffect, useRef } from 'react';
 
-import { type OptionalAddress } from "@/checkout/components/AddressForm/types";
-import { getByMatchingAddress, isMatchingAddress } from "@/checkout/components/AddressForm/utils";
-import { type AddressFragment } from "@/checkout/graphql";
-import { useAddressAvailability } from "@/checkout/hooks/useAddressAvailability";
-import { useDebouncedSubmit } from "@/checkout/hooks/useDebouncedSubmit";
-import { useForm } from "@/checkout/hooks/useForm";
-import { type FormSubmitFn } from "@/checkout/hooks/useFormSubmit";
-import { useUser } from "@/checkout/hooks/useUser";
-import { getById, getByUnmatchingId } from "@/checkout/lib/utils/common";
+import { type OptionalAddress } from '@/checkout/components/AddressForm/types';
+import { getByMatchingAddress, isMatchingAddress } from '@/checkout/components/AddressForm/utils';
+import { type AddressFragment } from '@/checkout/graphql';
+import { useAddressAvailability } from '@/checkout/hooks/useAddressAvailability';
+import { useDebouncedSubmit } from '@/checkout/hooks/useDebouncedSubmit';
+import { useForm } from '@/checkout/hooks/useForm';
+import { type FormSubmitFn } from '@/checkout/hooks/useFormSubmit';
+import { useUser } from '@/checkout/hooks/useUser';
+import { getById, getByUnmatchingId } from '@/checkout/lib/utils/common';
 
 export interface AddressListFormData {
 	selectedAddressId: string | undefined;
@@ -99,7 +99,7 @@ export const useAddressListForm = ({
 		// if not, prefer user default address
 		if (defaultAddress && matchingDefaultAddressInAddresses) {
 			previousCheckoutAddress.current = defaultAddress;
-			void setFieldValue("selectedAddressId", matchingDefaultAddressInAddresses.id);
+			void setFieldValue('selectedAddressId', matchingDefaultAddressInAddresses.id);
 			return;
 		}
 
@@ -108,7 +108,7 @@ export const useAddressListForm = ({
 		// otherwise just choose any available
 		if (firstAvailableAddress) {
 			previousCheckoutAddress.current = firstAvailableAddress;
-			void setFieldValue("selectedAddressId", firstAvailableAddress.id);
+			void setFieldValue('selectedAddressId', firstAvailableAddress.id);
 		}
 
 		// otherwise it gets way overcomplicated to get this to run only when needed

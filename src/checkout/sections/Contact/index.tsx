@@ -1,2 +1,2 @@
-export * from "./Contact";
-export * from "./ContactSkeleton";
+export * from './Contact';
+export * from './ContactSkeleton';

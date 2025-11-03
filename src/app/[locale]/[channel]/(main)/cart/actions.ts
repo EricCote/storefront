@@ -1,9 +1,9 @@
-"use server";
+'use server';
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath } from 'next/cache';
 
-import { CheckoutDeleteLinesDocument } from "@/gql/graphql";
-import { executeGraphQL } from "@/lib/graphql";
+import { CheckoutDeleteLinesDocument } from '@/gql/graphql';
+import { executeGraphQL } from '@/lib/graphql';
 
 type deleteLineFromCheckoutArgs = {
 	lineId: string;
@@ -16,8 +16,8 @@ export const deleteLineFromCheckout = async ({ lineId, checkoutId }: deleteLineF
 			checkoutId,
 			lineIds: [lineId],
 		},
-		cache: "no-cache",
+		cache: 'no-cache',
 	});
 
-	revalidatePath("/cart");
+	revalidatePath('/cart');
 };
