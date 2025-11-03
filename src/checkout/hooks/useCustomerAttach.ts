@@ -11,7 +11,7 @@ export const useCustomerAttach = () => {
 
 	const [{ fetching: fetchingCustomerAttach }, customerAttach] = useCheckoutCustomerAttachMutation();
 
-	const onSubmit = useSubmit<{}, typeof customerAttach>(
+	const onSubmit = useSubmit<Record<string, never>, typeof customerAttach>(
 		useMemo(
 			() => ({
 				hideAlerts: true,
@@ -22,11 +22,10 @@ export const useCustomerAttach = () => {
 				parse: ({ languageCode, checkoutId }) => ({ languageCode, checkoutId }),
 				onError: ({ errors }) => {
 					if (
-						errors.some(
-							(error) =>
-								error?.message?.includes(
-									'[GraphQL] You cannot reassign a checkout that is already attached to a user.',
-								),
+						errors.some((error) =>
+							error?.message?.includes(
+								'[GraphQL] You cannot reassign a checkout that is already attached to a user.',
+							),
 						)
 					) {
 						refetch();

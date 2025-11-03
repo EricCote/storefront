@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 
 import { AddressSectionSkeleton } from '@/checkout/components/AddressSectionSkeleton';
 import { type AddressFragment } from '@/checkout/graphql';
@@ -11,9 +11,7 @@ import { AddressList } from '@/checkout/sections/AddressList/AddressList';
 import { UserAddressSectionContainer } from '@/checkout/sections/UserAddressSectionContainer';
 import { useUserShippingAddressForm } from '@/checkout/sections/UserShippingAddressSection/useUserShippingAddressForm';
 
-interface UserShippingAddressSectionProps {}
-
-export const UserShippingAddressSection: React.FC<UserShippingAddressSectionProps> = ({}) => {
+export const UserShippingAddressSection = () => {
 	const { availableShippingCountries } = useAvailableShippingCountries();
 	const {
 		form,

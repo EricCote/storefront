@@ -16,9 +16,7 @@ import { useBillingSameAsShippingForm } from '@/checkout/sections/GuestBillingAd
 import { UserAddressSectionContainer } from '@/checkout/sections/UserAddressSectionContainer';
 import { useUserBillingAddressForm } from '@/checkout/sections/UserBillingAddressSection/useUserBillingAddressForm';
 
-interface UserBillingAddressSectionProps {}
-
-export const UserBillingAddressSection: React.FC<UserBillingAddressSectionProps> = ({}) => {
+export const UserBillingAddressSection = () => {
 	const {
 		checkout: { isShippingRequired },
 	} = useCheckout();

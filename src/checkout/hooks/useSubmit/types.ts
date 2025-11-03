@@ -25,7 +25,7 @@ export type ParserFunction<TData extends FormDataBase, TMutationFn extends Mutat
 ) => MutationVars<TMutationFn>;
 
 export type SimpleSubmitFn<
-	TData extends FormDataBase | {},
+	TData extends FormDataBase | Record<string, never>,
 	TErrorCodes extends string = string,
 > = keyof TData extends never
 	? () => SubmitReturnWithErrors<TData, TErrorCodes>

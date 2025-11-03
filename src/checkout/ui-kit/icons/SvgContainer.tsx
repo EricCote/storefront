@@ -1,6 +1,6 @@
 import { type SVGAttributes, type ReactNode } from 'react';
 
-export type SvgProps = SVGAttributes<{}>;
+export type SvgProps = SVGAttributes<object>;
 
 export interface SvgContainerProps extends SvgProps {
 	size?: number;
