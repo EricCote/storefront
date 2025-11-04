@@ -6,6 +6,7 @@ import { MobileMenu } from './components/MobileMenu';
 import { NavLinks } from './components/NavLinks';
 import { SearchBar } from './components/SearchBar';
 import { UserMenuContainer } from './components/UserMenu/UserMenuContainer';
+import { ThemeToggle } from '../ThemeToggle';
 
 export const Nav = ({ channel }: { channel: string }) => {
 	return (
@@ -31,6 +32,12 @@ export const Nav = ({ channel }: { channel: string }) => {
 					<LanguageNavItem />
 				</Suspense>
 			</div>
+			<div className='flex items-center'>
+				<Suspense fallback={<div className='w-6' />}>
+					<ThemeToggle />
+				</Suspense>
+			</div>
+
 			<Suspense>
 				<MobileMenu>
 					<SearchBar channel={channel} />
