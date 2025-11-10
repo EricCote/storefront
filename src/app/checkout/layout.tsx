@@ -5,7 +5,7 @@ import { AuthProvider } from '@/ui/components/AuthProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-	title: 'Desired Deviance',
+	title: "Centre d'arts Préville",
 	description: 'checkout page',
 };
 

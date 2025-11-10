@@ -31,14 +31,14 @@
     "channel": "Canal"
   },
   "metadata": {
-    "title": "Desired Deviance",
-    "description": "Détaillant de lingerie fine et de costumes sexy."
+    "title": "Centre d'arts Préville",
+    "description": "Cours de danse et de musique"
   },
   "nav": {
     "all": "Tous",
-    "copy": "Copyright © {currentYear} Desired Deviance, Inc.",
+    "copy": "Copyright © {currentYear} Centre d'arts Préville",
     "power_by": "Généré par ",
-    "search": "Rechercher (en anglais)",
+    "search": "Rechercher",
     "nothing_found": "Aucun produit trouvé"
   },
   "cart": {

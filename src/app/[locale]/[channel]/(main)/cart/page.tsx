@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // export const metadata = {
-// 	title: 'Shopping Cart · Desired Deviance',
+// 	title: 'Shopping Cart · Nom Entreprise',
 // };
 
 export default async function Page(props: { params: Promise<{ channel: string }> }) {

@@ -31,12 +31,12 @@
     "channel": "Channel"
   },
   "metadata": {
-    "title": "Desired Deviance",
-    "description": "Retailer of sexy lingerie, and playful costumes."
+    "title": "Préville Arts Center",
+    "description": "Dance and Music courses."
   },
   "nav": {
     "all": "All",
-    "copy": "Copyright © {currentYear} Desired Deviance, Inc.",
+    "copy": "Copyright © {currentYear} Préville Arts Center",
     "power_by": "Powered by ",
     "search": "Search for products...",
     "nothing_found": "Nothing found"

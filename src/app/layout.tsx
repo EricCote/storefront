@@ -20,8 +20,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // export const metadata: Metadata = {
-// 	title: 'Desired Deviance',
-// 	description: 'Retailer of sexy lingerie, and playful costumes.',
+// 	title: 'Entreprise',
+// 	description: 'Description.',
 // 	metadataBase: process.env.NEXT_PUBLIC_STOREFRONT_URL
 // 		? new URL(process.env.NEXT_PUBLIC_STOREFRONT_URL)
 // 		: undefined,
