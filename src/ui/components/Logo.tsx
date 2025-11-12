@@ -6,9 +6,9 @@ import { getTranslations } from 'next-intl/server';
 
 import { LinkWithChannel } from '../atoms/LinkWithChannel';
 
-export const Logo = () => {
+export const Logo = async () => {
 	const pathname = usePathname();
-	const t = getTranslations("metadata")
+	const t = await getTranslations("metadata")
 
 	if (pathname === '/') {
 		return (

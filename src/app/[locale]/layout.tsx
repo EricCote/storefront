@@ -6,7 +6,7 @@ import { Suspense, type ReactNode } from 'react';
 import { routing } from '@/i18n/routing';
 import { DraftModeNotification } from '@/ui/components/DraftModeNotification';
 import { ThemeProvider } from '@/ui/components/ThemeProvider';
-import { ThemeScript } from '@/ui/components/ThemeScript';
+//import { ThemeScript } from '@/ui/components/ThemeScript';
 
 const inter = Inter({ subsets: ['latin'] });
 
