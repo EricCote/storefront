@@ -10,8 +10,8 @@ import { type StripeGatewayId } from './StripeElements/types';
 export type PaymentGatewayId = AdyenGatewayId | StripeGatewayId | DummyGatewayId;
 
 export type ParsedAdyenGateway = ParsedPaymentGateway<AdyenGatewayId, AdyenGatewayInitializePayload>;
-export type ParsedStripeGateway = ParsedPaymentGateway<StripeGatewayId, Record<string, never>>;
-export type ParsedDummyGateway = ParsedPaymentGateway<DummyGatewayId, Record<string, never>>;
+export type ParsedStripeGateway = ParsedPaymentGateway<StripeGatewayId, {}>;
+export type ParsedDummyGateway = ParsedPaymentGateway<DummyGatewayId, {}>;
 
 export type ParsedPaymentGateways = ReadonlyArray<
 	ParsedAdyenGateway | ParsedStripeGateway | ParsedDummyGateway

@@ -11,7 +11,7 @@ export const useCustomerAttach = () => {
 
 	const [{ fetching: fetchingCustomerAttach }, customerAttach] = useCheckoutCustomerAttachMutation();
 
-	const onSubmit = useSubmit<Record<string, never>, typeof customerAttach>(
+	const onSubmit = useSubmit<{}, typeof customerAttach>(
 		useMemo(
 			() => ({
 				hideAlerts: true,

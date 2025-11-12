@@ -11,7 +11,7 @@ export const useCheckoutComplete = () => {
 	} = useCheckout();
 	const [{ fetching }, checkoutComplete] = useCheckoutCompleteMutation();
 
-	const onCheckoutComplete = useSubmit<Record<string, never>, typeof checkoutComplete>(
+	const onCheckoutComplete = useSubmit<{}, typeof checkoutComplete>(
 		useMemo(
 			() => ({
 				parse: () => ({

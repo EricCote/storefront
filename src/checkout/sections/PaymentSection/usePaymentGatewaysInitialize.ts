@@ -22,7 +22,7 @@ export const usePaymentGatewaysInitialize = () => {
 
 	const [{ fetching }, paymentGatewaysInitialize] = usePaymentGatewaysInitializeMutation();
 
-	const onSubmit = useSubmit<Record<string, never>, typeof paymentGatewaysInitialize>(
+	const onSubmit = useSubmit<{}, typeof paymentGatewaysInitialize>(
 		useMemo(
 			() => ({
 				hideAlerts: true,

@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 
 import { Checkbox } from '@/checkout/components';
 import { type OptionalAddress } from '@/checkout/components/AddressForm/types';

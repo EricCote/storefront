@@ -17,7 +17,7 @@ export const usePasswordResetRequest = ({ email, shouldAbort }: PasswordResetFor
 
 	const [passwordResetSent, setPasswordResetSent] = useState(false);
 
-	const onSubmit = useSubmit<Record<string, never>, typeof requestPasswordReset>({
+	const onSubmit = useSubmit<{}, typeof requestPasswordReset>({
 		scope: 'requestPasswordReset',
 		onSubmit: requestPasswordReset,
 		shouldAbort,
