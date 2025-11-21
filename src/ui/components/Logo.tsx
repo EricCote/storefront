@@ -1,14 +1,14 @@
-//'use client';
+'use client';
 
 import { usePathname } from '@/i18n/navigation';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 
 
 import { LinkWithChannel } from '../atoms/LinkWithChannel';
 
 export const Logo = async () => {
 	const pathname = usePathname();
-	const t = await getTranslations("metadata")
+	const t = await useTranslations("metadata")
 
 	if (pathname === '/') {
 		return (
