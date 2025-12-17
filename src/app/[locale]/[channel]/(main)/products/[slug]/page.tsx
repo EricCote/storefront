@@ -10,7 +10,7 @@ import { type WithContext, type Product } from 'schema-dts';
 import { invariant } from 'ts-invariant';
 import xss from 'xss';
 
-import { CheckoutAddLineDocument, ProductDetailsDocument, ProductListDocument } from '@/gql/graphql';
+import { CheckoutAddLineDocument, ProductDetailsDocument } from '@/gql/graphql';
 import { displayLang, type Translatable } from '@/i18n/translate';
 import * as Checkout from '@/lib/checkout';
 import { executeGraphQL } from '@/lib/graphql';
@@ -94,16 +94,23 @@ export async function generateMetadata(
 	};
 }
 
-export async function generateStaticParams({ params }: { params: { channel: string } }) {
-	const { products } = await executeGraphQL(ProductListDocument, {
-		revalidate: 60,
-		variables: { first: 20, channel: params.channel },
-		withAuth: false,
-	});
+export const dynamic = 'force-dynamic';
 
-	const paths = products?.edges.map(({ node: { slug } }) => ({ slug })) || [];
-	return paths;
+export async function generateStaticParams() {
+	// Return empty array to skip static generation during build
+	// Pages will be generated on-demand at runtime
+	return [];
 }
+
+// export async function generateStaticParams({ params }: { params: { channel: string } }) {
+// 	const { products } = await executeGraphQL(ProductListDocument, {
+// 		revalidate: 60,
+// 		variables: { first: 20, channel: params.channel },
+// 		withAuth: false,
+// 	});
+// 	const paths = products?.edges.map(({ node: { slug } }) => ({ slug })) || [];
+// 	return paths;
+// }
 
 const parser = edjsHTML();
 

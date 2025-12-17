@@ -35,7 +35,7 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
-RUN pnpm build
+RUN pnpm build:docker
 
 # Production image, copy all the files and run next
 FROM base AS runner
