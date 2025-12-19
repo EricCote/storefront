@@ -10,7 +10,7 @@ import { type WithContext, type Product } from 'schema-dts';
 import { invariant } from 'ts-invariant';
 import xss from 'xss';
 
-import { CheckoutAddLineDocument, ProductDetailsDocument } from '@/gql/graphql';
+import { CheckoutAddLineDocument, ProductDetailsDocument, ProductListDocument } from '@/gql/graphql';
 import { displayLang, type Translatable } from '@/i18n/translate';
 import * as Checkout from '@/lib/checkout';
 import { executeGraphQL } from '@/lib/graphql';
@@ -94,13 +94,24 @@ export async function generateMetadata(
 	};
 }
 
-export const dynamic = 'force-dynamic';
+//export const dynamic = 'force-static';
+export const revalidate = 60;
 
 export async function generateStaticParams() {
+  // Pre-build your most popular/important products
+  const { products } = await executeGraphQL(ProductListDocument, {
+    variables: { first: 20, channel: 'default-channel' }, 
+    withAuth: false,
+  });
+  return products?.edges.map(({ node: { slug } }) => ({ slug })) || [];
+}
+
+
+//export async function generateStaticParams() {
 	// Return empty array to skip static generation during build
 	// Pages will be generated on-demand at runtime
-	return [];
-}
+//	return [];
+//}
 
 // export async function generateStaticParams({ params }: { params: { channel: string } }) {
 // 	const { products } = await executeGraphQL(ProductListDocument, {
@@ -278,7 +289,7 @@ export default async function Page(props: {
 						{product.attributes.map((attr, idx) => (
 							<div className='mt-8' key={attr.attribute.name}>
 								<strong>{displayLang(locale, attr.attribute as unknown as Translatable, 'name')}:</strong>{' '}
-								{attr.values[idx].plainText}
+								{attr.values[idx]?.plainText}
 							</div>
 						))}
 
