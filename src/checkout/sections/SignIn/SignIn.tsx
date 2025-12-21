@@ -1,18 +1,18 @@
-import React from 'react';
-
-import { Button } from '@/checkout/components/Button';
-import { PasswordInput } from '@/checkout/components/PasswordInput';
-import { TextInput } from '@/checkout/components/TextInput';
-import { useCheckout } from '@/checkout/hooks/useCheckout';
-import { useErrorMessages } from '@/checkout/hooks/useErrorMessages';
-import { FormProvider } from '@/checkout/hooks/useForm/FormProvider';
-import { isValidEmail } from '@/checkout/lib/utils/common';
+import type { FC } from "react";
+import { Button } from "@/checkout/components/Button";
+import { PasswordInput } from "@/checkout/components/PasswordInput";
+import { TextInput } from "@/checkout/components/TextInput";
+import { useSignInForm } from "@/checkout/sections/SignIn/useSignInForm";
+import { usePasswordResetRequest } from "@/checkout/sections/SignIn/usePasswordResetRequest";
+import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
 import {
 	SignInFormContainer,
 	type SignInFormContainerProps,
 } from '@/checkout/sections/Contact/SignInFormContainer';
-import { usePasswordResetRequest } from '@/checkout/sections/SignIn/usePasswordResetRequest';
-import { useSignInForm } from '@/checkout/sections/SignIn/useSignInForm';
+import { isValidEmail } from "@/checkout/lib/utils/common";
+import { useErrorMessages } from "@/checkout/hooks/useErrorMessages";
+import { useCheckout } from "@/checkout/hooks/useCheckout";
+
 
 interface SignInProps extends Pick<SignInFormContainerProps, 'onSectionChange'> {
 	onSignInSuccess: () => void;
@@ -20,7 +20,7 @@ interface SignInProps extends Pick<SignInFormContainerProps, 'onSectionChange'> 
 	email: string;
 }
 
-export const SignIn: React.FC<SignInProps> = ({
+export const SignIn: FC<SignInProps> = ({
 	onSectionChange,
 	onSignInSuccess,
 	onEmailChange,

@@ -1,4 +1,4 @@
-import { Skeleton } from '@/checkout/components';
+import { Skeleton } from "@/checkout/components";
 
 export const DeliveryMethodsSkeleton = () => {
 	return (

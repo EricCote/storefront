@@ -1,13 +1,15 @@
-import { type FC, useCallback, useEffect, useState } from 'react';
+import { type FC, useCallback, useEffect, useMemo, useState } from "react";
+import { SignedInUser } from "../SignedInUser/SignedInUser";
+import { ResetPassword } from "../ResetPassword/ResetPassword";
+import { useCustomerAttach } from "@/checkout/hooks/useCustomerAttach";
+import { getQueryParams } from "@/checkout/lib/utils/url";
+import { SignIn } from "@/checkout/sections/SignIn/SignIn";
+import { GuestUser } from "@/checkout/sections/GuestUser/GuestUser";
+import { useUser } from "@/checkout/hooks/useUser";
 
-import { useCustomerAttach } from '@/checkout/hooks/useCustomerAttach';
-import { useUser } from '@/checkout/hooks/useUser';
-import { getQueryParams } from '@/checkout/lib/utils/url';
-import { GuestUser } from '@/checkout/sections/GuestUser/GuestUser';
-import { SignIn } from '@/checkout/sections/SignIn/SignIn';
 
-import { ResetPassword } from '../ResetPassword/ResetPassword';
-import { SignedInUser } from '../SignedInUser/SignedInUser';
+
+
 
 type Section = 'signedInUser' | 'guestUser' | 'signIn' | 'resetPassword';
 
@@ -22,26 +24,32 @@ export const Contact: FC<ContactProps> = ({ setShowOnlyContact }) => {
 	const { user, authenticated } = useUser();
 	const [email, setEmail] = useState(user?.email || '');
 
-	const [passwordResetShown, setPasswordResetShown] = useState(false);
+	const passwordResetToken = getQueryParams().passwordResetToken;
+	const selectInitialSection = () =>
+		passwordResetToken ? "resetPassword" : user ? "signedInUser" : "guestUser";
+	const [requestedSection, setRequestedSection] = useState<Section>(selectInitialSection);
 
-	const selectInitialSection = (): Section => {
-		const shouldShowPasswordReset = passwordResetToken && !passwordResetShown;
-
-		if (shouldShowPasswordReset) {
-			return 'resetPassword';
+	const currentSection = useMemo(() => {
+		if (requestedSection === "resetPassword") {
+			return "resetPassword";
 		}
 
-		return user ? 'signedInUser' : 'guestUser';
-	};
+		if (authenticated) {
+			return "signedInUser";
+		}
 
-	const passwordResetToken = getQueryParams().passwordResetToken;
-	const [currentSection, setCurrentSection] = useState<Section>(selectInitialSection());
+		if (!authenticated && requestedSection === "signedInUser") {
+			return "guestUser";
+		}
+
+		return requestedSection;
+	}, [authenticated, requestedSection]);
 
 	const handleChangeSection = (section: Section) => () => {
 		if (onlyContactShownSections.includes(section)) {
 			setShowOnlyContact(true);
 		}
-		setCurrentSection(section);
+		setRequestedSection(section);
 	};
 
 	const isCurrentSection = useCallback((section: Section) => currentSection === section, [currentSection]);
@@ -49,22 +57,8 @@ export const Contact: FC<ContactProps> = ({ setShowOnlyContact }) => {
 	const shouldShowOnlyContact = onlyContactShownSections.includes(currentSection);
 
 	useEffect(() => {
-		if (isCurrentSection('resetPassword')) {
-			setPasswordResetShown(true);
-		}
-	}, [isCurrentSection]);
-
-	useEffect(() => {
 		setShowOnlyContact(shouldShowOnlyContact);
-	}, [currentSection, setShowOnlyContact, shouldShowOnlyContact]);
-
-	useEffect(() => {
-		if (authenticated && currentSection !== 'signedInUser') {
-			setCurrentSection('signedInUser');
-		} else if (!authenticated && currentSection === 'signedInUser') {
-			setCurrentSection('guestUser');
-		}
-	}, [authenticated, currentSection]);
+	}, [setShowOnlyContact, shouldShowOnlyContact]);
 
 	return (
 		<div>

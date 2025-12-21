@@ -1,21 +1,17 @@
- 
-import { camelCase } from 'lodash-es';
-import { useCallback } from 'react';
-import { toast } from 'react-toastify';
-
-
-import { useGetParsedErrors } from '@/checkout/hooks/useGetParsedErrors';
-import { type ApiErrors } from '@/checkout/hooks/useGetParsedErrors/types';
-import { type ErrorCode } from '@/checkout/lib/globalTypes';
-import { apiErrorMessages } from '@/checkout/sections/PaymentSection/errorMessages';
-
+import { toast } from "react-toastify";
+import { camelCase } from "lodash-es";
+import { useCallback } from "react";
 import {
 	type Alert,
 	type AlertType,
 	type AlertErrorData,
 	type CheckoutScope,
 	type CustomError,
-} from './types';
+} from "./types";
+import { type ErrorCode } from "@/checkout/lib/globalTypes";
+import { type ApiErrors } from "@/checkout/hooks/useGetParsedErrors/types";
+import { useGetParsedErrors } from "@/checkout/hooks/useGetParsedErrors";
+import { apiErrorMessages } from "@/checkout/sections/PaymentSection/errorMessages";
 
 function useAlerts(scope: CheckoutScope): {
 	showErrors: (errors: ApiErrors<any>) => void;

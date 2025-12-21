@@ -1,13 +1,12 @@
-import { EditIcon } from '@/checkout/assets/icons';
-import { Address } from '@/checkout/components/Address';
-import { type AddressField } from '@/checkout/components/AddressForm/types';
-import { Button } from '@/checkout/components/Button';
-import { SelectBox, type SelectBoxProps } from '@/checkout/components/SelectBox';
-import { type AddressFragment } from '@/checkout/graphql';
+import { SelectBox, type SelectBoxProps } from "@/checkout/components/SelectBox";
+import { Button } from "@/checkout/components/Button";
+import { Address } from "@/checkout/components/Address";
+import { type AddressFragment } from "@/checkout/graphql";
+import { type AddressField } from "@/checkout/components/AddressForm/types";
+import { EditIcon } from "@/checkout/assets/icons";
 
 interface AddressSelectBoxProps<TFieldName extends string>
-	extends Omit<SelectBoxProps<TFieldName>, 'children'> {
-	 
+	extends Omit<SelectBoxProps<TFieldName>, "children"> {
 	address: Partial<Record<AddressField, any>>;
 	onEdit: () => void;
 	unavailable: boolean;

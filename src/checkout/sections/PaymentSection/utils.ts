@@ -1,20 +1,18 @@
-import { compact } from 'lodash-es';
-
+import { compact } from "lodash-es";
+import { adyenGatewayId } from "./AdyenDropIn/types";
+import { stripeV2GatewayId } from "./StripeV2DropIn/types";
 import {
 	type CheckoutAuthorizeStatusEnum,
 	type CheckoutChargeStatusEnum,
 	type OrderAuthorizeStatusEnum,
 	type OrderChargeStatusEnum,
 	type PaymentGateway,
-} from '@/checkout/graphql';
-import { type MightNotExist } from '@/checkout/lib/globalTypes';
-import { getUrl } from '@/checkout/lib/utils/url';
-import { type PaymentStatus } from '@/checkout/sections/PaymentSection/types';
+} from "@/checkout/graphql";
+import { type MightNotExist } from "@/checkout/lib/globalTypes";
+import { getUrl, type ParamBasicValue } from "@/checkout/lib/utils/url";
+import { type PaymentStatus } from "@/checkout/sections/PaymentSection/types";
 
-import { adyenGatewayId } from './AdyenDropIn/types';
-import { stripeGatewayId } from './StripeElements/types';
-
-export const supportedPaymentGateways = [adyenGatewayId, stripeGatewayId] as const;
+export const supportedPaymentGateways = [adyenGatewayId, stripeV2GatewayId] as const;
 
 export const getFilteredPaymentGateways = (
 	paymentGateways: MightNotExist<PaymentGateway[]>,
@@ -27,7 +25,13 @@ export const getFilteredPaymentGateways = (
 	return compact(paymentGateways).filter(({ id }) => supportedPaymentGateways.includes(id as typeof supportedPaymentGateways[number]));
 };
 
-export const getUrlForTransactionInitialize = () => getUrl({ query: { processingPayment: true } });
+export const getUrlForTransactionInitialize = (extraQuery?: Record<string, ParamBasicValue>) =>
+	getUrl({
+		query: {
+			processingPayment: true,
+			...extraQuery,
+		},
+	});
 
 export const usePaymentStatus = ({
 	chargeStatus,

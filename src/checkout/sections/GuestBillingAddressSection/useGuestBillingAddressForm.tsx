@@ -31,13 +31,15 @@ export const useGuestBillingAddressForm = ({ skipValidation }: GuestBillingAddre
 	const { setCheckoutFormValidationState } = useSetCheckoutFormValidationState('billingAddress');
 	const { setChangingBillingCountry } = useCheckoutUpdateStateActions();
 
+	const billingCountryCode = billingAddress?.country.code;
+
 	const onSubmit = useFormSubmit<AutoSaveAddressFormData, typeof checkoutBillingAddressUpdate>(
 		useMemo(
 			() => ({
 				scope: 'checkoutBillingUpdate',
 				onSubmit: checkoutBillingAddressUpdate,
 				onStart: ({ formData }) => {
-					if (formData.countryCode !== billingAddress?.country.code) {
+					if (formData.countryCode !== billingCountryCode) {
 						setChangingBillingCountry(true);
 					}
 				},
@@ -58,8 +60,8 @@ export const useGuestBillingAddressForm = ({ skipValidation }: GuestBillingAddre
 				},
 			}),
 			[
-				billingAddress?.country.code,
 				checkoutBillingAddressUpdate,
+				billingCountryCode,
 				setChangingBillingCountry,
 				setCheckoutFormValidationState,
 			],

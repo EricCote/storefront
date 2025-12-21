@@ -1,6 +1,5 @@
-import { Skeleton } from '@/checkout/components';
-
-import { AddressSkeleton } from './AddressSkeleton';
+import { AddressSkeleton } from "./AddressSkeleton";
+import { Skeleton } from "@/checkout/components";
 
 export const AddressSectionSkeleton = () => (
 	<div className='py-6'>

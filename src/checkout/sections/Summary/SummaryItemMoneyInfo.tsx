@@ -1,10 +1,9 @@
-import { clsx } from 'clsx';
-import React from 'react';
-
-import { Money } from '@/checkout/components';
-import { type Money as MoneyType } from '@/checkout/graphql';
-import { type GrossMoney } from '@/checkout/lib/globalTypes';
-import { getFormattedMoney } from '@/checkout/lib/utils/money';
+import type { FC } from "react";
+import clsx from "clsx";
+import { Money } from "@/checkout/components";
+import { type Money as MoneyType } from "@/checkout/graphql";
+import { getFormattedMoney } from "@/checkout/lib/utils/money";
+import { type GrossMoney } from "@/checkout/lib/globalTypes";
 
 interface SummaryItemMoneyInfoProps {
 	unitPrice: GrossMoney;
@@ -12,7 +11,7 @@ interface SummaryItemMoneyInfoProps {
 	quantity: number;
 }
 
-export const SummaryItemMoneyInfo: React.FC<SummaryItemMoneyInfoProps> = ({
+export const SummaryItemMoneyInfo: FC<SummaryItemMoneyInfoProps> = ({
 	unitPrice,
 	quantity,
 	undiscountedUnitPrice,

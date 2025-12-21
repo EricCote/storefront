@@ -7,7 +7,6 @@ import { ErrorContentWrapper } from '@/checkout/components/ErrorContentWrapper';
 export const PageNotFound = ({ error }: Partial<FallbackProps>) => {
 	console.error(error);
 
-	 
 	const goBack = () => history.back();
 
 	return (

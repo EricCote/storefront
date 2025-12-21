@@ -36,6 +36,7 @@ export async function LoginForm() {
 						{t('email')}
 					</label>
 					<input
+						required
 						type='email'
 						name='email'
 						placeholder={t('email')}
@@ -47,6 +48,7 @@ export async function LoginForm() {
 						{t('password')}
 					</label>
 					<input
+						required
 						type='password'
 						name='password'
 						placeholder={t('password')}

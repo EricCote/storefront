@@ -1,12 +1,10 @@
-import React from 'react';
-
-import { IconButton } from '@/checkout/components/IconButton';
-import { useCheckoutRemovePromoCodeMutation } from '@/checkout/graphql';
-import { useCheckout } from '@/checkout/hooks/useCheckout';
-import { isOrderConfirmationPage } from '@/checkout/lib/utils/url';
-import { RemoveIcon } from '@/checkout/ui-kit/icons';
-
-import { SummaryMoneyRow, type SummaryMoneyRowProps } from './SummaryMoneyRow';
+import type { FC } from "react";
+import { SummaryMoneyRow, type SummaryMoneyRowProps } from "./SummaryMoneyRow";
+import { IconButton } from "@/checkout/components/IconButton";
+import { RemoveIcon } from "@/checkout/ui-kit/icons";
+import { useCheckoutRemovePromoCodeMutation } from "@/checkout/graphql";
+import { useCheckout } from "@/checkout/hooks/useCheckout";
+import { isOrderConfirmationPage } from "@/checkout/lib/utils/url";
 
 interface SummaryPromoCodeRowProps extends SummaryMoneyRowProps {
 	promoCode?: string;
@@ -14,7 +12,7 @@ interface SummaryPromoCodeRowProps extends SummaryMoneyRowProps {
 	editable: boolean;
 }
 
-export const SummaryPromoCodeRow: React.FC<SummaryPromoCodeRowProps> = ({
+export const SummaryPromoCodeRow: FC<SummaryPromoCodeRowProps> = ({
 	promoCode,
 	promoCodeId,
 	editable,

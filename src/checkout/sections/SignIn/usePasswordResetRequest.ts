@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-
-import { useRequestPasswordResetMutation } from '@/checkout/graphql';
-import { useAlerts } from '@/checkout/hooks/useAlerts';
-import { useSubmit } from '@/checkout/hooks/useSubmit/useSubmit';
-import { getCurrentHref } from '@/checkout/lib/utils/locale';
+import { useState } from "react";
+import { useRequestPasswordResetMutation } from "@/checkout/graphql";
+import { useAlerts } from "@/checkout/hooks/useAlerts";
+import { useSubmit } from "@/checkout/hooks/useSubmit/useSubmit";
+import { getCurrentHref } from "@/checkout/lib/utils/locale";
 
 interface PasswordResetFormData {
 	email: string;
@@ -15,22 +14,20 @@ export const usePasswordResetRequest = ({ email, shouldAbort }: PasswordResetFor
 
 	const [, requestPasswordReset] = useRequestPasswordResetMutation();
 
-	const [passwordResetSent, setPasswordResetSent] = useState(false);
+	const [passwordResetSentForEmail, setPasswordResetSentForEmail] = useState<string | null>(null);
 
 	const onSubmit = useSubmit<{}, typeof requestPasswordReset>({
 		scope: 'requestPasswordReset',
 		onSubmit: requestPasswordReset,
 		shouldAbort,
 		onSuccess: () => {
-			setPasswordResetSent(true);
+			setPasswordResetSentForEmail(email);
 			showSuccess(`A magic link has been sent to ${email}`);
 		},
 		parse: ({ channel }) => ({ email, redirectUrl: getCurrentHref(), channel }),
 	});
 
-	useEffect(() => {
-		setPasswordResetSent(false);
-	}, [email]);
+	const passwordResetSent = passwordResetSentForEmail === email;
 
 	return {
 		onPasswordResetRequest: () => {

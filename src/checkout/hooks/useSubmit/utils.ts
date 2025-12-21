@@ -1,10 +1,7 @@
- 
- 
-import { compact } from 'lodash-es';
-import { type CombinedError } from 'urql';
-
-import { type FormDataBase } from '@/checkout/hooks/useForm';
-import { type ApiErrors } from '@/checkout/hooks/useGetParsedErrors';
+import { type CombinedError } from "urql";
+import { compact } from "lodash-es";
+import { type FormDataBase } from "@/checkout/hooks/useForm";
+import { type ApiErrors } from "@/checkout/hooks/useGetParsedErrors";
 import {
 	type MutationBaseFn,
 	type MutationData,

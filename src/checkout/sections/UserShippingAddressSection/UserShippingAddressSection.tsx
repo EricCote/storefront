@@ -1,17 +1,16 @@
-import { Suspense } from 'react';
+import { Suspense} from "react";
+import { getById } from "@/checkout/lib/utils/common";
+import { AddressSectionSkeleton } from "@/checkout/components/AddressSectionSkeleton";
+import { UserAddressSectionContainer } from "@/checkout/sections/UserAddressSectionContainer";
+import { useUserShippingAddressForm } from "@/checkout/sections/UserShippingAddressSection/useUserShippingAddressForm";
+import { AddressCreateForm } from "@/checkout/sections/AddressCreateForm";
+import { AddressEditForm } from "@/checkout/sections/AddressEditForm";
+import { AddressList } from "@/checkout/sections/AddressList/AddressList";
+import { type AddressFragment } from "@/checkout/graphql";
+import { useCheckoutFormValidationTrigger } from "@/checkout/hooks/useCheckoutFormValidationTrigger";
+import { useAvailableShippingCountries } from "@/checkout/hooks/useAvailableShippingCountries";
 
-import { AddressSectionSkeleton } from '@/checkout/components/AddressSectionSkeleton';
-import { type AddressFragment } from '@/checkout/graphql';
-import { useAvailableShippingCountries } from '@/checkout/hooks/useAvailableShippingCountries';
-import { useCheckoutFormValidationTrigger } from '@/checkout/hooks/useCheckoutFormValidationTrigger';
-import { getById } from '@/checkout/lib/utils/common';
-import { AddressCreateForm } from '@/checkout/sections/AddressCreateForm';
-import { AddressEditForm } from '@/checkout/sections/AddressEditForm';
-import { AddressList } from '@/checkout/sections/AddressList/AddressList';
-import { UserAddressSectionContainer } from '@/checkout/sections/UserAddressSectionContainer';
-import { useUserShippingAddressForm } from '@/checkout/sections/UserShippingAddressSection/useUserShippingAddressForm';
-
-export const UserShippingAddressSection = () => {
+export const UserShippingAddressSection= ({}) => {
 	const { availableShippingCountries } = useAvailableShippingCountries();
 	const {
 		form,

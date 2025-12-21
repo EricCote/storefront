@@ -1,8 +1,8 @@
-import { Divider } from '@/checkout/components';
-import { AddressSectionSkeleton } from '@/checkout/components/AddressSectionSkeleton';
-import { ContactSkeleton } from '@/checkout/sections/Contact';
-import { DeliveryMethodsSkeleton } from '@/checkout/sections/DeliveryMethods';
-import { PaymentSectionSkeleton } from '@/checkout/sections/PaymentSection';
+import { ContactSkeleton } from "@/checkout/sections/Contact";
+import { DeliveryMethodsSkeleton } from "@/checkout/sections/DeliveryMethods";
+import { PaymentSectionSkeleton } from "@/checkout/sections/PaymentSection";
+import { Divider } from "@/checkout/components";
+import { AddressSectionSkeleton } from "@/checkout/components/AddressSectionSkeleton";
 
 export const CheckoutFormSkeleton = () => (
 	<div className='flex flex-col items-end'>

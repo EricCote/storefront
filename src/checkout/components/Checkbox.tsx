@@ -1,6 +1,5 @@
-import { useField } from 'formik';
-
-import { useFormContext } from '@/checkout/hooks/useForm';
+import { useField } from "formik";
+import { useFormContext } from "@/checkout/hooks/useForm";
 
 interface CheckboxProps<TName extends string> {
 	name: TName;

@@ -1,9 +1,8 @@
-import { type ReactNode, useState, useCallback, useMemo } from 'react';
-import { BarLoader } from 'react-spinners';
-
-import { Title } from '@/checkout/components';
-import { getQueryParams } from '@/checkout/lib/utils/url';
-import { createSafeContext } from '@/checkout/providers/createSafeContext';
+import { BarLoader } from "react-spinners";
+import { type ReactNode, useCallback, useMemo, useState } from "react";
+import { Title } from "@/checkout/components";
+import { createSafeContext } from "@/checkout/providers/createSafeContext";
+import { getQueryParams } from "@/checkout/lib/utils/url";
 
 interface PaymentProcessingContextConsumerProps {
 	setIsProcessingPayment: (processing: boolean) => void;

@@ -1,13 +1,12 @@
-import { clsx } from 'clsx';
-import { type FC } from 'react';
-
-import { Button } from '@/checkout/components/Button';
-import { TextInput } from '@/checkout/components/TextInput';
-import { useCheckoutAddPromoCodeMutation } from '@/checkout/graphql';
-import { useForm } from '@/checkout/hooks/useForm';
-import { FormProvider } from '@/checkout/hooks/useForm/FormProvider';
-import { useFormSubmit } from '@/checkout/hooks/useFormSubmit';
-import { type Classes } from '@/checkout/lib/globalTypes';
+import clsx from "clsx";
+import type { FC } from "react";
+import { Button } from "@/checkout/components/Button";
+import { TextInput } from "@/checkout/components/TextInput";
+import { useCheckoutAddPromoCodeMutation } from "@/checkout/graphql";
+import { type Classes } from "@/checkout/lib/globalTypes";
+import { useFormSubmit } from "@/checkout/hooks/useFormSubmit";
+import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
+import { useForm } from "@/checkout/hooks/useForm";
 
 interface PromoCodeFormData {
 	promoCode: string;

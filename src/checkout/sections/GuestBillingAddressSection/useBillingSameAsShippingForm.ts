@@ -1,7 +1,5 @@
- 
-import { useCallback, useEffect, useRef, useState } from 'react';
-
-import { type OptionalAddress } from '@/checkout/components/AddressForm/types';
+import { useCallback, useEffect, useRef, useState } from "react";
+import { type OptionalAddress } from "@/checkout/components/AddressForm/types";
 import {
 	getAddressInputDataFromAddress,
 	getAddressValidationRulesVariables,

@@ -1,11 +1,11 @@
-import { Checkbox } from '@/checkout/components';
-import { AddressForm } from '@/checkout/components/AddressForm';
-import { AddressSectionSkeleton } from '@/checkout/components/AddressSectionSkeleton';
-import { useCheckout } from '@/checkout/hooks/useCheckout';
-import { FormProvider } from '@/checkout/hooks/useForm/FormProvider';
-import { useBillingSameAsShippingForm } from '@/checkout/sections/GuestBillingAddressSection/useBillingSameAsShippingForm';
-import { useGuestBillingAddressForm } from '@/checkout/sections/GuestBillingAddressSection/useGuestBillingAddressForm';
-import { Suspense } from 'react';
+import { Suspense } from "react";
+import { AddressForm } from "@/checkout/components/AddressForm";
+import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
+import { useGuestBillingAddressForm } from "@/checkout/sections/GuestBillingAddressSection/useGuestBillingAddressForm";
+import { useCheckout } from "@/checkout/hooks/useCheckout";
+import { AddressSectionSkeleton } from "@/checkout/components/AddressSectionSkeleton";
+import { useBillingSameAsShippingForm } from "@/checkout/sections/GuestBillingAddressSection/useBillingSameAsShippingForm";
+import { Checkbox } from "@/checkout/components";
 
 export const GuestBillingAddressSection = () => {
 	const {

@@ -1,6 +1,6 @@
-import { Title } from '@/checkout/components';
-import { ErrorContentWrapper } from '@/checkout/components/ErrorContentWrapper';
-import { LinkAsButton } from '@/checkout/components/LinkAsButton';
+import { Title } from "@/checkout/components";
+import { LinkAsButton } from "@/checkout/components/LinkAsButton";
+import { ErrorContentWrapper } from "@/checkout/components/ErrorContentWrapper";
 
 export const EmptyCartPage = () => {
 	return (

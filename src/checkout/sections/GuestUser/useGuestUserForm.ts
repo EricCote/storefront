@@ -108,10 +108,6 @@ export const useGuestUserForm = ({ initialEmail }: GuestUserFormProps) => {
 	});
 
 	useEffect(() => {
-		setUserRegistrationDisabled(false);
-	}, [email]);
-
-	useEffect(() => {
 		if (!shouldUserRegister || user || !createAccount || userRegisterDisabled) {
 			return;
 		}
@@ -126,7 +122,10 @@ export const useGuestUserForm = ({ initialEmail }: GuestUserFormProps) => {
 	const onChange: ChangeHandler = async (event) => {
 		handleChange(event);
 
-		 
+		if (event.target.name === "email") {
+			setUserRegistrationDisabled(false);
+		}
+
 		const error = await isValidEmail(event.target.value as string);
 
 		if (!error) {

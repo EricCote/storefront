@@ -1,10 +1,7 @@
- 
- 
-import type DropinElement from '@adyen/adyen-web/dist/types/components/Dropin';
-import { camelCase } from 'lodash-es';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-
-
+import type DropinElement from "@adyen/adyen-web/dist/types/components/Dropin";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { camelCase } from "lodash-es";
+import { apiErrorMessages } from "../errorMessages";
 import {
 	type TransactionInitializeMutationVariables,
 	type TransactionProcessMutationVariables,
@@ -43,7 +40,6 @@ import {
 	useCheckoutUpdateStateActions,
 } from '@/checkout/state/updateStateStore';
 
-import { apiErrorMessages } from '../errorMessages';
 
 export interface AdyenDropinProps {
 	config: ParsedAdyenGateway;
@@ -127,7 +123,13 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
 					return;
 			}
 		},
-		[adyenCheckoutSubmitParams?.component, getMessageByErrorCode, onCheckoutComplete, showCustomErrors],
+		[
+			adyenCheckoutSubmitParams?.component,
+			getMessageByErrorCode,
+			onCheckoutComplete,
+			setCurrentTransactionId,
+			showCustomErrors,
+		],
 	);
 
 	const onTransactionInitialize = useSubmit<
@@ -212,6 +214,7 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
 				adyenCheckoutSubmitParams?.component,
 				commonErrorMessages.somethingWentWrong,
 				handlePaymentResult,
+				setCurrentTransactionId,
 				setIsProcessingPayment,
 				showCustomErrors,
 				transactionProcess,
@@ -303,9 +306,7 @@ export const useAdyenDropin = (props: AdyenDropinProps) => {
 
 		const decodedRedirectData = decodeURI(redirectResult);
 
-		setCurrentTransactionId(transaction);
-
-		clearQueryParams('redirectResult', 'resultCode');
+		clearQueryParams("redirectResult", "resultCode");
 
 		void onTransactionProccess({
 			id: transaction,

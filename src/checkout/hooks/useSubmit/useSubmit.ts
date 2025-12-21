@@ -1,11 +1,12 @@
- 
-import { useCallback } from 'react';
-import { type CombinedError } from 'urql';
-
-import { useAlerts } from '@/checkout/hooks/useAlerts';
-import { useCheckout } from '@/checkout/hooks/useCheckout';
-import { type FormDataBase } from '@/checkout/hooks/useForm';
-import { type ApiErrors } from '@/checkout/hooks/useGetParsedErrors/types';
+import { useCallback } from "react";
+import { type CombinedError } from "urql";
+import { useAlerts } from "@/checkout/hooks/useAlerts";
+import { useCheckout } from "@/checkout/hooks/useCheckout";
+import {
+	type CheckoutUpdateStateScope,
+	useCheckoutUpdateStateChange,
+} from "@/checkout/state/updateStateStore";
+import { type FormDataBase } from "@/checkout/hooks/useForm";
 import {
 	type CommonVars,
 	type MutationBaseFn,
@@ -14,12 +15,9 @@ import {
 	type MutationVars,
 	type ParserFunction,
 	type SimpleSubmitFn,
-} from '@/checkout/hooks/useSubmit/types';
-import { extractMutationData, extractMutationErrors } from '@/checkout/hooks/useSubmit/utils';
-import {
-	type CheckoutUpdateStateScope,
-	useCheckoutUpdateStateChange,
-} from '@/checkout/state/updateStateStore';
+} from "@/checkout/hooks/useSubmit/types";
+import { type ApiErrors } from "@/checkout/hooks/useGetParsedErrors/types";
+import { extractMutationData, extractMutationErrors } from "@/checkout/hooks/useSubmit/utils";
 
 interface CallbackProps<TData> {
 	formData: TData;

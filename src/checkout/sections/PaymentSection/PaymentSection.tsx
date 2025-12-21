@@ -1,7 +1,6 @@
-import { Divider } from '@/checkout/components/Divider';
-import { Title } from '@/checkout/components/Title';
-
-import { PaymentMethods } from './PaymentMethods';
+import { PaymentMethods } from "./PaymentMethods";
+import { Divider } from "@/checkout/components/Divider";
+import { Title } from "@/checkout/components/Title";
 
 export const PaymentSection = () => {
 	return (

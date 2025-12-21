@@ -1,17 +1,14 @@
-import { camelCase } from 'lodash-es';
-import React from 'react';
-
-
-import { Button } from '@/checkout/components/Button';
-import { SelectBoxGroup } from '@/checkout/components/SelectBoxGroup';
-import { Title } from '@/checkout/components/Title';
-import { type AddressFragment } from '@/checkout/graphql';
-import { useAddressAvailability } from '@/checkout/hooks/useAddressAvailability';
-import { type UseFormReturn } from '@/checkout/hooks/useForm';
-import { FormProvider } from '@/checkout/hooks/useForm/FormProvider';
-import { type AddressListFormData } from '@/checkout/sections/AddressList/useAddressListForm';
-
-import { AddressSelectBox } from '../../components/AddressSelectBox';
+import type { FC } from "react";
+import { camelCase } from "lodash-es";
+import { AddressSelectBox } from "../../components/AddressSelectBox";
+import { type AddressFragment } from "@/checkout/graphql";
+import { SelectBoxGroup } from "@/checkout/components/SelectBoxGroup";
+import { useAddressAvailability } from "@/checkout/hooks/useAddressAvailability";
+import { Button } from "@/checkout/components/Button";
+import { Title } from "@/checkout/components/Title";
+import { type UseFormReturn } from "@/checkout/hooks/useForm";
+import { type AddressListFormData } from "@/checkout/sections/AddressList/useAddressListForm";
+import { FormProvider } from "@/checkout/hooks/useForm/FormProvider";
 
 export interface AddressListProps {
 	onEditChange: (id: string) => void;
@@ -21,7 +18,7 @@ export interface AddressListProps {
 	form: UseFormReturn<AddressListFormData>;
 }
 
-export const AddressList: React.FC<AddressListProps> = ({
+export const AddressList: FC<AddressListProps> = ({
 	onEditChange,
 	checkAddressAvailability = false,
 	title,
