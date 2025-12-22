@@ -4,7 +4,7 @@ import { executeGraphQL } from "@/lib/graphql";
 import { Pagination } from "@/ui/components/Pagination";
 import { ProductList } from "@/ui/components/ProductList";
 import { getPaginatedListVariables } from "@/lib/utils";
-import getTranslations from "next-intl/dist/types/server/react-server/getTranslations";
+import { getTranslations } from "next-intl/server";
 
 export const metadata = {
 	title: 'Search products · Saleor Storefront example',

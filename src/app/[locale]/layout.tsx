@@ -6,7 +6,8 @@ import { Suspense, type ReactNode } from 'react';
 import { routing } from '@/i18n/routing';
 import { DraftModeNotification } from '@/ui/components/DraftModeNotification';
 import { ThemeProvider } from '@/ui/components/ThemeProvider';
-//import { ThemeScript } from '@/ui/components/ThemeScript';
+import { ThemeInitializer } from '@/ui/components/ThemeInitializer';
+
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,12 +29,10 @@ export default async function LocaleLayout(props: {
 
 	return (
 		<html lang={locale} className='min-h-dvh'>
-			<head>
-				<script async src='test.js'></script>
-			</head>
 			<body className={`${inter.className} min-h-dvh`}>
 				<ThemeProvider defaultTheme='system' storageKey='saleor-theme'>
 					<NextIntlClientProvider>
+						<ThemeInitializer />
 						{children}
 						<Suspense>
 							<DraftModeNotification />
